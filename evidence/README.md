@@ -7,6 +7,26 @@ never published. **Required hosted red/green evidence is verified at 55b79e0;
 TestPyPI publication remains unverified.** A startup failure is an infrastructure
 failure, not proof of package-bug detection.
 
+## Final verifier regression at feb2268
+
+The final verifier implementation at `feb2268131637f283eaee5e95536835a84145b62`
+passed [all 19 fixed jobs](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43103313246),
+including the 15-leg native matrix and exact-artifact Docker lane.
+It also rejected every fault in a fresh hosted regression:
+
+| Fault | Actual red run | Required consumer |
+| --- | --- | --- |
+| python310 | [failed as intended](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43103713099) | ubuntu-latest, 3.10 |
+| windows | [failed as intended](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43103718608) | windows-latest, 3.12 |
+| missing-data | [failed as intended](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43103724109) | ubuntu-latest, 3.12 |
+| entrypoint | [failed as intended](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43103729733) | ubuntu-latest, 3.12 |
+
+All four source-quality jobs passed. The collector required the error signature
+inside the specific failed consumer's log, not merely elsewhere in the run.
+[The snapshot and raw logs](actions/acceptance-feb2268/runs.json) record
+`all_expected_outcomes_observed: true`. The naive comparison runs below use
+55b79e0 and the unchanged four fault fixtures. No old result was overwritten.
+
 ## Verified hosted red and green evidence
 
 All nine runs below used `55b79e0a285db3e9d5244d62b768200f8719eca2`.
@@ -31,9 +51,9 @@ The [full snapshot](actions/acceptance-55b79e0/runs.json) records
 `all_expected_outcomes_observed: true`; raw logs are stored beside it. Reproduce
 collection with `python scripts/collect_actions.py --plan
 evidence/actions/acceptance-plan.json --out evidence/actions/a-new-directory`.
-These results precede the final verifier-hardening follow-up. That follow-up
-passed local checks and a fresh full reproduction; hosted acceptance of the
-new revision is required before a release tag is created.
+These baseline results precede the final verifier-hardening follow-up. Its
+additional local and hosted acceptance is recorded above. TestPyPI publication
+and read-back are the remaining target checks.
 
 | Fault | Why naive checks pass | Required hardened failure |
 | --- | --- | --- |
