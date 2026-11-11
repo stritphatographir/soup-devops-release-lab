@@ -33,7 +33,8 @@ def record(command: list[str], log: Path) -> tuple[int, str]:
         "$ " + subprocess.list2cmdline(command) + "\n\n" + result.stdout
         + f"\nExit code: {result.returncode}\n", encoding="utf-8",
     )
-    print(f"  exit={result.returncode}; evidence={log.relative_to(ROOT)}", flush=True)
+    shown = log.relative_to(ROOT) if log.is_relative_to(ROOT) else log
+    print(f"  exit={result.returncode}; evidence={shown}", flush=True)
     return result.returncode, result.stdout
 
 
@@ -46,13 +47,13 @@ def require_pass(result: tuple[int, str]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--out", type=Path, default=ROOT / "evidence/local")
+    parser.add_argument("--out", type=Path)
     args = parser.parse_args()
     if os.name != "nt":
         raise RuntimeError("full local reproduction requires Windows plus Linux Docker")
-    output = args.out.resolve()
-    output.mkdir(parents=True, exist_ok=True)
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    output = (args.out or ROOT / "evidence/local" / f"reproduction-{stamp}").resolve()
+    output.mkdir(parents=True, exist_ok=False)
     workspace = ROOT / "tmp" / f"reproduce-{stamp}"
     workspace.mkdir(parents=True)
     for minor, extra in (("3.12", []), ("3.10", ["--build-arg", f"PYTHON_IMAGE={PY310}"])):

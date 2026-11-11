@@ -14,3 +14,4 @@ htmlcov/
 .env
 .env.*
 !.env.example
+ci-artifact/

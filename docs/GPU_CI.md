@@ -20,9 +20,15 @@ errors, and an explicit VRAM limit. Record GPU model, driver, CUDA, Python,
 framework versions, seed, peak VRAM, image digest, wheel digest, and timings.
 Allow 20 minutes for tests plus 3 minutes for provisioning and image startup.
 
+Initially support exactly one GPU/software tuple per release: one RTX 4090 host
+driver, one CUDA image digest, one framework lock, and Python 3.12. Select and
+validate those exact versions before enabling the GPU gate; this design does
+not claim any tuple has passed. The cost estimate assumes N = 1. With N tuples,
+release minutes become `2 x N x 23`, plus any extra nightly coverage.
+
 Nightly, on the protected default branch, use a ten-minute version of the same
-suite plus startup allowance. Rotate supported driver/framework combinations
-across nights and run the whole supported compatibility set before release.
+suite plus startup allowance. Record the provider's actual host driver; a pod
+cannot freely replace it. Expand the supported set only with a new cost estimate.
 Keep small fixtures in a versioned, hash-checked object store. Large downloaded
 models, benchmarks, and timing thresholds need separate budgets and baselines.
 A single 4090 is not evidence for other architectures, multi-GPU, or 80 GB GPUs.
@@ -38,11 +44,18 @@ A single 4090 is not evidence for other architectures, multi-GPU, or 80 GB GPUs.
 | Small logs/fixtures allowance | no persistent GPU disk | $1.00 |
 | Total | rounded planning budget: $10 | **$8.76** |
 
-The estimate excludes taxes, GitHub private-repo minutes, large model storage,
-and substantial egress. Use a $15 monthly provisioning ceiling enforced by the
+The estimate assumes an existing small service hosts the broker and watchdog;
+new hosting costs need a separate estimate. It excludes taxes, GitHub private-repo
+minutes, large model storage, and substantial egress. Use a $15 monthly GPU
+provisioning ceiling enforced by the
 broker's own metered ledger and an account alert. Provider billing can lag, so an
 alert alone is not a hard spending cap. The broker refuses allocations whose
-maximum TTL cost would exceed the remaining budget.
+maximum TTL cost, including a one-minute watchdog allowance, would exceed the
+remaining budget. Storage/logs remain a separate $1 allowance. This is not a
+provider-enforced hard cap during an API outage. Disable automatic balance
+top-ups and verify current provider billing semantics before relying on prepaid
+credit as an additional guard. With a ten-minute cold start instead of three,
+expected compute plus the retry reserve and $1 allowance rises to $12.75.
 
 ## Allocation and cleanup controls
 
@@ -57,21 +70,32 @@ flowchart LR
   G --> F
 ```
 
-The broker verifies GitHub's OIDC issuer, audience, repository, workflow, event,
-ref, and environment. It accepts release tags and the scheduled default branch
+The broker verifies GitHub's OIDC issuer, audience, immutable repository and owner
+IDs, workflow identity, event, ref, and environment. It accepts release tags and the scheduled default branch
 only. It holds a scoped provider credential in a secret store; that credential
 never reaches the pod. GitHub's PyPI publishing identity is not a Runpod login.
 This broker is additional infrastructure that must be built and tested.
 
 Reject failing lint, unit, packaging, or CPU consumer checks before allocating.
-Use a single concurrency group; cancel superseded nightlies. Never run fork PRs
+Use separate release and nightly concurrency groups; only superseded nightlies
+are canceled. Give releases a per-tag group or a validated FIFO queue so a
+nightly cannot replace a pending release. The broker's ledger enforces one live
+pod and prioritizes releases; GitHub concurrency alone is not the allocation
+lock. Skip unchanged successful nightly SHAs unless deliberately checking for
+external drift. Pause after two deterministic failures on one SHA until a new
+commit or explicit maintainer reset. Never run fork PRs
 on a privileged GPU runner, and do not reuse a self-hosted runner across jobs.
 Use a non-root test container without repository or publish credentials. Allow
 egress only for the required artifact and results endpoints where supported.
+Results use a short-lived signed URL for one object, not a reusable storage key.
 
 Set a 25-minute release TTL and a 15-minute nightly TTL at the broker. A separate
-watchdog reconciles provider resources with the broker ledger and deletes
-expired pods even if Actions is canceled or the runner dies. Cleanup must run in
+watchdog runs every minute, reconciles provider resources with the broker ledger,
+and terminates expired pods even if Actions is canceled or the runner dies.
+Alert when its heartbeat is more than two minutes old. Also reconcile unknown
+pods in the dedicated provider account. Terminate rather than merely stop pods:
+retained disks may continue billing. Measure real cold-start times before
+committing to the TTLs. Cleanup must run in
 an `always()` path and on cancellation, but that path alone is insufficient.
 Test cancellation, API timeout after creation, and failed destruction before
 enabling a schedule. If resource creation is ambiguous, reconcile using a unique

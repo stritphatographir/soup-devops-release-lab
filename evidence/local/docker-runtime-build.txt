@@ -1,0 +1,449 @@
+$ docker build --target runtime --tag soup-release-runtime .
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.48kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 1.4s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 159B done
+#5 DONE 0.0s
+
+#6 [ci 1/4] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#6 resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.0s done
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 46.54kB 0.0s done
+#7 DONE 0.0s
+
+#8 [ci 2/4] WORKDIR /project
+#8 CACHED
+
+#9 [ci 3/4] COPY requirements/ requirements/
+#9 DONE 0.0s
+
+#10 [ci 4/4] RUN python -m pip --isolated install --index-url https://pypi.org/simple --only-binary=:all: --require-hashes -r requirements/ci.lock
+#10 1.010 Ignoring colorama: markers 'os_name == "nt" or sys_platform == "win32"' don't match your environment
+#10 1.010 Ignoring coverage: markers 'python_full_version < "3.11"' don't match your environment
+#10 1.010 Ignoring exceptiongroup: markers 'python_full_version < "3.11"' don't match your environment
+#10 1.011 Ignoring filelock: markers 'python_full_version < "3.11"' don't match your environment
+#10 1.011 Ignoring importlib-metadata: markers 'python_full_version < "3.10.2"' don't match your environment
+#10 1.011 Ignoring platformdirs: markers 'python_full_version < "3.11"' don't match your environment
+#10 1.012 Ignoring zipp: markers 'python_full_version < "3.10.2"' don't match your environment
+#10 1.310 Collecting boolean-py==5.0 (from -r requirements/ci.lock (line 3))
+#10 1.699   Downloading boolean_py-5.0-py3-none-any.whl (26 kB)
+#10 1.841 Collecting build==1.6.1 (from -r requirements/ci.lock (line 7))
+#10 1.933   Downloading build-1.6.1-py3-none-any.whl (31 kB)
+#10 2.073 Collecting cachecontrol==0.14.4 (from -r requirements/ci.lock (line 11))
+#10 2.165   Downloading cachecontrol-0.14.4-py3-none-any.whl (22 kB)
+#10 2.311 Collecting certifi==2026.10.23 (from -r requirements/ci.lock (line 15))
+#10 2.403   Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#10 2.916 Collecting charset-normalizer==3.5.2 (from -r requirements/ci.lock (line 19))
+#10 3.008   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#10 3.639 Collecting coverage==7.17.2 (from -r requirements/ci.lock (line 322))
+#10 3.732   Downloading coverage-7.17.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (263 kB)
+#10 3.872 Collecting cyclonedx-python-lib==11.12.0 (from -r requirements/ci.lock (line 443))
+#10 3.964   Downloading cyclonedx_python_lib-11.12.0-py3-none-any.whl (529 kB)
+#10 4.061      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 529.5/529.5 kB 3.6 MB/s eta 0:00:00
+#10 4.161 Collecting defusedxml==0.7.1 (from -r requirements/ci.lock (line 447))
+#10 4.253   Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+#10 4.365 Collecting filelock==4.2.10 (from -r requirements/ci.lock (line 459))
+#10 4.460   Downloading filelock-4.2.10-py3-none-any.whl (218 kB)
+#10 4.579 Collecting idna==3.20 (from -r requirements/ci.lock (line 463))
+#10 4.670   Downloading idna-3.20-py3-none-any.whl (69 kB)
+#10 4.780 Collecting iniconfig==2.3.1 (from -r requirements/ci.lock (line 471))
+#10 4.869   Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+#10 4.976 Collecting license-expression==30.4.4 (from -r requirements/ci.lock (line 475))
+#10 5.069   Downloading license_expression-30.4.4-py3-none-any.whl (120 kB)
+#10 5.182 Collecting markdown-it-py==4.3.0 (from -r requirements/ci.lock (line 479))
+#10 5.275   Downloading markdown_it_py-4.3.0-py3-none-any.whl (96 kB)
+#10 5.385 Collecting mdurl==0.1.2 (from -r requirements/ci.lock (line 483))
+#10 5.476   Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+#10 5.621 Collecting msgpack==1.2.4 (from -r requirements/ci.lock (line 487))
+#10 5.712   Downloading msgpack-1.2.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (475 kB)
+#10 5.853 Collecting nodeenv==1.12.0 (from -r requirements/ci.lock (line 580))
+#10 5.947   Downloading nodeenv-1.12.0-py3-none-any.whl (39 kB)
+#10 6.057 Collecting packageurl-python==0.17.6 (from -r requirements/ci.lock (line 584))
+#10 6.148   Downloading packageurl_python-0.17.6-py3-none-any.whl (36 kB)
+#10 6.258 Collecting packaging==26.3 (from -r requirements/ci.lock (line 588))
+#10 6.349   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#10 6.466 Collecting pip==26.3 (from -r requirements/ci.lock (line 597))
+#10 6.558   Downloading pip-26.3-py3-none-any.whl (2.0 MB)
+#10 6.704      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 12.7 MB/s eta 0:00:00
+#10 6.807 Collecting pip-api==0.0.35 (from -r requirements/ci.lock (line 601))
+#10 6.898   Downloading pip_api-0.0.35-py3-none-any.whl (123 kB)
+#10 7.096 Collecting pip-audit==2.10.1 (from -r requirements/ci.lock (line 605))
+#10 7.188   Downloading pip_audit-2.10.1-py3-none-any.whl (62 kB)
+#10 7.296 Collecting pip-requirements-parser==32.0.1 (from -r requirements/ci.lock (line 609))
+#10 7.387   Downloading pip_requirements_parser-32.0.1-py3-none-any.whl (35 kB)
+#10 7.498 Collecting platformdirs==4.14.5 (from -r requirements/ci.lock (line 617))
+#10 7.589   Downloading platformdirs-4.14.5-py3-none-any.whl (35 kB)
+#10 7.697 Collecting pluggy==1.7.0 (from -r requirements/ci.lock (line 621))
+#10 7.791   Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+#10 7.899 Collecting py-serializable==2.2.0 (from -r requirements/ci.lock (line 627))
+#10 7.991   Downloading py_serializable-2.2.0-py3-none-any.whl (23 kB)
+#10 8.102 Collecting pygments==2.21.0 (from -r requirements/ci.lock (line 631))
+#10 8.194   Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#10 8.264      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 18.7 MB/s eta 0:00:00
+#10 8.370 Collecting pyparsing==3.3.3 (from -r requirements/ci.lock (line 637))
+#10 8.462   Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+#10 8.573 Collecting pyproject-hooks==1.3.3 (from -r requirements/ci.lock (line 641))
+#10 8.664   Downloading pyproject_hooks-1.3.3-py3-none-any.whl (10 kB)
+#10 8.780 Collecting pyright==1.1.414 (from -r requirements/ci.lock (line 645))
+#10 8.871   Downloading pyright-1.1.414-py3-none-any.whl (6.2 MB)
+#10 9.226      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 17.4 MB/s eta 0:00:00
+#10 9.366 Collecting pytest==9.2.0 (from -r requirements/ci.lock (line 649))
+#10 9.458   Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+#10 9.582 Collecting pytest-cov==7.0.0 (from -r requirements/ci.lock (line 655))
+#10 9.673   Downloading pytest_cov-7.0.0-py3-none-any.whl (22 kB)
+#10 9.785 Collecting requests==2.34.2 (from -r requirements/ci.lock (line 659))
+#10 9.877   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#10 9.996 Collecting rich==15.0.0 (from -r requirements/ci.lock (line 665))
+#10 10.09   Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+#10 10.41 Collecting ruff==0.17.4 (from -r requirements/ci.lock (line 669))
+#10 10.50   Downloading ruff-0.17.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.6 MB)
+#10 11.45      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.6/10.6 MB 11.1 MB/s eta 0:00:00
+#10 11.60 Collecting setuptools==84.2.1 (from -r requirements/ci.lock (line 689))
+#10 11.69   Downloading setuptools-84.2.1-py3-none-any.whl (876 kB)
+#10 11.79      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 8.3 MB/s eta 0:00:00
+#10 11.89 Collecting sortedcontainers==2.4.0 (from -r requirements/ci.lock (line 693))
+#10 11.98   Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+#10 12.10 Collecting tomli==2.2.1 (from -r requirements/ci.lock (line 697))
+#10 12.19   Downloading tomli-2.2.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (242 kB)
+#10 12.32 Collecting tomli-w==1.2.0 (from -r requirements/ci.lock (line 737))
+#10 12.41   Downloading tomli_w-1.2.0-py3-none-any.whl (6.7 kB)
+#10 12.51 Collecting typing-extensions==4.16.0 (from -r requirements/ci.lock (line 741))
+#10 12.61   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 12.72 Collecting urllib3==2.8.0 (from -r requirements/ci.lock (line 748))
+#10 12.81   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#10 12.93 Collecting wheel==0.48.0 (from -r requirements/ci.lock (line 752))
+#10 13.02   Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+#10 13.16 Installing collected packages: sortedcontainers, boolean-py, urllib3, typing-extensions, tomli-w, tomli, setuptools, ruff, pyproject-hooks, pyparsing, pygments, pluggy, platformdirs, pip, packaging, packageurl-python, nodeenv, msgpack, mdurl, license-expression, iniconfig, idna, filelock, defusedxml, coverage, charset-normalizer, certifi, wheel, requests, pytest, pyright, py-serializable, pip-requirements-parser, pip-api, markdown-it-py, build, rich, pytest-cov, cyclonedx-python-lib, cachecontrol, pip-audit
+#10 14.29   Attempting uninstall: pip
+#10 14.29     Found existing installation: pip 25.0.1
+#10 14.32     Uninstalling pip-25.0.1:
+#10 14.48       Successfully uninstalled pip-25.0.1
+#10 17.16 Successfully installed boolean-py-5.0 build-1.6.1 cachecontrol-0.14.4 certifi-2026.10.23 charset-normalizer-3.5.2 coverage-7.17.2 cyclonedx-python-lib-11.12.0 defusedxml-0.7.1 filelock-4.2.10 idna-3.20 iniconfig-2.3.1 license-expression-30.4.4 markdown-it-py-4.3.0 mdurl-0.1.2 msgpack-1.2.4 nodeenv-1.12.0 packageurl-python-0.17.6 packaging-26.3 pip-26.3 pip-api-0.0.35 pip-audit-2.10.1 pip-requirements-parser-32.0.1 platformdirs-4.14.5 pluggy-1.7.0 py-serializable-2.2.0 pygments-2.21.0 pyparsing-3.3.3 pyproject-hooks-1.3.3 pyright-1.1.414 pytest-9.2.0 pytest-cov-7.0.0 requests-2.34.2 rich-15.0.0 ruff-0.17.4 setuptools-84.2.1 sortedcontainers-2.4.0 tomli-2.2.1 tomli-w-1.2.0 typing-extensions-4.16.0 urllib3-2.8.0 wheel-0.48.0
+#10 17.16 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#10 DONE 17.8s
+
+#11 [build 1/3] COPY . .
+#11 DONE 0.1s
+
+#12 [build 2/3] RUN ruff check . && python -m pytest --cov --cov-branch
+#12 0.215 All checks passed!
+#12 0.729 ============================= test session starts ==============================
+#12 0.729 platform linux -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0
+#12 0.729 rootdir: /project
+#12 0.729 configfile: pyproject.toml
+#12 0.729 testpaths: tests
+#12 0.729 plugins: platformdirs-4.14.5, cov-7.0.0
+#12 0.729 collected 35 items
+#12 0.729 
+#12 0.729 tests/naive/test_core.py ..                                              [  5%]
+#12 0.732 tests/test_cli.py .......................                                [ 71%]
+#12 0.770 tests/test_release_guards.py ..........                                  [100%]
+#12 0.826 
+#12 0.826 ================================ tests coverage ================================
+#12 0.826 _______________ coverage: platform linux, python 3.12.16-final-0 _______________
+#12 0.826 
+#12 0.826 Name                               Stmts   Miss Branch BrPart  Cover   Missing
+#12 0.826 ------------------------------------------------------------------------------
+#12 0.826 src/soup_release_lab/__init__.py       1      0      0      0   100%
+#12 0.826 src/soup_release_lab/cli.py           33      2      2      0    94%   11-12
+#12 0.826 src/soup_release_lab/core.py          10      0      6      0   100%
+#12 0.826 ------------------------------------------------------------------------------
+#12 0.826 TOTAL                                 44      2      8      0    96%
+#12 0.826 Required test coverage of 85.0% reached. Total coverage: 96.15%
+#12 0.826 ============================== 35 passed in 0.15s ==============================
+#12 DONE 0.9s
+
+#13 [build 3/3] RUN python scripts/build_release.py --out /release
+#13 0.697 * Getting build dependencies for sdist...
+#13 1.036 running egg_info
+#13 1.038 creating src/soup_release_lab_amirt.egg-info
+#13 1.039 writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+#13 1.040 writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+#13 1.040 writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+#13 1.040 writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+#13 1.041 writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+#13 1.041 writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 1.048 reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 1.048 adding license file 'LICENSE'
+#13 1.049 writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 1.072 * Building sdist...
+#13 1.406 running sdist
+#13 1.406 running egg_info
+#13 1.410 writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+#13 1.410 writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+#13 1.411 writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+#13 1.411 writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+#13 1.411 writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+#13 1.420 reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 1.420 adding license file 'LICENSE'
+#13 1.421 writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 1.421 running check
+#13 1.423 creating soup_release_lab_amirt-0.9.4
+#13 1.424 creating soup_release_lab_amirt-0.9.4/src/soup_release_lab
+#13 1.425 creating soup_release_lab_amirt-0.9.4/src/soup_release_lab/data
+#13 1.425 creating soup_release_lab_amirt-0.9.4/src/soup_release_lab_amirt.egg-info
+#13 1.426 creating soup_release_lab_amirt-0.9.4/tests
+#13 1.426 copying files to soup_release_lab_amirt-0.9.4...
+#13 1.426 copying LICENSE -> soup_release_lab_amirt-0.9.4
+#13 1.427 copying README.md -> soup_release_lab_amirt-0.9.4
+#13 1.427 copying pyproject.toml -> soup_release_lab_amirt-0.9.4
+#13 1.427 copying src/soup_release_lab/__init__.py -> soup_release_lab_amirt-0.9.4/src/soup_release_lab
+#13 1.428 copying src/soup_release_lab/__main__.py -> soup_release_lab_amirt-0.9.4/src/soup_release_lab
+#13 1.428 copying src/soup_release_lab/cli.py -> soup_release_lab_amirt-0.9.4/src/soup_release_lab
+#13 1.428 copying src/soup_release_lab/core.py -> soup_release_lab_amirt-0.9.4/src/soup_release_lab
+#13 1.428 copying src/soup_release_lab/data/defaults.json -> soup_release_lab_amirt-0.9.4/src/soup_release_lab/data
+#13 1.429 copying src/soup_release_lab_amirt.egg-info/PKG-INFO -> soup_release_lab_amirt-0.9.4/src/soup_release_lab_amirt.egg-info
+#13 1.429 copying src/soup_release_lab_amirt.egg-info/SOURCES.txt -> soup_release_lab_amirt-0.9.4/src/soup_release_lab_amirt.egg-info
+#13 1.429 copying src/soup_release_lab_amirt.egg-info/dependency_links.txt -> soup_release_lab_amirt-0.9.4/src/soup_release_lab_amirt.egg-info
+#13 1.429 copying src/soup_release_lab_amirt.egg-info/entry_points.txt -> soup_release_lab_amirt-0.9.4/src/soup_release_lab_amirt.egg-info
+#13 1.430 copying src/soup_release_lab_amirt.egg-info/requires.txt -> soup_release_lab_amirt-0.9.4/src/soup_release_lab_amirt.egg-info
+#13 1.430 copying src/soup_release_lab_amirt.egg-info/top_level.txt -> soup_release_lab_amirt-0.9.4/src/soup_release_lab_amirt.egg-info
+#13 1.430 copying tests/test_cli.py -> soup_release_lab_amirt-0.9.4/tests
+#13 1.431 copying tests/test_release_guards.py -> soup_release_lab_amirt-0.9.4/tests
+#13 1.432 Writing soup_release_lab_amirt-0.9.4/setup.cfg
+#13 1.432 Creating tar archive
+#13 1.435 removing 'soup_release_lab_amirt-0.9.4' (and everything under it)
+#13 1.463 * Building wheel from sdist
+#13 1.464 * Getting build dependencies for wheel...
+#13 1.796 running egg_info
+#13 1.799 writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+#13 1.799 writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+#13 1.800 writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+#13 1.800 writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+#13 1.800 writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+#13 1.807 reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 1.807 adding license file 'LICENSE'
+#13 1.808 writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 1.828 * Building wheel...
+#13 2.167 running bdist_wheel
+#13 2.177 running build
+#13 2.177 running build_py
+#13 2.179 creating build/lib/soup_release_lab
+#13 2.181 copying src/soup_release_lab/cli.py -> build/lib/soup_release_lab
+#13 2.181 copying src/soup_release_lab/core.py -> build/lib/soup_release_lab
+#13 2.181 copying src/soup_release_lab/__init__.py -> build/lib/soup_release_lab
+#13 2.181 copying src/soup_release_lab/__main__.py -> build/lib/soup_release_lab
+#13 2.182 creating build/lib/soup_release_lab/data
+#13 2.183 copying src/soup_release_lab/data/defaults.json -> build/lib/soup_release_lab/data
+#13 2.183 warning: build_py: byte-compiling is disabled, skipping.
+#13 2.183 
+#13 2.188 installing to build/bdist.linux-x86_64/wheel
+#13 2.188 running install
+#13 2.191 running install_lib
+#13 2.194 creating build/bdist.linux-x86_64/wheel
+#13 2.195 creating build/bdist.linux-x86_64/wheel/soup_release_lab
+#13 2.195 copying build/lib/soup_release_lab/cli.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+#13 2.196 copying build/lib/soup_release_lab/core.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+#13 2.196 creating build/bdist.linux-x86_64/wheel/soup_release_lab/data
+#13 2.196 copying build/lib/soup_release_lab/data/defaults.json -> build/bdist.linux-x86_64/wheel/./soup_release_lab/data
+#13 2.197 copying build/lib/soup_release_lab/__init__.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+#13 2.197 copying build/lib/soup_release_lab/__main__.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+#13 2.197 running install_egg_info
+#13 2.197 warning: install_lib: byte-compiling is disabled, skipping.
+#13 2.197 
+#13 2.200 running egg_info
+#13 2.202 writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+#13 2.203 writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+#13 2.203 writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+#13 2.203 writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+#13 2.203 writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+#13 2.206 reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 2.207 adding license file 'LICENSE'
+#13 2.208 writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+#13 2.208 Copying src/soup_release_lab_amirt.egg-info to build/bdist.linux-x86_64/wheel/./soup_release_lab_amirt-0.9.4-py3.12.egg-info
+#13 2.209 running install_scripts
+#13 2.211 creating build/bdist.linux-x86_64/wheel/soup_release_lab_amirt-0.9.4.dist-info/WHEEL
+#13 2.211 creating '/release/dist/.tmp-h7mdub8q/soup_release_lab_amirt-0.9.4-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+#13 2.212 adding 'soup_release_lab/__init__.py'
+#13 2.212 adding 'soup_release_lab/__main__.py'
+#13 2.212 adding 'soup_release_lab/cli.py'
+#13 2.213 adding 'soup_release_lab/core.py'
+#13 2.213 adding 'soup_release_lab/data/defaults.json'
+#13 2.213 adding 'soup_release_lab_amirt-0.9.4.dist-info/licenses/LICENSE'
+#13 2.213 adding 'soup_release_lab_amirt-0.9.4.dist-info/METADATA'
+#13 2.214 adding 'soup_release_lab_amirt-0.9.4.dist-info/WHEEL'
+#13 2.214 adding 'soup_release_lab_amirt-0.9.4.dist-info/entry_points.txt'
+#13 2.214 adding 'soup_release_lab_amirt-0.9.4.dist-info/top_level.txt'
+#13 2.214 adding 'soup_release_lab_amirt-0.9.4.dist-info/RECORD'
+#13 2.214 removing build/bdist.linux-x86_64/wheel
+#13 2.234 Successfully built soup_release_lab_amirt-0.9.4.tar.gz and soup_release_lab_amirt-0.9.4-py3-none-any.whl
+#13 2.258 Bound 2 distributions to local-uncommitted; version=0.9.4
+#13 DONE 2.3s
+
+#14 [verified 1/4] COPY --from=build /project/scripts/ /project/scripts/
+#14 DONE 0.1s
+
+#15 [verified 2/4] COPY --from=build /release/ /release/
+#15 DONE 0.0s
+
+#16 [verified 3/4] RUN python scripts/smoke_artifact.py --bundle /release --kind wheel
+#16 2.830 $ /tmp/soup consumer cn_0qjnc/venv/bin/python -I -m pip --isolated --disable-pip-version-check install --no-cache-dir --index-url https://pypi.org/simple --require-hashes --only-binary=:all: -r /project/requirements/runtime.lock
+#16 2.830 Ignoring tomli: markers 'python_full_version < "3.11"' don't match your environment
+#16 2.830 
+#16 3.078 $ /tmp/soup consumer cn_0qjnc/venv/bin/python -I -m pip --isolated --disable-pip-version-check install --no-deps --no-index --no-build-isolation /release/dist/soup_release_lab_amirt-0.9.4-py3-none-any.whl
+#16 3.078 Processing /release/dist/soup_release_lab_amirt-0.9.4-py3-none-any.whl
+#16 3.078 Installing collected packages: soup-release-lab-amirt
+#16 3.078 Successfully installed soup-release-lab-amirt-0.9.4
+#16 3.078 
+#16 3.243 $ /tmp/soup consumer cn_0qjnc/venv/bin/python -I -m pip --isolated --disable-pip-version-check check
+#16 3.243 No broken requirements found.
+#16 3.243 
+#16 3.253 $ /tmp/soup consumer cn_0qjnc/venv/bin/python -I -c import soup_release_lab; print(soup_release_lab.__file__)
+#16 3.253 /tmp/soup consumer cn_0qjnc/venv/lib/python3.12/site-packages/soup_release_lab/__init__.py
+#16 3.253 
+#16 3.293 $ /tmp/soup consumer cn_0qjnc/venv/bin/soup-check --version
+#16 3.293 soup-check 0.9.4
+#16 3.293 
+#16 3.331 $ /tmp/soup consumer cn_0qjnc/venv/bin/python -I -m soup_release_lab --version
+#16 3.331 soup-check 0.9.4
+#16 3.331 
+#16 3.370 $ /tmp/soup consumer cn_0qjnc/venv/bin/soup-check --help
+#16 3.370 usage: soup-check [-h] [--version] {inspect} ...
+#16 3.370 
+#16 3.370 Read a TOML service configuration and print a deterministic JSON report.
+#16 3.370 
+#16 3.370 positional arguments:
+#16 3.370   {inspect}
+#16 3.370     inspect   validate a TOML configuration
+#16 3.370 
+#16 3.370 options:
+#16 3.370   -h, --help  show this help message and exit
+#16 3.370   --version   show program's version number and exit
+#16 3.370 
+#16 3.413 $ /tmp/soup consumer cn_0qjnc/venv/bin/soup-check inspect /tmp/soup consumer cn_0qjnc/service café with spaces.toml
+#16 3.413 {"name": "caf\u00e9", "profile": "safe", "schema": 1, "workers": 3}
+#16 3.413 
+#16 3.455 $ /tmp/soup consumer cn_0qjnc/venv/bin/soup-check inspect /tmp/soup consumer cn_0qjnc/service café with spaces.toml
+#16 3.455 soup-check: workers must be between 1 and 16
+#16 3.455 
+#16 3.496 $ /tmp/soup consumer cn_0qjnc/venv/bin/soup-check inspect /tmp/soup consumer cn_0qjnc/missing.toml
+#16 3.496 soup-check: [Errno 2] No such file or directory: '/tmp/soup consumer cn_0qjnc/missing.toml'
+#16 3.496 
+#16 3.524 PASS: clean wheel consumer on linux / Python 3.12.16
+#16 DONE 3.6s
+
+#17 [verified 4/4] RUN python scripts/smoke_artifact.py --bundle /release --kind sdist
+#17 1.937 $ /tmp/soup consumer 1pw3_c6z/venv/bin/python -I -m pip --isolated --disable-pip-version-check install --no-cache-dir --index-url https://pypi.org/simple --require-hashes --only-binary=:all: -r /project/requirements/runtime.lock
+#17 1.937 Ignoring tomli: markers 'python_full_version < "3.11"' don't match your environment
+#17 1.937 
+#17 4.804 $ /tmp/soup consumer 1pw3_c6z/venv/bin/python -I -m pip --isolated --disable-pip-version-check install --no-cache-dir --index-url https://pypi.org/simple --require-hashes --only-binary=:all: -r /project/requirements/build.lock
+#17 4.804 Ignoring colorama: markers 'os_name == "nt"' don't match your environment
+#17 4.804 Ignoring importlib-metadata: markers 'python_full_version < "3.10.2"' don't match your environment
+#17 4.804 Ignoring tomli: markers 'python_full_version < "3.11"' don't match your environment
+#17 4.804 Ignoring zipp: markers 'python_full_version < "3.10.2"' don't match your environment
+#17 4.804 Collecting build==1.6.1 (from -r /project/requirements/build.lock (line 3))
+#17 4.804   Downloading build-1.6.1-py3-none-any.whl (31 kB)
+#17 4.804 Collecting packaging==26.3 (from -r /project/requirements/build.lock (line 15))
+#17 4.804   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#17 4.804 Collecting pyproject-hooks==1.3.3 (from -r /project/requirements/build.lock (line 21))
+#17 4.804   Downloading pyproject_hooks-1.3.3-py3-none-any.whl (10 kB)
+#17 4.804 Collecting setuptools==84.2.1 (from -r /project/requirements/build.lock (line 25))
+#17 4.804   Downloading setuptools-84.2.1-py3-none-any.whl (876 kB)
+#17 4.804      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 4.9 MB/s eta 0:00:00
+#17 4.804 Collecting wheel==0.48.0 (from -r /project/requirements/build.lock (line 65))
+#17 4.804   Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+#17 4.804 Installing collected packages: setuptools, pyproject-hooks, packaging, wheel, build
+#17 4.804 Successfully installed build-1.6.1 packaging-26.3 pyproject-hooks-1.3.3 setuptools-84.2.1 wheel-0.48.0
+#17 4.804 
+#17 5.391 $ /tmp/soup consumer 1pw3_c6z/venv/bin/python -I -m pip --isolated --disable-pip-version-check install --no-deps --no-index --no-build-isolation /release/dist/soup_release_lab_amirt-0.9.4.tar.gz
+#17 5.391 Processing /release/dist/soup_release_lab_amirt-0.9.4.tar.gz
+#17 5.391   Preparing metadata (pyproject.toml): started
+#17 5.391   Preparing metadata (pyproject.toml): finished with status 'done'
+#17 5.391 Building wheels for collected packages: soup-release-lab-amirt
+#17 5.391   Building wheel for soup-release-lab-amirt (pyproject.toml): started
+#17 5.391   Building wheel for soup-release-lab-amirt (pyproject.toml): finished with status 'done'
+#17 5.391   Created wheel for soup-release-lab-amirt: filename=soup_release_lab_amirt-0.9.4-py3-none-any.whl size=5079 sha256=7b83dbaaf52238dfb3999da1e782740ce088f5e1d9ccbe3ca3776e4d3066f7dd
+#17 5.391   Stored in directory: /root/.cache/pip/wheels/d6/6f/6f/f263aca56b29acac5a7913002640add77137a0f453a885f63a
+#17 5.391 Successfully built soup-release-lab-amirt
+#17 5.391 Installing collected packages: soup-release-lab-amirt
+#17 5.391 Successfully installed soup-release-lab-amirt-0.9.4
+#17 5.391 
+#17 5.562 $ /tmp/soup consumer 1pw3_c6z/venv/bin/python -I -m pip --isolated --disable-pip-version-check check
+#17 5.562 No broken requirements found.
+#17 5.562 
+#17 5.573 $ /tmp/soup consumer 1pw3_c6z/venv/bin/python -I -c import soup_release_lab; print(soup_release_lab.__file__)
+#17 5.573 /tmp/soup consumer 1pw3_c6z/venv/lib/python3.12/site-packages/soup_release_lab/__init__.py
+#17 5.573 
+#17 5.617 $ /tmp/soup consumer 1pw3_c6z/venv/bin/soup-check --version
+#17 5.617 soup-check 0.9.4
+#17 5.617 
+#17 5.656 $ /tmp/soup consumer 1pw3_c6z/venv/bin/python -I -m soup_release_lab --version
+#17 5.656 soup-check 0.9.4
+#17 5.656 
+#17 5.695 $ /tmp/soup consumer 1pw3_c6z/venv/bin/soup-check --help
+#17 5.695 usage: soup-check [-h] [--version] {inspect} ...
+#17 5.695 
+#17 5.695 Read a TOML service configuration and print a deterministic JSON report.
+#17 5.695 
+#17 5.695 positional arguments:
+#17 5.695   {inspect}
+#17 5.695     inspect   validate a TOML configuration
+#17 5.695 
+#17 5.695 options:
+#17 5.695   -h, --help  show this help message and exit
+#17 5.695   --version   show program's version number and exit
+#17 5.695 
+#17 5.738 $ /tmp/soup consumer 1pw3_c6z/venv/bin/soup-check inspect /tmp/soup consumer 1pw3_c6z/service café with spaces.toml
+#17 5.738 {"name": "caf\u00e9", "profile": "safe", "schema": 1, "workers": 3}
+#17 5.738 
+#17 5.782 $ /tmp/soup consumer 1pw3_c6z/venv/bin/soup-check inspect /tmp/soup consumer 1pw3_c6z/service café with spaces.toml
+#17 5.782 soup-check: workers must be between 1 and 16
+#17 5.782 
+#17 5.827 $ /tmp/soup consumer 1pw3_c6z/venv/bin/soup-check inspect /tmp/soup consumer 1pw3_c6z/missing.toml
+#17 5.827 soup-check: [Errno 2] No such file or directory: '/tmp/soup consumer 1pw3_c6z/missing.toml'
+#17 5.827 
+#17 5.879 PASS: clean sdist consumer on linux / Python 3.12.16
+#17 DONE 6.0s
+
+#18 [runtime 2/5] COPY --from=verified /release/dist/ /release/
+#18 DONE 0.0s
+
+#19 [runtime 3/5] COPY requirements/runtime.lock /release/runtime.lock
+#19 DONE 0.0s
+
+#20 [runtime 4/5] RUN python -m venv /opt/venv &&     /opt/venv/bin/python -m pip --isolated install --index-url https://pypi.org/simple --only-binary=:all: --require-hashes -r /release/runtime.lock &&     /opt/venv/bin/python -m pip --isolated install --no-deps --no-index /release/*.whl &&     /opt/venv/bin/python -m pip check &&     rm -rf /release
+#20 2.608 Ignoring tomli: markers 'python_full_version < "3.11"' don't match your environment
+#20 2.961 
+#20 2.961 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#20 2.961 [notice] To update, run: python -m pip install --upgrade pip
+#20 3.466 Processing /release/soup_release_lab_amirt-0.9.4-py3-none-any.whl
+#20 3.471 Installing collected packages: soup-release-lab-amirt
+#20 3.484 Successfully installed soup-release-lab-amirt-0.9.4
+#20 3.909 No broken requirements found.
+#20 DONE 4.0s
+
+#21 [runtime 5/5] WORKDIR /tmp
+#21 DONE 0.0s
+
+#22 exporting to image
+#22 exporting layers
+#22 exporting layers 0.4s done
+#22 exporting manifest sha256:73ea6c7097a977aec2ec8dba6e9bd8f4bd3accb3a2f1943266658788017af678 0.0s done
+#22 exporting config sha256:f19274babeeebe84a566f613830e9b2ee02acc105d3e1d54be1aecbbd922c415 0.0s done
+#22 exporting attestation manifest sha256:a9f33f17bb766829d0ae8b70e32a0f1bbe1184c7783d88a83e3f0be85e005ded 0.0s done
+#22 exporting manifest list sha256:5a9ca0ef38e056c48fc54bc6028169066332aa5ca9d7fb665ccffcdd21be6435 0.0s done
+#22 naming to docker.io/library/soup-release-runtime:latest done
+#22 unpacking to docker.io/library/soup-release-runtime:latest
+#22 unpacking to docker.io/library/soup-release-runtime:latest 0.3s done
+#22 DONE 0.8s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/88dwm9uvhrihf19iotntre75v
+
+Exit code: 0

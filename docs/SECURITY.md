@@ -42,10 +42,18 @@ optional extras, proxies and offline installs, old pip, locale and permissions
 combinations, user-specific configs, behavioral regressions beyond the fixtures,
 and GPU execution. A universal wheel is not an exhaustive compatibility proof.
 
-Operationally, failed publication or read-back must stop further automated
-releases and preserve evidence. This lab intentionally has no real-PyPI
+Operationally, a maintainer must disable the release workflow/environment after
+failed publication or read-back and preserve evidence. This circuit breaker is
+a manual control; the current workflow does not latch later releases off.
+This lab intentionally has no real-PyPI
 publisher. The current verdict is **automate TestPyPI; retain a human gate for
 real PyPI** until the remote evidence and repository trust controls are verified.
+
+Fix first: (1) obtain successful hosted execution and actual OIDC publish/read-back
+evidence; (2) protect source, locks, workflows, and version tags with independent
+review and account recovery; (3) implement and test a durable release circuit
+breaker, then broaden compatibility/behavioral coverage. Until then, TestPyPI
+automation is a demonstration, not approval for unattended real-PyPI release.
 
 References: [GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use),
 [PyPI Trusted Publishing](https://docs.pypi.org/trusted-publishers/using-a-publisher/),

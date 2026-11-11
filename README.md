@@ -12,8 +12,77 @@ python scripts/smoke_artifact.py --bundle tmp/release --kind sdist
 ```
 
 The CLI command is `soup-check inspect examples/service.toml`. Python 3.10 through
-3.14 on Linux, Windows, and macOS are the tested support contract in Actions.
+3.14 on Linux, Windows, and macOS are the configured support contract in Actions.
 
-Implementation, evidence, publishing setup, and limitations are documented below
-as verification is completed. No remote execution or publication is implied by
-the presence of a workflow file.
+## Current evidence
+
+Four local fixtures passed the naive library tests and build, then each failed
+in a clean installed consumer for its intended reason. Fixed wheel and sdist
+consumers passed on Linux Python 3.10/3.12 and native Windows Python 3.13.
+The unit suite has 38 passing tests and 96.15% combined line/branch coverage.
+Lint, type checks, workflow lint, and the updated dependency audit passed.
+The unprivileged Docker runtime also launched successfully.
+
+**Hosted acceptance remains pending.** Initial Actions dispatches returned
+GitHub internal startup failures before creating any jobs. These are retained
+as infrastructure failures, not counted as package-bug detections. Further
+diagnostic/retry runs and actual statuses are in the [evidence ledger](evidence/README.md).
+TestPyPI OIDC registration and publication have not yet been confirmed.
+
+## Read the submission
+
+- [Two-page note (PDF)](output/pdf/Soup-DevOps-Release-Note.pdf) and [editable source](docs/NOTE.md)
+- [Actual logs and Actions links](evidence/README.md)
+- [Supply-chain controls and trust boundaries](docs/SECURITY.md)
+- [GPU design and monthly budget](docs/GPU_CI.md)
+- [OIDC setup and remote reproduction commands](docs/PUBLISHING.md)
+- [AI disclosure](docs/AI_USAGE.md) and [reflection draft](docs/REFLECTION.md)
+- [Independent review records](docs/reviews/)
+
+## Reproduce all four incidents locally
+
+The full reproduction driver requires Windows, Python, and a running Linux
+Docker engine. It uses digest-pinned Linux 3.10/3.12 tool images and native
+Windows for the Unix-import fault. Every raw command and exit code is retained.
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip --isolated install --index-url https://pypi.org/simple --no-cache-dir --only-binary=:all: --require-hashes -r requirements/ci.lock
+.\.venv\Scripts\python.exe scripts/reproduce.py --out evidence/local/my-reproduction
+```
+
+Use a new output directory for each run to keep earlier failures. Each fixture
+lives in `tmp/`; the checkout is never mutated. The driver exits successfully
+only when the naive tests/build pass, the faulty consumer fails with the exact
+expected signature, and all six fixed consumers pass. This local harness is
+distinct from Actions, where faulty runs must really be red.
+
+For individual examples:
+
+```console
+python scripts/inject_bug.py --bug missing-data --destination tmp/missing-data
+python scripts/naive_check.py --source tmp/missing-data
+python scripts/build_release.py --source tmp/missing-data --out tmp/broken-release
+python scripts/smoke_artifact.py --bundle tmp/broken-release --kind wheel
+```
+
+The last command deliberately fails. Other choices are `python310`, `windows`,
+`entrypoint`, and `fixed`; see the evidence ledger for the required environment.
+
+## Release flow
+
+`naive.yml` demonstrates source-only checks. `ci.yml` calls `checks.yml` for
+quality, one sdist-to-wheel build, a clean consumer matrix, and Docker. Fixed
+runs use 15 OS/Python combinations; fault experiments use three representative
+ones. Tagging `v0.9.4` invokes the same checks in `release.yml`; only after all
+pass can the OIDC job upload the exact tested artifact to TestPyPI. Its public
+bytes are downloaded and exercised again. There is no real-PyPI publisher.
+
+Runtime and build dependencies are hash-locked, the normal consumer path uses no
+editable install or source import path, and neither a restored venv nor pip
+cache is used as proof of installation. A green result still has the limits in
+[the threat model](docs/SECURITY.md).
+
+The report PDF can be regenerated with Python 3.10+ after installing
+`requirements/docs.lock` using `--require-hashes`, then running
+`python scripts/render_note.py`. The note was rendered and checked to be two pages.

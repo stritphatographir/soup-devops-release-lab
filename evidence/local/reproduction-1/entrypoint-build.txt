@@ -1,0 +1,119 @@
+$ docker run --rm -e PYTHONUTF8=1 --mount type=bind,source=C:\Users\amirt\orca\workspaces\soup-devops\hearturchin,target=/project,readonly --mount type=bind,source=C:\Users\amirt\orca\workspaces\soup-devops\hearturchin\tmp\reproduce-20261111T203714Z\entrypoint,target=/candidate --mount type=bind,source=C:\Users\amirt\orca\workspaces\soup-devops\hearturchin\tmp\reproduce-20261111T203714Z,target=/results soup-lab-ci:3.12 python scripts/build_release.py --source /candidate --out /results/entrypoint-release
+
+* Getting build dependencies for sdist...
+running egg_info
+creating src/soup_release_lab_amirt.egg-info
+writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+* Building sdist...
+running sdist
+running egg_info
+writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+running check
+creating soup_release_lab_amirt-0.9.3
+creating soup_release_lab_amirt-0.9.3/src/soup_release_lab
+creating soup_release_lab_amirt-0.9.3/src/soup_release_lab/data
+creating soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+creating soup_release_lab_amirt-0.9.3/tests
+copying files to soup_release_lab_amirt-0.9.3...
+copying LICENSE -> soup_release_lab_amirt-0.9.3
+copying README.md -> soup_release_lab_amirt-0.9.3
+copying pyproject.toml -> soup_release_lab_amirt-0.9.3
+copying src/soup_release_lab/__init__.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+copying src/soup_release_lab/__main__.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+copying src/soup_release_lab/cli.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+copying src/soup_release_lab/core.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+copying src/soup_release_lab/data/defaults.json -> soup_release_lab_amirt-0.9.3/src/soup_release_lab/data
+copying src/soup_release_lab_amirt.egg-info/PKG-INFO -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+copying src/soup_release_lab_amirt.egg-info/SOURCES.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+copying src/soup_release_lab_amirt.egg-info/dependency_links.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+copying src/soup_release_lab_amirt.egg-info/entry_points.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+copying src/soup_release_lab_amirt.egg-info/requires.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+copying src/soup_release_lab_amirt.egg-info/top_level.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+copying tests/test_cli.py -> soup_release_lab_amirt-0.9.3/tests
+copying tests/test_release_guards.py -> soup_release_lab_amirt-0.9.3/tests
+copying src/soup_release_lab_amirt.egg-info/SOURCES.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+Writing soup_release_lab_amirt-0.9.3/setup.cfg
+Creating tar archive
+removing 'soup_release_lab_amirt-0.9.3' (and everything under it)
+* Building wheel from sdist
+* Getting build dependencies for wheel...
+running egg_info
+writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+creating build/lib/soup_release_lab
+copying src/soup_release_lab/cli.py -> build/lib/soup_release_lab
+copying src/soup_release_lab/core.py -> build/lib/soup_release_lab
+copying src/soup_release_lab/__init__.py -> build/lib/soup_release_lab
+copying src/soup_release_lab/__main__.py -> build/lib/soup_release_lab
+creating build/lib/soup_release_lab/data
+copying src/soup_release_lab/data/defaults.json -> build/lib/soup_release_lab/data
+warning: build_py: byte-compiling is disabled, skipping.
+
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+creating build/bdist.linux-x86_64/wheel/soup_release_lab
+copying build/lib/soup_release_lab/cli.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+copying build/lib/soup_release_lab/core.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+creating build/bdist.linux-x86_64/wheel/soup_release_lab/data
+copying build/lib/soup_release_lab/data/defaults.json -> build/bdist.linux-x86_64/wheel/./soup_release_lab/data
+copying build/lib/soup_release_lab/__init__.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+copying build/lib/soup_release_lab/__main__.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+running install_egg_info
+warning: install_lib: byte-compiling is disabled, skipping.
+
+running egg_info
+writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+Copying src/soup_release_lab_amirt.egg-info to build/bdist.linux-x86_64/wheel/./soup_release_lab_amirt-0.9.3-py3.12.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/soup_release_lab_amirt-0.9.3.dist-info/WHEEL
+creating '/results/entrypoint-release/dist/.tmp-jktan0tl/soup_release_lab_amirt-0.9.3-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'soup_release_lab/__init__.py'
+adding 'soup_release_lab/__main__.py'
+adding 'soup_release_lab/cli.py'
+adding 'soup_release_lab/core.py'
+adding 'soup_release_lab/data/defaults.json'
+adding 'soup_release_lab_amirt-0.9.3.dist-info/licenses/LICENSE'
+adding 'soup_release_lab_amirt-0.9.3.dist-info/METADATA'
+adding 'soup_release_lab_amirt-0.9.3.dist-info/WHEEL'
+adding 'soup_release_lab_amirt-0.9.3.dist-info/entry_points.txt'
+adding 'soup_release_lab_amirt-0.9.3.dist-info/top_level.txt'
+adding 'soup_release_lab_amirt-0.9.3.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Successfully built soup_release_lab_amirt-0.9.3.tar.gz and soup_release_lab_amirt-0.9.3-py3-none-any.whl
+Bound 2 distributions to local-uncommitted; version=0.9.3
+
+Exit code: 0

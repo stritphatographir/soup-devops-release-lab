@@ -7,7 +7,7 @@ from pathlib import Path
 BUGS = ("fixed", "python310", "windows", "missing-data", "entrypoint")
 IGNORES = (
     ".git", ".venv", ".tools", "tmp", "dist", "build", "*.egg-info", "__pycache__",
-    ".pytest_cache", ".ruff_cache", ".coverage", "evidence", "output", "htmlcov",
+    ".pytest_cache", ".ruff_cache", ".coverage", "evidence", "output", "htmlcov", "ci-artifact",
 )
 
 

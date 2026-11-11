@@ -1,10 +1,13 @@
 # AI and tool use disclosure
 
 Codex read the brief, designed and wrote the initial package, fixtures, scripts,
-workflows, documentation, and note, and executed the recorded local and GitHub
-checks where account access was available. The applicant requested OpenCode and
-Antigravity review as additional tools; their actual outcomes are recorded in
-the evidence rather than assumed. No personal claim that the applicant manually
+workflows, documentation, and note, executed the recorded local checks, and
+created the repository and dispatched the recorded Actions runs. Initial remote
+runs failed inside GitHub before any jobs existed; they are not successful check
+executions. OIDC publication and the full hosted matrix remain unverified.
+The applicant requested OpenCode and Antigravity review as additional tools;
+their actual outcomes are recorded in the evidence rather than assumed.
+No personal claim that the applicant manually
 performed these checks is implied.
 
 Accepted implementation suggestions included testing wheels outside the source

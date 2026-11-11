@@ -1,0 +1,195 @@
+$ docker build --target ci --tag soup-lab-ci:3.10 --build-arg PYTHON_IMAGE=python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d .
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.48kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 0.7s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 160B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 283B done
+#6 DONE 0.0s
+
+#7 [ci 1/4] FROM docker.io/library/python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d
+#7 resolve docker.io/library/python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d 0.0s done
+#7 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e
+#7 extracting sha256:ecc510c1e359bdc007b39802570bb7e4dec7d6ebccf357c3201a74299113e05e 0.8s done
+#7 DONE 0.9s
+
+#7 [ci 1/4] FROM docker.io/library/python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d
+#7 extracting sha256:1189ef607cc64ff2e2a214c12e5f46402dc316a1a62cc5adb7071616882df7ee 0.1s done
+#7 DONE 1.0s
+
+#7 [ci 1/4] FROM docker.io/library/python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d
+#7 extracting sha256:79f4247a2db52342f23c9ff6911633949443ca83b454d185a05ed6fc8689ffca
+#7 extracting sha256:79f4247a2db52342f23c9ff6911633949443ca83b454d185a05ed6fc8689ffca 0.6s done
+#7 DONE 1.7s
+
+#7 [ci 1/4] FROM docker.io/library/python:3.10-slim@sha256:6ff506466f8b1e981719b468cc0023b8ef000b983cdec0eafe119d01f379e31d
+#7 extracting sha256:cc1cbe171e30bea48715fd96ecf842ad9fae425ce5a18917bee871684eb836f1 0.0s done
+#7 DONE 1.7s
+
+#8 [ci 2/4] WORKDIR /project
+#8 DONE 0.2s
+
+#9 [ci 3/4] COPY requirements/ requirements/
+#9 DONE 0.0s
+
+#10 [ci 4/4] RUN python -m pip --isolated install --index-url https://pypi.org/simple --only-binary=:all: --require-hashes -r requirements/ci.lock
+#10 1.055 Ignoring colorama: markers 'os_name == "nt" or sys_platform == "win32"' don't match your environment
+#10 1.055 Ignoring coverage: markers 'python_full_version >= "3.11"' don't match your environment
+#10 1.055 Ignoring filelock: markers 'python_full_version >= "3.11"' don't match your environment
+#10 1.055 Ignoring importlib-metadata: markers 'python_full_version < "3.10.2"' don't match your environment
+#10 1.056 Ignoring platformdirs: markers 'python_full_version >= "3.11"' don't match your environment
+#10 1.056 Ignoring zipp: markers 'python_full_version < "3.10.2"' don't match your environment
+#10 1.363 Collecting boolean-py==5.0
+#10 1.778   Downloading boolean_py-5.0-py3-none-any.whl (26 kB)
+#10 1.923 Collecting build==1.6.1
+#10 2.021   Downloading build-1.6.1-py3-none-any.whl (31 kB)
+#10 2.164 Collecting cachecontrol==0.14.4
+#10 2.262   Downloading cachecontrol-0.14.4-py3-none-any.whl (22 kB)
+#10 2.414 Collecting certifi==2026.10.23
+#10 2.511   Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#10 2.651      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.1/135.1 kB 964.4 kB/s eta 0:00:00
+#10 3.160 Collecting charset-normalizer==3.5.2
+#10 3.257   Downloading charset_normalizer-3.5.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (271 kB)
+#10 3.382      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 271.1/271.1 kB 2.2 MB/s eta 0:00:00
+#10 4.353 Collecting coverage==7.16.2
+#10 4.453   Downloading coverage-7.16.2-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (252 kB)
+#10 4.484      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 252.8/252.8 kB 8.3 MB/s eta 0:00:00
+#10 4.611 Collecting cyclonedx-python-lib==11.12.0
+#10 4.708   Downloading cyclonedx_python_lib-11.12.0-py3-none-any.whl (529 kB)
+#10 4.819      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 529.5/529.5 kB 5.1 MB/s eta 0:00:00
+#10 4.922 Collecting defusedxml==0.7.1
+#10 5.019   Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+#10 5.129 Collecting exceptiongroup==1.3.1
+#10 5.226   Downloading exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+#10 5.353 Collecting filelock==4.1.0
+#10 5.451   Downloading filelock-4.1.0-py3-none-any.whl (133 kB)
+#10 5.461      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 133.0/133.0 kB 16.5 MB/s eta 0:00:00
+#10 5.566 Collecting idna==3.20
+#10 5.664   Downloading idna-3.20-py3-none-any.whl (69 kB)
+#10 5.671      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.6/69.6 kB 11.8 MB/s eta 0:00:00
+#10 5.772 Collecting iniconfig==2.3.1
+#10 5.869   Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+#10 5.978 Collecting license-expression==30.4.4
+#10 6.076   Downloading license_expression-30.4.4-py3-none-any.whl (120 kB)
+#10 6.086      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 120.6/120.6 kB 13.9 MB/s eta 0:00:00
+#10 6.193 Collecting markdown-it-py==4.3.0
+#10 6.290   Downloading markdown_it_py-4.3.0-py3-none-any.whl (96 kB)
+#10 6.298      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 97.0/97.0 kB 13.9 MB/s eta 0:00:00
+#10 6.398 Collecting mdurl==0.1.2
+#10 6.497   Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+#10 6.714 Collecting msgpack==1.2.4
+#10 6.813   Downloading msgpack-1.2.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (461 kB)
+#10 6.839      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 461.8/461.8 kB 18.7 MB/s eta 0:00:00
+#10 6.947 Collecting nodeenv==1.12.0
+#10 7.045   Downloading nodeenv-1.12.0-py3-none-any.whl (39 kB)
+#10 7.156 Collecting packageurl-python==0.17.6
+#10 7.255   Downloading packageurl_python-0.17.6-py3-none-any.whl (36 kB)
+#10 7.262 Requirement already satisfied: packaging==26.3 in /usr/local/lib/python3.10/site-packages (from -r requirements/ci.lock (line 588)) (26.3)
+#10 7.385 Collecting pip==26.3
+#10 7.483   Downloading pip-26.3-py3-none-any.whl (2.0 MB)
+#10 7.728      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 8.0 MB/s eta 0:00:00
+#10 7.838 Collecting pip-api==0.0.35
+#10 7.936   Downloading pip_api-0.0.35-py3-none-any.whl (123 kB)
+#10 7.946      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 123.9/123.9 kB 15.4 MB/s eta 0:00:00
+#10 8.056 Collecting pip-audit==2.10.1
+#10 8.154   Downloading pip_audit-2.10.1-py3-none-any.whl (62 kB)
+#10 8.161      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 62.0/62.0 kB 9.3 MB/s eta 0:00:00
+#10 8.263 Collecting pip-requirements-parser==32.0.1
+#10 8.360   Downloading pip_requirements_parser-32.0.1-py3-none-any.whl (35 kB)
+#10 8.480 Collecting platformdirs==4.12.4
+#10 8.577   Downloading platformdirs-4.12.4-py3-none-any.whl (32 kB)
+#10 8.687 Collecting pluggy==1.7.0
+#10 8.784   Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+#10 8.900 Collecting py-serializable==2.2.0
+#10 8.997   Downloading py_serializable-2.2.0-py3-none-any.whl (23 kB)
+#10 9.111 Collecting pygments==2.21.0
+#10 9.209   Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#10 9.269      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 21.5 MB/s eta 0:00:00
+#10 9.384 Collecting pyparsing==3.3.3
+#10 9.482   Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+#10 9.492      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 126.4/126.4 kB 15.2 MB/s eta 0:00:00
+#10 9.593 Collecting pyproject-hooks==1.3.3
+#10 9.692   Downloading pyproject_hooks-1.3.3-py3-none-any.whl (10 kB)
+#10 9.863 Collecting pyright==1.1.414
+#10 9.964   Downloading pyright-1.1.414-py3-none-any.whl (6.2 MB)
+#10 10.51      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 11.4 MB/s eta 0:00:00
+#10 10.66 Collecting pytest==9.2.0
+#10 10.76   Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+#10 10.80      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 411.8/411.8 kB 11.8 MB/s eta 0:00:00
+#10 10.91 Collecting pytest-cov==7.0.0
+#10 11.00   Downloading pytest_cov-7.0.0-py3-none-any.whl (22 kB)
+#10 11.12 Collecting requests==2.34.2
+#10 11.22   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#10 11.23      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 73.1/73.1 kB 8.7 MB/s eta 0:00:00
+#10 11.36 Collecting rich==15.0.0
+#10 11.46   Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+#10 11.49      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 310.7/310.7 kB 11.6 MB/s eta 0:00:00
+#10 12.29 Collecting ruff==0.17.4
+#10 12.39   Downloading ruff-0.17.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.6 MB)
+#10 13.38      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.6/10.6 MB 10.6 MB/s eta 0:00:00
+#10 13.58 Collecting setuptools==84.2.1
+#10 13.68   Downloading setuptools-84.2.1-py3-none-any.whl (876 kB)
+#10 13.75      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 12.6 MB/s eta 0:00:00
+#10 13.86 Collecting sortedcontainers==2.4.0
+#10 13.95   Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+#10 14.09 Collecting tomli==2.2.1
+#10 14.18   Downloading tomli-2.2.1-py3-none-any.whl (14 kB)
+#10 14.29 Collecting tomli-w==1.2.0
+#10 14.39   Downloading tomli_w-1.2.0-py3-none-any.whl (6.7 kB)
+#10 14.50 Collecting typing-extensions==4.16.0
+#10 14.60   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#10 14.60      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 6.5 MB/s eta 0:00:00
+#10 14.72 Collecting urllib3==2.8.0
+#10 14.82   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#10 14.83      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.7/135.7 kB 10.1 MB/s eta 0:00:00
+#10 14.94 Collecting wheel==0.48.0
+#10 15.04   Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+#10 15.43 Installing collected packages: sortedcontainers, boolean-py, wheel, urllib3, typing-extensions, tomli-w, tomli, setuptools, ruff, pyproject-hooks, pyparsing, pygments, pluggy, platformdirs, pip, packageurl-python, nodeenv, msgpack, mdurl, license-expression, iniconfig, idna, filelock, defusedxml, coverage, charset-normalizer, certifi, requests, pyright, py-serializable, pip-requirements-parser, pip-api, markdown-it-py, exceptiongroup, build, rich, pytest, cyclonedx-python-lib, cachecontrol, pytest-cov, pip-audit
+#10 15.47   Attempting uninstall: wheel
+#10 15.47     Found existing installation: wheel 0.46.3
+#10 15.47     Uninstalling wheel-0.46.3:
+#10 15.49       Successfully uninstalled wheel-0.46.3
+#10 15.59   Attempting uninstall: setuptools
+#10 15.59     Found existing installation: setuptools 79.0.1
+#10 15.68     Uninstalling setuptools-79.0.1:
+#10 15.83       Successfully uninstalled setuptools-79.0.1
+#10 16.75   Attempting uninstall: pip
+#10 16.75     Found existing installation: pip 23.0.1
+#10 16.86     Uninstalling pip-23.0.1:
+#10 17.04       Successfully uninstalled pip-23.0.1
+#10 19.73 Successfully installed boolean-py-5.0 build-1.6.1 cachecontrol-0.14.4 certifi-2026.10.23 charset-normalizer-3.5.2 coverage-7.16.2 cyclonedx-python-lib-11.12.0 defusedxml-0.7.1 exceptiongroup-1.3.1 filelock-4.1.0 idna-3.20 iniconfig-2.3.1 license-expression-30.4.4 markdown-it-py-4.3.0 mdurl-0.1.2 msgpack-1.2.4 nodeenv-1.12.0 packageurl-python-0.17.6 pip-26.3 pip-api-0.0.35 pip-audit-2.10.1 pip-requirements-parser-32.0.1 platformdirs-4.12.4 pluggy-1.7.0 py-serializable-2.2.0 pygments-2.21.0 pyparsing-3.3.3 pyproject-hooks-1.3.3 pyright-1.1.414 pytest-9.2.0 pytest-cov-7.0.0 requests-2.34.2 rich-15.0.0 ruff-0.17.4 setuptools-84.2.1 sortedcontainers-2.4.0 tomli-2.2.1 tomli-w-1.2.0 typing-extensions-4.16.0 urllib3-2.8.0 wheel-0.48.0
+#10 19.73 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+#10 DONE 20.6s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 3.4s done
+#11 exporting manifest sha256:51449050a619b302a97a5ebba375c980a351adac957c1fb57bfa0aaee038d1a7 0.0s done
+#11 exporting config sha256:31812cdea15c3d24f055449aea0c39e4f9dc8e7407ae54ae1caef605961a9d42 0.0s done
+#11 exporting attestation manifest sha256:9cec4499faec5c79762188150213c72ef84de267b142e4bd1582bf8501719364 0.0s done
+#11 exporting manifest list sha256:4a95044f7a2a4d89f846d431dea74474759f00b02ce8325b173eb18c96e437ae 0.0s done
+#11 naming to docker.io/library/soup-lab-ci:3.10 done
+#11 unpacking to docker.io/library/soup-lab-ci:3.10
+#11 unpacking to docker.io/library/soup-lab-ci:3.10 3.0s done
+#11 DONE 6.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/u3a0ubthfz80bnurqdgunivn8
+
+Exit code: 0

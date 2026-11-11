@@ -1,0 +1,24 @@
+Subject: Soup internship - DevOps take-home - Amir
+
+Hello Soup team,
+
+Repository: https://github.com/stritphatographir/soup-devops-release-lab
+Two-page note: output/pdf/Soup-DevOps-Release-Note.pdf (attached)
+Evidence and Actions links: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md
+
+The repository contains four reproducible packaging faults, the naive and
+hardened pipelines, clean wheel/sdist consumers, TestPyPI OIDC publishing,
+supply-chain controls, GPU CI design and budget, and AI-use disclosure.
+
+Current acceptance is incomplete: local reproductions and fixed consumers
+passed, but the initial hosted runs failed inside GitHub before allocating any
+jobs. Those startup failures and diagnostic attempts are preserved; I have not
+counted them as bug-catching evidence. TestPyPI registration and a successful
+OIDC publish/read-back still need completion. The note states these limits.
+
+The reflection and AI disclosure describe the implementation observations and
+must be reviewed personally before this email is sent. This is a draft and has
+not been emailed.
+
+Best,
+Amir
