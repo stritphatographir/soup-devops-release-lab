@@ -1,0 +1,7 @@
+[
+  {"bug": "fixed", "pipeline": "hardened", "run_id": 43103313246},
+  {"bug": "python310", "pipeline": "hardened", "run_id": 43103713099},
+  {"bug": "windows", "pipeline": "hardened", "run_id": 43103718608},
+  {"bug": "missing-data", "pipeline": "hardened", "run_id": 43103724109},
+  {"bug": "entrypoint", "pipeline": "hardened", "run_id": 43103729733}
+]

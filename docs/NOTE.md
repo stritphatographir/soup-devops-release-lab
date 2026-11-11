@@ -4,7 +4,7 @@ Soup DevOps internship - Amir - 12 November 2026
 
 ## Verdict and acceptance status
 
-Automate TestPyPI after the gates pass; keep human approval for real PyPI. The recorded hosted evidence at commit 55b79e0 includes four green naive runs, four hardened failures with the intended signatures, and a fixed green run with all 19 jobs passing. TestPyPI publisher registration and OIDC publication remain unverified. Earlier GitHub startup failures had zero jobs; they are retained separately as infrastructure failures. No production package or deliberately broken fixture was published.
+Automate TestPyPI after the gates pass; keep human approval for real PyPI. Hosted evidence includes four green naive runs at 55b79e0. The final verifier at feb2268 passed all 19 fixed jobs and rejected every fault in fresh runs, with each error verified inside the required failed consumer and all source-quality checks green. TestPyPI publisher registration and OIDC publication remain unverified. Earlier GitHub startup failures had zero jobs; they are retained separately as infrastructure failures. No production package or deliberately broken fixture was published.
 
 Repository: [soup-devops-release-lab](https://github.com/stritphatographir/soup-devops-release-lab). The complete evidence and every retained remote attempt are in [the evidence ledger](https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md).
 
@@ -19,7 +19,7 @@ The CLI reads a TOML service config and bundled JSON defaults, validates it, and
 | Missing wheel data | Source has defaults.json; installed wheel does not | inspect against an installed wheel |
 | Broken entry point | Console command targets missing_main | Invoke the installed executable |
 
-Each rejection log contains the intended error signature. The fixed wheel and sdist passed six clean consumers: Linux 3.10, Linux 3.12, and Windows 3.13, two formats each. The recorded package tests reached 96.15% combined line/branch coverage; additional release-guard tests cover artifact and identity failures. The unprivileged Docker runtime launched with network disabled, read-only filesystem, and capabilities dropped.
+Each rejection log contains the intended error signature. The fixed wheel and sdist passed six clean consumers: Linux 3.10, Linux 3.12, and Windows 3.13, two formats each. All 107 tests passed with 96.15% combined package line/branch coverage; adversarial release-guard tests cover artifact and identity failures. The unprivileged Docker runtime launched with network disabled, read-only filesystem, and capabilities dropped.
 
 ## What changed in the release path
 
@@ -43,7 +43,7 @@ Allocate only after CPU gates. An OIDC broker admits protected refs, enforces on
 
 ## What to fix first
 
-First obtain OIDC publication/read-back evidence for the hardened revision; its local verifier checks and hosted red/green evidence are recorded. Next protect source, workflow, lock, and tag changes through independent review and account recovery. Then implement a durable release circuit breaker and broaden compatibility coverage. Today a maintainer must manually disable later releases after a publish/read-back failure. Keep the production approval gate until those controls are demonstrated.
+First obtain successful OIDC publication/read-back evidence; the hardened revision has passed local and hosted verification. Next protect source, workflow, lock, and tag changes through independent review and account recovery. Then implement a durable release circuit breaker and broaden compatibility coverage. Today a maintainer must manually disable later releases after a publish/read-back failure. Keep the production approval gate until those controls are demonstrated.
 
 ## Reflection and AI use
 

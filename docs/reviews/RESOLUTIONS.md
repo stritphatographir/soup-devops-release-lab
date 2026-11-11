@@ -1,5 +1,11 @@
 # Review resolution ledger
 
+Two wording corrections matter when reading the historical review: avoiding
+artifact-supplied code in the privileged job was the coordinator's security
+design constraint, not an explicit sentence in the assignment brief. The initial
+audit's six reported records include conditional-marker duplicates; they
+describe three affected packages, not six independent vulnerabilities.
+
 The original reviews are retained without rewriting their findings. They refer
 to earlier revisions; this ledger records later work and actual acceptance.
 
@@ -14,7 +20,7 @@ to earlier revisions; this ledger records later work and actual acceptance.
 | OpenCode F6: fault/matrix coupling | matrix_plan.py generates and validates the matrix. Adversarial tests remove required fault legs or add an undeclared fault and require rejection. The green fixed run and red fault runs at 55b79e0 execute this planner. |
 | OpenCode F7/F8: missing hosted evidence and old injector logs | New runs at 55b79e0 use the current injector, with all four naive/source-quality passes and all four intended consumer failures. Earlier local logs remain as historical evidence. |
 | OpenCode F10: public release could contain an extra wheel | public_files_ready rejects extra or duplicate filenames; adversarial tests cover an untested platform wheel and partial index visibility. |
-| OpenCode F2/F3/F4/F9: verifier and dependency metadata | Implemented by OpenCode: explicit empty-identity rejection, mandatory tag/ref matching on tag-triggered checks, metadata-aware publish verification with no assertions, and exact dependency/Python-range policy. The actual workflow verifier is exercised against adversarial bundles and under optimized Python. The coordinator independently confirmed 107 passing tests, lint/types/workflow checks, clean dependency audits, and a fresh four-fault/six-fixed-consumer reproduction. Hosted acceptance of this revision follows. |
+| OpenCode F2/F3/F4/F9: verifier and dependency metadata | Implemented by OpenCode: explicit empty-identity rejection, mandatory tag/ref matching on tag-triggered checks, metadata-aware publish verification with no assertions, and exact dependency/Python-range policy. The actual workflow verifier is exercised against adversarial bundles and under optimized Python. The coordinator independently confirmed 107 passing tests, clean quality/audit checks, and a fresh full reproduction. The feb2268 fixed run then passed all 19 hosted jobs, and all four fresh fault runs failed in the required consumer with source-quality green. |
 
 Known limits remain visible in SECURITY.md. A successful release workflow on
 TestPyPI has not yet been observed. The applicant has not claimed an independent

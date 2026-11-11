@@ -49,10 +49,15 @@ def collect(plan: list[dict], output: Path) -> None:
                 rejecting = [job for job in jobs["jobs"] if "consumers (" in job["name"]
                              and os_name in job["name"] and python in job["name"]
                              and job["conclusion"] == "failure"]
-                row["matched_signature"] = signature if signature in log else None
-                row["rejecting_jobs"] = [job["name"] for job in rejecting]
+                rejecting_names = {job["name"] for job in rejecting}
+                consumer_log = "\n".join(
+                    line for line in log.splitlines()
+                    if line.split("\t", 1)[0] in rejecting_names
+                )
+                row["matched_signature"] = signature if signature in consumer_log else None
+                row["rejecting_jobs"] = sorted(rejecting_names)
                 row["accepted"] = bool(
-                    run["conclusion"] == "failure" and rejecting and signature in log
+                    run["conclusion"] == "failure" and rejecting and signature in consumer_log
                 )
         snapshots.append(row)
         accepted = accepted and row["accepted"]

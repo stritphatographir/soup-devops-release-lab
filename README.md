@@ -23,10 +23,12 @@ The recorded unit suite passed with 96.15% combined line/branch coverage.
 Lint, type checks, workflow lint, and the updated dependency audit passed.
 The unprivileged Docker runtime also launched successfully.
 
-**Hosted red/green evidence is verified at commit 55b79e0.** All four naive
+**Hosted red/green evidence is verified.** All four naive
 experiments passed; all four hardened runs failed at the required consumer with
 the intended signature. The fixed run passed all 19 jobs, including the 15-leg
 OS/Python matrix and the Docker check of the exact same artifact.
+The stronger verifier at `feb2268` then passed another full fixed run and four
+fresh fault regressions, all with source-quality green.
 Initial Actions dispatches returned
 GitHub internal startup failures before creating any jobs. These are retained
 as infrastructure failures, not counted as package-bug detections. Further

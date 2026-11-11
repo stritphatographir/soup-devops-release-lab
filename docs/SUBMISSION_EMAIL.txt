@@ -14,6 +14,8 @@ Recorded hosted evidence now includes four naive green runs, four hardened red
 runs with the intended consumer failures, and a fixed green run covering all 19
 jobs, including 15 OS/Python combinations and exact-artifact Docker checks.
 Initial GitHub startup failures are also preserved as infrastructure failures.
+The final verifier revision also passed all 19 fixed jobs and rejected all four
+faults in fresh hosted regression runs.
 TestPyPI registration and a successful OIDC publish/read-back still need
 completion. The note states these limits.
 

@@ -1,7 +1,9 @@
 # Verification report
 
-Local checks: **PASS**. Hosted red/green evidence at 55b79e0: **VERIFIED**.
-Final verifier revision: local verification passed; its hosted check is pending.
+Local checks: **PASS**. Hosted red/green evidence: **VERIFIED**.
+Final verifier revision `feb2268`: **VERIFIED**, all 19 fixed jobs passed and
+all four fresh fault runs failed in the required consumer with the intended
+signature; their source-quality jobs all passed.
 TestPyPI OIDC publish and read-back: **NOT PERFORMED**, account login/registration
 still required. The assignment is not represented as fully accepted until that
 target check succeeds.
@@ -20,6 +22,7 @@ Sources of evidence:
 - `evidence/local/after-review-quality/`: commands, raw output and exit codes.
 - `evidence/local/reproduction-after-review/`: all four failures and six fixed consumers.
 - `evidence/actions/acceptance-55b79e0/`: actual run/job metadata and full logs.
+- `evidence/actions/acceptance-feb2268/`: the stronger verifier's fixed and fault regressions.
 - `docs/reviews/`: original reviews, implementation report and resolution ledger.
 
 The hosted fixed run passed 19 jobs, including all 15 native OS/Python consumer
