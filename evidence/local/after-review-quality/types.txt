@@ -1,0 +1,5 @@
+$ .venv/Scripts/pyright.exe --pythonpath .venv/Scripts/python.exe src
+
+0 errors, 0 warnings, 0 informations
+
+Exit code: 0

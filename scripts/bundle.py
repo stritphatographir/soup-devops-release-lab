@@ -10,18 +10,60 @@ from email.parser import BytesParser
 from pathlib import Path
 
 PROJECT = "soup-release-lab-amirt"
+DISTRIBUTION = PROJECT.replace("-", "_")
+TAG_SHAPE = re.compile(r"v[0-9]+\.[0-9]+\.[0-9]+")
+VERSION_SHAPE = re.compile(r"[0-9]+\.[0-9]+\.[0-9]+")
+# The consumer venv installs requirements/runtime.lock before the artifact, so a
+# dropped dependency still looks satisfied there. Only published metadata can
+# carry the project's single dependency, so its exact form is pinned here.
+REQUIRES_PYTHON = ">=3.10,<3.15"
+REQUIRES_DIST = ('tomli==2.2.1; python_version < "3.11"',)
 
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def normalize(value: str) -> str:
+    """Marker text as core metadata spells it: one space per gap, double quotes."""
+    return re.sub(r"\s+", " ", value.replace("'", '"')).strip()
+
+
+def specifiers(value: str) -> str:
+    """Requires-Python in a stable order; setuptools reorders specifiers."""
+    return ",".join(sorted(part for part in (normalize(x) for x in value.split(",")) if part))
+
+
+def published_names(version: str) -> set[str]:
+    """The wheel and sdist this project publishes for one version.
+
+    Comparing the manifest and the directory against this set is also the
+    distribution filename check: a renamed or platform-tagged file fails here.
+    """
+    return {
+        f"{DISTRIBUTION}-{version}-py3-none-any.whl",
+        f"{DISTRIBUTION}-{version}.tar.gz",
+    }
+
+
 def require_tag(version: str, tag: str | None) -> None:
-    if tag and (not re.fullmatch(r"v[0-9]+\.[0-9]+\.[0-9]+", tag) or tag != f"v{version}"):
+    """None is a branch or local build; an empty string is a lost release input."""
+    if tag is None:
+        return
+    if not tag:
+        raise ValueError("tag was supplied empty; omit it outside a release")
+    if not TAG_SHAPE.fullmatch(tag) or tag != f"v{version}":
         raise ValueError(f"tag {tag!r} does not match artifact version {version!r}")
 
 
-def metadata(path: Path) -> tuple[str, str]:
+def require_supplied(value: str | None, label: str) -> None:
+    """A flag passed with no value lost the identity; it did not abstain from it."""
+    if value is not None and not value:
+        raise ValueError(f"{label} was supplied empty")
+
+
+def metadata(path: Path) -> tuple[str, str, str, tuple[str, ...]]:
+    """(name, version, requires-python, requires-dist) as the distribution declares them."""
     if path.suffix == ".whl":
         with zipfile.ZipFile(path) as archive:
             names = [name for name in archive.namelist() if name.endswith(".dist-info/METADATA")]
@@ -30,28 +72,41 @@ def metadata(path: Path) -> tuple[str, str]:
             raw = archive.read(names[0])
     else:
         with tarfile.open(path, "r:gz") as archive:
-            names = [m for m in archive.getmembers() if m.name.count("/") == 1
-                     and m.name.endswith("/PKG-INFO")]
-            if len(names) != 1:
+            members = [m for m in archive.getmembers()
+                       if m.name.count("/") == 1 and m.name.endswith("/PKG-INFO")]
+            if len(members) != 1:
                 raise ValueError("sdist must have one top-level PKG-INFO")
-            stream = archive.extractfile(names[0])
+            stream = archive.extractfile(members[0])
             if stream is None:
                 raise ValueError("missing sdist metadata")
             raw = stream.read()
     message = BytesParser().parsebytes(raw)
-    return re.sub(r"[-_.]+", "-", str(message["Name"])).lower(), str(message["Version"])
+    name = re.sub(r"[-_.]+", "-", str(message["Name"] or "")).lower()
+    version = str(message["Version"] or "")
+    requires_python = specifiers(str(message["Requires-Python"] or ""))
+    requires_dist = tuple(sorted(normalize(x) for x in message.get_all("Requires-Dist", [])))
+    return name, version, requires_python, requires_dist
+
+
+def require_identity(path: Path, version: str, mismatch: str) -> None:
+    """The identity a distribution declares inside its own metadata."""
+    name, declared, requires_python, requires_dist = metadata(path)
+    if (name, declared) != (PROJECT, version):
+        raise ValueError(f"{mismatch}: {path.name}")
+    if requires_python != specifiers(REQUIRES_PYTHON):
+        raise ValueError(f"Requires-Python mismatch: {path.name}")
+    if requires_dist != tuple(sorted(normalize(x) for x in REQUIRES_DIST)):
+        raise ValueError(f"Requires-Dist mismatch: {path.name}")
 
 
 def write_manifest(root: Path, version: str, source_sha: str, tag: str | None = None) -> dict:
     require_tag(version, tag)
+    require_supplied(source_sha, "source SHA")
     files = sorted((root / "dist").iterdir())
-    if len(files) != 2 or sum(p.suffix == ".whl" for p in files) != 1 or sum(
-        p.name.endswith(".tar.gz") for p in files
-    ) != 1:
+    if {path.name for path in files} != published_names(version):
         raise ValueError("release must contain exactly one wheel and one sdist")
     for path in files:
-        if metadata(path) != (PROJECT, version):
-            raise ValueError(f"distribution identity mismatch: {path.name}")
+        require_identity(path, version, "distribution identity mismatch")
     manifest = {
         "schema": 1, "project": PROJECT, "version": version, "source_sha": source_sha,
         "files": {p.name: digest(p) for p in files},
@@ -61,31 +116,42 @@ def write_manifest(root: Path, version: str, source_sha: str, tag: str | None = 
 
 
 def verify_manifest(root: Path, source_sha: str | None = None, tag: str | None = None) -> dict:
+    require_supplied(source_sha, "source SHA")
     manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
     if manifest.get("schema") != 1 or manifest.get("project") != PROJECT:
         raise ValueError("unknown manifest format or project")
     if source_sha and manifest["source_sha"] != source_sha:
         raise ValueError("artifact source SHA mismatch")
-    require_tag(manifest["version"], tag)
+    version = str(manifest["version"])
+    require_tag(version, tag)
     names = manifest["files"]
     if set(names) != {p.name for p in (root / "dist").iterdir()}:
         raise ValueError("unexpected or missing release file")
-    if len(names) != 2 or sum(n.endswith(".whl") for n in names) != 1 or sum(
-        n.endswith(".tar.gz") for n in names
-    ) != 1:
-        raise ValueError("manifest must name exactly one wheel and one sdist")
+    if set(names) != published_names(version):
+        raise ValueError("manifest must name the published wheel and sdist")
     for name, expected in names.items():
-        if Path(name).name != name or digest(root / "dist" / name) != expected:
+        if Path(name).name != name:
+            raise ValueError(f"unsafe artifact name: {name}")
+        if digest(root / "dist" / name) != expected:
             raise ValueError(f"artifact checksum mismatch: {name}")
-        if metadata(root / "dist" / name) != (PROJECT, manifest["version"]):
-            raise ValueError(f"artifact metadata mismatch: {name}")
+        require_identity(root / "dist" / name, version, "artifact metadata mismatch")
     return manifest
 
 
-if __name__ == "__main__":
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("bundle", type=Path)
-    parser.add_argument("--source-sha")
-    parser.add_argument("--tag")
-    args = parser.parse_args()
-    print(json.dumps(verify_manifest(args.bundle, args.source_sha, args.tag), indent=2))
+    parser.add_argument("--source-sha", help="omit for a local build, never pass it empty")
+    parser.add_argument("--tag", help="omit outside a release, never pass it empty")
+    args = parser.parse_args(argv)
+    if args.source_sha == "":
+        parser.error("--source-sha needs a commit; omit it for a local build")
+    if args.tag == "":
+        parser.error("--tag needs a release tag; omit it outside a release")
+    return args
+
+
+if __name__ == "__main__":
+    options = parse_args()
+    result = verify_manifest(options.bundle, options.source_sha, options.tag)
+    print(json.dumps(result, indent=2))

@@ -385,3 +385,162 @@ tightened by review.
 4. Bind the Docker lane to the published artifact, or state that it does not (F1).
 5. Make fault → matrix-leg coverage explicit and tested (F6), and re-run the
    `python310` pair against the deployed injector (F8).
+
+---
+
+## Resolution: F2, F3/F4 and F9 closed by the same reviewer
+
+Fix worker: OpenCode (Orca worker, task `task_0d9cbef9f6e5`), 2026-11-12, on the
+tree at `55b79e0` ("Add exact-artifact Docker checks, explicit fault matrix, note,
+and honest evidence ledger"). Scope I was given: `scripts/bundle.py`,
+`scripts/build_release.py`, the publish-job verifier in `.github/workflows/release.yml`,
+`tests/test_release_guards.py` plus new verifier tests, and only the tag-argument
+handling in `.github/workflows/checks.yml`. The coordinator kept F1 and F6
+(`scripts/matrix_plan.py`, the `artifact-runtime` Docker lane), all other docs, and
+the evidence ledger; nothing above this line was edited, and every line number cited
+in the review part of this file predates the rewrite described below.
+
+### F2 — an empty value is no longer the same thing as an absent one
+
+`scripts/bundle.py` now treats `None` and `""` differently: `require_tag` returns only
+for `None` (branch, PR, local and Docker builds really have no release tag), and
+`require_supplied` raises `tag was supplied empty` / `source SHA was supplied empty`
+when a flag arrives with no value. The CLI check runs before any file is read
+(`bundle.py:141-151`), and `build_release.py:17-29` does the same for `--tag` and
+`--source-sha`, with `GITHUB_SHA` still the default and `local-uncommitted` still the
+fallback when it is unset.
+
+`.github/workflows/checks.yml:87-106` (build) and `:137-155` (consumers) now build the
+argument list in bash: `--tag` is **omitted** when `release-tag` is empty, and both
+legs fail closed with an `::error=` annotation when a tag ref arrives without the
+input, when the input differs from `github.ref_name`, or when a non-tag ref supplies
+one. `release.yml` still passes `release-tag: ${{ github.ref_name }}`, and `ci.yml`
+still passes nothing. The reusable-workflow input stayed optional (`default: ''`) so
+branch and PR callers keep working.
+
+### F3/F4 — the publish gate is now a real verifier, not an `assert` paraphrase
+
+`release.yml:40-135` replaces the 17-line `assert` script with a stdlib verifier that
+opens the distributions: `Requires-Python`, `Requires-Dist`, name and version come from
+the wheel's `METADATA` and the sdist's `PKG-INFO` (`email.parser` + `zipfile` /
+`tarfile`), digests are recomputed, the manifest and the directory must both name
+exactly `soup_release_lab_amirt-<version>-py3-none-any.whl` and
+`soup_release_lab_amirt-<version>.tar.gz` (so the filename is bound to the identity),
+and `EXPECTED_SHA` must be 40 hex while `EXPECTED_TAG` must be `vMAJOR.MINOR.PATCH`
+and equal `v` + the manifest version. Every check is an explicit
+`raise SystemExit("release gate: …")`; there is not one `assert` left. The job gained
+no checkout, no dependency install, no build, and it runs nothing that came from
+inside the artifact, so the privileged OIDC job still trusts only its own code.
+
+`tests/test_publish_verifier.py` extracts the heredoc out of `release.yml`
+(`tests/workflow_source.py`, stdlib regex + indentation, no YAML dependency), writes
+it to a file and runs it with `python -I` and with `python -I -O`, against 12 bundles
+built by `tests/release_fixture.py`, and asserts the gate and `scripts/bundle.py`
+return the **same verdict** in every case: valid, wrong SHA, wrong tag, malformed tag,
+manifest re-hashed under drifted wheel metadata, sdist name drift, dropped
+`Requires-Dist`, wrong marker, open-ended `Requires-Python`, extra unmanifested file,
+renamed wheel, bundle bound to another commit. Two more tests pin the shape of the job:
+no `assert` and only stdlib imports (AST walk, so a relative import of artifact code
+fails), and no `actions/checkout`, `setup-python`, `pip install`, `build_release`,
+`inject_bug`, `smoke_artifact` or `matrix_plan` inside the `publish` job.
+
+### F9 — the published dependency contract is now the evidence
+
+`bundle.py:12-20` pins `REQUIRES_PYTHON = ">=3.10,<3.15"` and
+`REQUIRES_DIST = ('tomli==2.2.1; python_version < "3.11"',)` and `require_identity`
+compares both distributions against them, at build time (`write_manifest`) as well as
+at every verify site; the publish gate pins the same three constants
+(`release.yml:49-52`). `Requires-Python` is compared as an order-insensitive set of
+specifiers because setuptools writes `<3.15,>=3.10`, and markers are compared after
+folding single quotes to double, which is how core metadata spells them. A dropped or
+swapped dependency line now fails the build job instead of hiding behind the
+hash-locked `requirements/runtime.lock` that `smoke_artifact.py` installs first.
+`test_dependency_policy_is_the_project_own_contract` reads `pyproject.toml` and fails
+if the pinned policy ever stops matching the project it guards, and
+`test_inline_gate_and_bundle_pin_the_same_policy` fails if `release.yml` drifts from
+`bundle.py`.
+
+### Measured, before and after
+
+Same shape as the probe matrix above; `1` = rejected. The "inline gate" column runs the
+lines extracted from the new `release.yml` under `python -I`.
+
+| Probe | before (`8e0aa1b`) | now |
+| --- | --- | --- |
+| `bundle.py --source-sha "" --tag ""` on a good bundle | **0** | **2** (`--source-sha needs a commit`) |
+| `build_release.py --tag ""` | 0 (tag ignored) | 2 (`--tag needs a release tag`) |
+| wheel METADATA rewritten to `9.9.9`, manifest re-hashed → `bundle.py` | 1 | 1 |
+| same bundle → inline gate | **0** | **1** (`artifact metadata mismatch`) |
+| wrong `EXPECTED_SHA` with `-O` → inline gate | **0** | **1** |
+| `Requires-Dist` dropped, manifest re-hashed → `bundle.py` / inline | 0 / 0 | 1 / 1 |
+| marker moved to `python_version < "3.13"` → `bundle.py` / inline | 0 / 0 | 1 / 1 |
+| valid real 0.9.4 build → `bundle.py` / inline / inline `-O` | 0 / 0 / 0 | 0 / 0 / 0 |
+| `bundle.py <dir> --source-sha <sha>` (the Dockerfile call) | 0 | 0 |
+
+The end-to-end probe (`C:/Users/amirt/AppData/Local/Temp/opencode/fix-probe.py`,
+scratch `fix-probe-20261111T211359Z`, outside the checkout) ran the real chain on this
+host: `inject_bug --bug fixed` → `build_release --source-sha <sha> --tag v0.9.4` →
+`bundle.py` with the exact SHA and tag → the extracted gate with the same identity, in
+plain and `-O` form, then the drift bundle. All 18 verdicts were as intended; two rows
+were labelled `BAD` only because the probe's expectation helper keyed on the tag and
+SHA alone and did not know that bundle was the drifted one — the gate answered
+`release gate: Requires-Dist mismatch: soup_release_lab_amirt-0.9.4-py3-none-any.whl`,
+which is the wanted failure.
+
+`scripts/reproduce.py` calls `build_release.py` with no `--tag`, so the fault
+demonstrations depend on the tag being genuinely optional: materialising
+`python310`, `windows`, `missing-data` and `entrypoint` and building each one
+(`C:/Users/amirt/AppData/Local/Temp/opencode/fixture-policy-probe.py`) gave exit `0`
+and `soup_release_lab_amirt-0.9.3-py3-none-any.whl` + `.tar.gz` for all four, so the
+new build-time policy accepts every fixture the matrix runs.
+
+### Commands and results on this host
+
+| Command | Result |
+| --- | --- |
+| `.venv\Scripts\python.exe -m ruff check .` | `All checks passed!` (after one `ruff --fix` of my own import wrapping) |
+| `.venv\Scripts\python.exe -m pytest --cov --cov-branch --cov-report=term-missing` | **107 passed**, 0 skipped, coverage 96.15% (`fail_under = 85`) — 38 tests before this change, `test_release_guards.py` 11 → 50, new `test_publish_verifier.py` 23 |
+| `.venv\Scripts\python.exe -m pyright --pythonpath .venv/Scripts/python.exe src` | `0 errors, 0 warnings` (the CI form, explicit interpreter) |
+| same interpreter over `scripts/bundle.py scripts/build_release.py tests/release_fixture.py tests/workflow_source.py tests/test_publish_verifier.py` | `0 errors` |
+| same interpreter over `tests/test_release_guards.py` | 3 × `reportMissingImports` for `bundle` / `build_release` / `inject_bug` — pre-existing shape (`test_read_back.py` and `test_matrix_plan.py` report the same for their modules): pyright does not read pytest's `pythonpath`, and the project gate includes `src` only |
+| `.tools\actionlint.exe -verbose` | `Found 0 errors in 5 files`, exit 0; `shellcheck` and `pyflakes` are not on this host's `PATH` so those two rules stayed disabled |
+
+Nothing was committed: this worker and the coordinator share one working tree, so the
+tree still holds the coordinator's in-flight `.gitattributes`, `evidence/actions/**`
+and `scripts/collect_actions.py` beside my eight files
+(`scripts/bundle.py`, `scripts/build_release.py`, `.github/workflows/release.yml`,
+`.github/workflows/checks.yml`, `tests/test_release_guards.py`,
+`tests/test_publish_verifier.py`, `tests/release_fixture.py`, `tests/workflow_source.py`).
+No tag, push, dispatch, publish, credential or model was touched, and no earlier
+evidence file or review was rewritten.
+
+### Limits of this fix
+
+1. **Two implementations remain, by design.** Sharing `bundle.py` with the publish job
+   would mean running code that travelled inside the artifact, which the brief forbids.
+   Agreement is enforced by tests — the 12-case verdict matrix, the pinned-constant
+   comparison, and the bash guard executed from the extracted YAML — not by
+   construction, so it only bites when the suite runs.
+2. **The dependency policy is a pinned exact-string pair.** Equivalent spellings
+   (`python_full_version`, a differently parenthesised marker) fail closed rather than
+   being parsed, `Requires-Dist` order is ignored but its text is not, and there is no
+   `Provides-Extra` or extras policy. `pyproject.toml` is coupled to the constants by a
+   test, not derived from it.
+3. **The Docker lane still speaks the branch dialect.** `Dockerfile:27` (coordinator-owned)
+   calls `bundle.py /release --source-sha "$SOURCE_SHA"` with no `--tag`, which my CLI
+   keeps working; on a tag run that lane therefore binds the SHA and the exact
+   artifact bytes but not the tag. Tag identity on a release rests on the two
+   `checks.yml` legs and the publish gate.
+4. **Nothing ran on a runner.** The bash guard was executed here under Git Bash
+   5.2.37 against the real bytes of `checks.yml`, and the gate under CPython 3.13.14
+   against a real build, but F7 is unchanged: there is still no green Actions run, so
+   `GITHUB_REF_TYPE` values on `pull_request` runs (I only need it to *not* be `tag`)
+   and the download-permission question in F11 remain unproven remotely.
+5. **The YAML reader is indentation-based.** `tests/workflow_source.py` finds the
+   heredoc and `run:` blocks without a YAML parser (no new dependency); if someone
+   resteps the gate into a different shape the extractor raises `AssertionError` at
+   collection time rather than testing something else by accident.
+6. **Docs still tell the old story.** The F2, F3 and F9 write-ups above, and
+   `docs/SECURITY.md`'s description of the inline re-validation, now understate what
+   the pipeline does; they are the coordinator's to reword, and my older line
+   references to `bundle.py:19-21` and `:67` no longer resolve.

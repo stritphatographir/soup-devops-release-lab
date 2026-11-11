@@ -19,6 +19,14 @@ because a passing source test does not even exercise those boundaries. There are
 unit tests that reject changed distribution bytes, a stale commit, unexpected
 files, path traversal in the manifest, and mismatched tags.
 
+The wheel and sdist must also declare the exact supported Requires-Python range
+and the project's single marked tomli requirement. This closes a gap in the
+consumer setup: preinstalling the hash-locked runtime dependency can otherwise
+hide a missing Requires-Dist declaration. Filenames, project names and versions
+are checked together. Explicitly empty SHA/tag inputs fail; branch checks omit
+the optional tag, while tag-triggered workflow steps require the caller's tag
+to equal the actual GitHub ref.
+
 `release.yml` publishes only on a tag after all reusable checks finish. Only its
 publish job has `id-token: write`. That job downloads the exact tested artifact,
 validates it using inline standard-library code, and invokes the SHA-pinned PyPA
@@ -27,6 +35,15 @@ holding the publish identity. The publisher uses TestPyPI's OIDC Trusted
 Publisher and requests publish attestations. Read-back verifies the downloaded
 wheel and sdist hashes and runs both consumers again. A read-back failure is a
 failed release run, even though publication has already happened.
+
+The publish job's inline verifier reads wheel/sdist metadata using only the
+standard library and rejects wrong identity, dependency policy, hashes, or file
+sets with explicit errors. It uses no assertions as security controls. Tests
+extract the actual workflow code and execute adversarial bundles with normal
+and optimized Python, comparing its verdicts with the consumer verifier.
+Two verifier implementations remain; the tests enforce agreement on the
+covered attacks. Their narrow metadata policy fails closed on unsupported
+requirement spellings and must be deliberately updated when dependencies change.
 
 OIDC removes a stored PyPI API token; it does not stop a compromised authorized
 workflow from publishing. Attestations bind origin and bytes, not correctness.
@@ -41,6 +58,8 @@ compromised build runner or maintainer, system-library/architecture differences,
 optional extras, proxies and offline installs, old pip, locale and permissions
 combinations, user-specific configs, behavioral regressions beyond the fixtures,
 and GPU execution. A universal wheel is not an exhaustive compatibility proof.
+The Node runtime used by pyright also comes from the hosted runner image; the
+Python lock does not pin that executable.
 
 Operationally, a maintainer must disable the release workflow/environment after
 failed publication or read-back and preserve evidence. This circuit breaker is

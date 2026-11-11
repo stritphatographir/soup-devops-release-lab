@@ -1,0 +1,20 @@
+{
+  "observed_at_utc": "2026-11-11T21:21:09.545288+00:00",
+  "repository": "stritphatographir/soup-devops-release-lab",
+  "environment": {
+    "name": "testpypi",
+    "deployment_branch_policy": {
+      "protected_branches": false,
+      "custom_branch_policies": true
+    }
+  },
+  "policies": [
+    {
+      "id": 66371075,
+      "node_id": "MDE2OkdhdGVCcmFuY2hQb2xpY3k2NjM3MTA3NQ==",
+      "name": "v*",
+      "type": "tag"
+    }
+  ],
+  "testpypi_oidc_registration": "not yet confirmed"
+}

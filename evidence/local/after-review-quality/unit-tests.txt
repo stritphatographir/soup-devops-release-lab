@@ -1,0 +1,32 @@
+$ .venv/Scripts/python.exe -m pytest --cov --cov-branch
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.14, pytest-9.2.0, pluggy-1.7.0
+rootdir: C:\Users\amirt\orca\workspaces\soup-devops\hearturchin
+configfile: pyproject.toml
+testpaths: tests
+plugins: platformdirs-4.14.5, cov-7.0.0
+collected 107 items
+
+tests\naive\test_core.py ..                                              [  1%]
+tests\test_cli.py .......................                                [ 23%]
+tests\test_matrix_plan.py ......                                         [ 28%]
+tests\test_publish_verifier.py .......................                   [ 50%]
+tests\test_read_back.py ...                                              [ 53%]
+tests\test_release_guards.py ........................................... [ 93%]
+.......                                                                  [100%]
+
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.14-final-0 _______________
+
+Name                               Stmts   Miss Branch BrPart  Cover   Missing
+------------------------------------------------------------------------------
+src\soup_release_lab\__init__.py       1      0      0      0   100%
+src\soup_release_lab\cli.py           33      2      2      0    94%   11-12
+src\soup_release_lab\core.py          10      0      6      0   100%
+------------------------------------------------------------------------------
+TOTAL                                 44      2      8      0    96%
+Required test coverage of 85.0% reached. Total coverage: 96.15%
+============================= 107 passed in 5.73s =============================
+
+Exit code: 0

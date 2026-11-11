@@ -1,0 +1,455 @@
+source-only	Set up job	﻿2026-11-11T21:06:52.6747997Z Current runner version: '2.338.2'
+source-only	Set up job	2026-11-11T21:06:52.6770008Z ##[group]Runner Image Provisioner
+source-only	Set up job	2026-11-11T21:06:52.6770844Z Hosted Compute Agent
+source-only	Set up job	2026-11-11T21:06:52.6771546Z Version: 20261028.624
+source-only	Set up job	2026-11-11T21:06:52.6772185Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+source-only	Set up job	2026-11-11T21:06:52.6772815Z Build Date: 2026-10-28T21:51:42Z
+source-only	Set up job	2026-11-11T21:06:52.6773410Z Worker ID: {117a528b-1c27-4f32-bb2b-28f56ee647dc}
+source-only	Set up job	2026-11-11T21:06:52.6773995Z Region: westus3
+source-only	Set up job	2026-11-11T21:06:52.6774454Z Cloud: Azure
+source-only	Set up job	2026-11-11T21:06:52.6774967Z ##[endgroup]
+source-only	Set up job	2026-11-11T21:06:52.6776128Z ##[group]Operating System
+source-only	Set up job	2026-11-11T21:06:52.6776731Z Ubuntu
+source-only	Set up job	2026-11-11T21:06:52.6777174Z 26.04.1
+source-only	Set up job	2026-11-11T21:06:52.6777598Z LTS
+source-only	Set up job	2026-11-11T21:06:52.6778067Z ##[endgroup]
+source-only	Set up job	2026-11-11T21:06:52.6778557Z ##[group]Runner Image
+source-only	Set up job	2026-11-11T21:06:52.6779045Z Image: ubuntu-26.04
+source-only	Set up job	2026-11-11T21:06:52.6779567Z Version: 20261101.186.1
+source-only	Set up job	2026-11-11T21:06:52.6780419Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261101.186/images/ubuntu/Ubuntu2604-Readme.md
+source-only	Set up job	2026-11-11T21:06:52.6782197Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261101.186
+source-only	Set up job	2026-11-11T21:06:52.6782963Z ##[endgroup]
+source-only	Set up job	2026-11-11T21:06:52.6783947Z ##[group]GITHUB_TOKEN Permissions
+source-only	Set up job	2026-11-11T21:06:52.6785490Z Contents: read
+source-only	Set up job	2026-11-11T21:06:52.6786138Z Metadata: read
+source-only	Set up job	2026-11-11T21:06:52.6786598Z ##[endgroup]
+source-only	Set up job	2026-11-11T21:06:52.6788365Z Secret source: Actions
+source-only	Set up job	2026-11-11T21:06:52.6789123Z Cache mode: write
+source-only	Set up job	2026-11-11T21:06:52.6790088Z Prepare workflow directory
+source-only	Set up job	2026-11-11T21:06:52.7057546Z Prepare all required actions
+source-only	Set up job	2026-11-11T21:06:52.7098191Z Getting action download info
+source-only	Set up job	2026-11-11T21:06:52.9769734Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+source-only	Set up job	2026-11-11T21:06:53.0961831Z Download action repository 'actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0' (SHA:6d4fd22b20465ccc0f7354476588e8df7c9ca0e0)
+source-only	Set up job	2026-11-11T21:06:53.8238165Z Complete job name: source-only
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-11-11T21:06:53.8951476Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8952417Z with:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8952819Z   persist-credentials: false
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8953361Z   repository: stritphatographir/soup-devops-release-lab
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8956809Z   token: ***
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8957201Z   ssh-strict: true
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8957592Z   ssh-user: git
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8957966Z   clean: true
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8958360Z   sparse-checkout-cone-mode: true
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8958829Z   fetch-depth: 1
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8959203Z   fetch-tags: false
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8959592Z   show-progress: true
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8959982Z   lfs: false
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8960351Z   submodules: false
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8960767Z   set-safe-directory: true
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8961332Z   allow-unsafe-pr-checkout: false
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:53.8961950Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0861689Z Syncing repository: stritphatographir/soup-devops-release-lab
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0864705Z ##[group]Getting Git version info
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0866158Z Working directory is '/home/runner/work/soup-devops-release-lab/soup-devops-release-lab'
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0867976Z [command]/usr/bin/git version
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0868802Z git version 2.56.0
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0878882Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0889787Z Temporarily overriding HOME='/home/runner/work/_temp/0b5a6ae6-9385-4e3e-be11-f858827c0d30' before making global git config changes
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0892053Z Adding repository directory to the temporary git global config as a safe directory
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0894497Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/soup-devops-release-lab/soup-devops-release-lab
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0948798Z Deleting the contents of '/home/runner/work/soup-devops-release-lab/soup-devops-release-lab'
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0953190Z ##[group]Determining repository object format
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0954514Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0955888Z ##[group]Initializing the repository
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.0957761Z [command]/usr/bin/git init /home/runner/work/soup-devops-release-lab/soup-devops-release-lab
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1032965Z hint: Using 'master' as the name for the initial branch. This default branch name
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1034791Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1036679Z hint: to use in all of your new repositories, which will suppress this warning,
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1037953Z hint: call:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1038919Z hint:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1039724Z hint: 	git config --global init.defaultBranch <name>
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1040571Z hint:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1041881Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1043234Z hint: 'development'. The just-created branch can be renamed via this command:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1044288Z hint:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1044925Z hint: 	git branch -m <name>
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1045616Z hint:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1046547Z hint: Disable this message with "git config set advice.defaultBranchName false"
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1048747Z Initialized empty Git repository in /home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git/
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1052849Z [command]/usr/bin/git remote add origin https://github.com/stritphatographir/soup-devops-release-lab
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1100185Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1101971Z ##[group]Disabling automatic garbage collection
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1126471Z [command]/usr/bin/git config --local gc.auto 0
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1138435Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1139716Z ##[group]Setting up auth
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1140572Z Removing SSH command configuration
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1143731Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1178686Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1548564Z Removing HTTP extra header
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1553310Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1591606Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1824218Z Removing includeIf entries pointing to credentials config files
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1829276Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.1859474Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2094038Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2127298Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git.path /home/runner/work/_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2155031Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2185590Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2212623Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2237924Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2238580Z ##[group]Fetching the repository
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.2243594Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +55b79e0a285db3e9d5244d62b768200f8719eca2:refs/remotes/origin/main
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7158133Z From https://github.com/stritphatographir/soup-devops-release-lab
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7159935Z  * [new ref]         55b79e0a285db3e9d5244d62b768200f8719eca2 -> origin/main
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7166845Z [command]/usr/bin/git branch --list --remote origin/main
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7189590Z   origin/main
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7196088Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7216676Z 55b79e0a285db3e9d5244d62b768200f8719eca2
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7220660Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7222021Z ##[group]Determining the checkout info
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7223608Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7224593Z [command]/usr/bin/git sparse-checkout disable
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7270242Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7298493Z ##[group]Checking out the ref
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7301071Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7387663Z Switched to a new branch 'main'
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7392716Z branch 'main' set up to track 'origin/main'.
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7400245Z ##[endgroup]
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7438385Z [command]/usr/bin/git log -1 --format=%H
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7462092Z 55b79e0a285db3e9d5244d62b768200f8719eca2
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7485370Z ##[group]Removing auth
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7486985Z Removing SSH command configuration
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7488984Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7504815Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7759711Z Removing HTTP extra header
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7762801Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.7794461Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8027756Z Removing includeIf entries pointing to credentials config files
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8030441Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8055011Z includeif.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8057990Z includeif.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git/worktrees/*.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8059955Z includeif.gitdir:/github/workspace/.git.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8061951Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8065275Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8082806Z /home/runner/work/_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8092197Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-3b5c4fe1\-9d80\-489b\-a691\-9fe9af403d35\.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8123298Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git/worktrees/*.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8148369Z /home/runner/work/_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8157405Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/soup-devops-release-lab/soup-devops-release-lab/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-3b5c4fe1\-9d80\-489b\-a691\-9fe9af403d35\.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8192381Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8211901Z /github/runner_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8220064Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-3b5c4fe1\-9d80\-489b\-a691\-9fe9af403d35\.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8249112Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8269102Z /github/runner_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8276730Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-3b5c4fe1\-9d80\-489b\-a691\-9fe9af403d35\.config
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8305695Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8535037Z Removing credentials config '/home/runner/work/_temp/git-credentials-3b5c4fe1-9d80-489b-a691-9fe9af403d35.config'
+source-only	Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:06:54.8542545Z ##[endgroup]
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	﻿2026-11-11T21:06:54.8833310Z ##[group]Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8834564Z with:
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8835180Z   python-version: 3.12
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8835907Z   check-latest: false
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8843543Z   token: ***
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8844544Z   mirror: https://raw.githubusercontent.com/actions/python-versions/main
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8845799Z   update-environment: true
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8846582Z   allow-prereleases: false
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8847351Z   freethreaded: false
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.8848041Z ##[endgroup]
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.9890152Z ##[group]Installed versions
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.9962001Z Successfully set up CPython (3.12.16)
+source-only	Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	2026-11-11T21:06:54.9963988Z ##[endgroup]
+source-only	Install hash-locked CI tools	﻿2026-11-11T21:06:55.0131107Z ##[group]Run python -m pip --isolated install --index-url https://pypi.org/simple --no-cache-dir --only-binary=:all: --require-hashes -r requirements/ci.lock
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0134683Z ^[[36;1mpython -m pip --isolated install --index-url https://pypi.org/simple --no-cache-dir --only-binary=:all: --require-hashes -r requirements/ci.lock^[[0m
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0220406Z shell: /usr/bin/bash -e {0}
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0221517Z env:
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0222336Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0223708Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0225063Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0226289Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0227512Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0228777Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.0230011Z ##[endgroup]
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6052118Z Ignoring colorama: markers 'os_name == "nt" or sys_platform == "win32"' don't match your environment
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6055421Z Ignoring coverage: markers 'python_full_version < "3.11"' don't match your environment
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6057386Z Ignoring exceptiongroup: markers 'python_full_version < "3.11"' don't match your environment
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6059287Z Ignoring filelock: markers 'python_full_version < "3.11"' don't match your environment
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6061418Z Ignoring importlib-metadata: markers 'python_full_version < "3.10.2"' don't match your environment
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6063834Z Ignoring platformdirs: markers 'python_full_version < "3.11"' don't match your environment
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6065598Z Ignoring zipp: markers 'python_full_version < "3.10.2"' don't match your environment
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6310796Z Collecting boolean-py==5.0 (from -r requirements/ci.lock (line 3))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6510618Z   Downloading boolean_py-5.0-py3-none-any.whl (26 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6609410Z Collecting build==1.6.1 (from -r requirements/ci.lock (line 7))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6641648Z   Downloading build-1.6.1-py3-none-any.whl (31 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6723865Z Collecting cachecontrol==0.14.4 (from -r requirements/ci.lock (line 11))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6756556Z   Downloading cachecontrol-0.14.4-py3-none-any.whl (22 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6845422Z Collecting certifi==2026.10.23 (from -r requirements/ci.lock (line 15))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.6875585Z   Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.7799275Z Collecting charset-normalizer==3.5.2 (from -r requirements/ci.lock (line 19))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:55.7834234Z   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.0613068Z Collecting coverage==7.17.2 (from -r requirements/ci.lock (line 322))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.0647084Z   Downloading coverage-7.17.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (263 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.0786943Z Collecting cyclonedx-python-lib==11.12.0 (from -r requirements/ci.lock (line 443))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.0822982Z   Downloading cyclonedx_python_lib-11.12.0-py3-none-any.whl (529 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.0848004Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 529.5/529.5 kB 1.0 GB/s  0:00:00
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.0922370Z Collecting defusedxml==0.7.1 (from -r requirements/ci.lock (line 447))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.0954382Z   Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1074905Z Collecting filelock==4.2.10 (from -r requirements/ci.lock (line 459))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1106749Z   Downloading filelock-4.2.10-py3-none-any.whl (218 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1189807Z Collecting idna==3.20 (from -r requirements/ci.lock (line 463))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1214299Z   Downloading idna-3.20-py3-none-any.whl (69 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1269472Z Collecting iniconfig==2.3.1 (from -r requirements/ci.lock (line 471))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1299746Z   Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1365956Z Collecting license-expression==30.4.4 (from -r requirements/ci.lock (line 475))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1396590Z   Downloading license_expression-30.4.4-py3-none-any.whl (120 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1473205Z Collecting markdown-it-py==4.3.0 (from -r requirements/ci.lock (line 479))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1505042Z   Downloading markdown_it_py-4.3.0-py3-none-any.whl (96 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1573808Z Collecting mdurl==0.1.2 (from -r requirements/ci.lock (line 483))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.1605090Z   Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2135885Z Collecting msgpack==1.2.4 (from -r requirements/ci.lock (line 487))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2171721Z   Downloading msgpack-1.2.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (475 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2249122Z Collecting nodeenv==1.12.0 (from -r requirements/ci.lock (line 580))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2277854Z   Downloading nodeenv-1.12.0-py3-none-any.whl (39 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2383913Z Collecting packageurl-python==0.17.6 (from -r requirements/ci.lock (line 584))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2413337Z   Downloading packageurl_python-0.17.6-py3-none-any.whl (36 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2506814Z Collecting packaging==26.3 (from -r requirements/ci.lock (line 588))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2537896Z   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2667457Z Collecting pip==26.3 (from -r requirements/ci.lock (line 597))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2697629Z   Downloading pip-26.3-py3-none-any.whl (2.0 MB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2758958Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 407.7 MB/s  0:00:00
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2874516Z Collecting pip-api==0.0.35 (from -r requirements/ci.lock (line 601))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2903450Z   Downloading pip_api-0.0.35-py3-none-any.whl (123 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.2992883Z Collecting pip-audit==2.10.1 (from -r requirements/ci.lock (line 605))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3024040Z   Downloading pip_audit-2.10.1-py3-none-any.whl (62 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3106077Z Collecting pip-requirements-parser==32.0.1 (from -r requirements/ci.lock (line 609))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3135861Z   Downloading pip_requirements_parser-32.0.1-py3-none-any.whl (35 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3241968Z Collecting platformdirs==4.14.5 (from -r requirements/ci.lock (line 617))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3273257Z   Downloading platformdirs-4.14.5-py3-none-any.whl (35 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3331500Z Collecting pluggy==1.7.0 (from -r requirements/ci.lock (line 621))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3360886Z   Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3439325Z Collecting py-serializable==2.2.0 (from -r requirements/ci.lock (line 627))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3468999Z   Downloading py_serializable-2.2.0-py3-none-any.whl (23 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3556805Z Collecting pygments==2.21.0 (from -r requirements/ci.lock (line 631))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3588800Z   Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3620529Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 722.8 MB/s  0:00:00
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3752103Z Collecting pyparsing==3.3.3 (from -r requirements/ci.lock (line 637))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3783185Z   Downloading pyparsing-3.3.3-py3-none-any.whl (126 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3838954Z Collecting pyproject-hooks==1.3.3 (from -r requirements/ci.lock (line 641))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.3870936Z   Downloading pyproject_hooks-1.3.3-py3-none-any.whl (10 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.4166479Z Collecting pyright==1.1.414 (from -r requirements/ci.lock (line 645))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.4198428Z   Downloading pyright-1.1.414-py3-none-any.whl (6.2 MB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.4352986Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 440.9 MB/s  0:00:00
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.4740016Z Collecting pytest==9.2.0 (from -r requirements/ci.lock (line 649))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.4772094Z   Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.4864411Z Collecting pytest-cov==7.0.0 (from -r requirements/ci.lock (line 655))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.4897373Z   Downloading pytest_cov-7.0.0-py3-none-any.whl (22 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.5022328Z Collecting requests==2.34.2 (from -r requirements/ci.lock (line 659))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.5057682Z   Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.5217410Z Collecting rich==15.0.0 (from -r requirements/ci.lock (line 665))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.5252372Z   Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.7411699Z Collecting ruff==0.17.4 (from -r requirements/ci.lock (line 669))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.7447257Z   Downloading ruff-0.17.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.6 MB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.7647959Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.6/10.6 MB 568.7 MB/s  0:00:00
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8129667Z Collecting setuptools==84.2.1 (from -r requirements/ci.lock (line 689))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8166710Z   Downloading setuptools-84.2.1-py3-none-any.whl (876 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8190649Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 1.1 GB/s  0:00:00
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8299805Z Collecting sortedcontainers==2.4.0 (from -r requirements/ci.lock (line 693))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8333861Z   Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8488743Z Collecting tomli==2.2.1 (from -r requirements/ci.lock (line 697))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8523181Z   Downloading tomli-2.2.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (242 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8588127Z Collecting tomli-w==1.2.0 (from -r requirements/ci.lock (line 737))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8619760Z   Downloading tomli_w-1.2.0-py3-none-any.whl (6.7 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8695688Z Collecting typing-extensions==4.16.0 (from -r requirements/ci.lock (line 741))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8726977Z   Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8825137Z Collecting urllib3==2.8.0 (from -r requirements/ci.lock (line 748))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8856876Z   Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8950147Z Collecting wheel==0.48.0 (from -r requirements/ci.lock (line 752))
+source-only	Install hash-locked CI tools	2026-11-11T21:06:56.8981702Z   Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+source-only	Install hash-locked CI tools	2026-11-11T21:06:57.0407248Z Installing collected packages: sortedcontainers, boolean-py, urllib3, typing-extensions, tomli-w, tomli, setuptools, ruff, pyproject-hooks, pyparsing, pygments, pluggy, platformdirs, pip, packaging, packageurl-python, nodeenv, msgpack, mdurl, license-expression, iniconfig, idna, filelock, defusedxml, coverage, charset-normalizer, certifi, wheel, requests, pytest, pyright, py-serializable, pip-requirements-parser, pip-api, markdown-it-py, build, rich, pytest-cov, cyclonedx-python-lib, cachecontrol, pip-audit
+source-only	Install hash-locked CI tools	2026-11-11T21:06:58.3896783Z   Attempting uninstall: pip
+source-only	Install hash-locked CI tools	2026-11-11T21:06:58.3915932Z     Found existing installation: pip 26.2.2
+source-only	Install hash-locked CI tools	2026-11-11T21:06:58.4644581Z     Uninstalling pip-26.2.2:
+source-only	Install hash-locked CI tools	2026-11-11T21:06:58.4694304Z       Successfully uninstalled pip-26.2.2
+source-only	Install hash-locked CI tools	2026-11-11T21:07:01.2902718Z 
+source-only	Install hash-locked CI tools	2026-11-11T21:07:01.2930779Z Successfully installed boolean-py-5.0 build-1.6.1 cachecontrol-0.14.4 certifi-2026.10.23 charset-normalizer-3.5.2 coverage-7.17.2 cyclonedx-python-lib-11.12.0 defusedxml-0.7.1 filelock-4.2.10 idna-3.20 iniconfig-2.3.1 license-expression-30.4.4 markdown-it-py-4.3.0 mdurl-0.1.2 msgpack-1.2.4 nodeenv-1.12.0 packageurl-python-0.17.6 packaging-26.3 pip-26.3 pip-api-0.0.35 pip-audit-2.10.1 pip-requirements-parser-32.0.1 platformdirs-4.14.5 pluggy-1.7.0 py-serializable-2.2.0 pygments-2.21.0 pyparsing-3.3.3 pyproject-hooks-1.3.3 pyright-1.1.414 pytest-9.2.0 pytest-cov-7.0.0 requests-2.34.2 rich-15.0.0 ruff-0.17.4 setuptools-84.2.1 sortedcontainers-2.4.0 tomli-2.2.1 tomli-w-1.2.0 typing-extensions-4.16.0 urllib3-2.8.0 wheel-0.48.0
+source-only	Install hash-locked CI tools	2026-11-11T21:07:01.2938582Z 
+source-only	Install hash-locked CI tools	2026-11-11T21:07:01.2938856Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+source-only	Install hash-locked CI tools	2026-11-11T21:07:01.2939327Z [notice] To update, run: pip install --upgrade pip
+source-only	Introduce the selected fault	﻿2026-11-11T21:07:01.3808107Z ##[group]Run python scripts/inject_bug.py --bug "$BUG" --destination "$RUNNER_TEMP/candidate"
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3808641Z ^[[36;1mpython scripts/inject_bug.py --bug "$BUG" --destination "$RUNNER_TEMP/candidate"^[[0m
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3854163Z shell: /usr/bin/bash -e {0}
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3854371Z env:
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3854597Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3854946Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3855275Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3855581Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3855875Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3856216Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3856471Z   BUG: windows
+source-only	Introduce the selected fault	2026-11-11T21:07:01.3856629Z ##[endgroup]
+source-only	Introduce the selected fault	2026-11-11T21:07:01.4309685Z Created windows fixture at /home/runner/work/_temp/candidate
+source-only	Editable install and library-only tests	﻿2026-11-11T21:07:01.4374729Z ##[group]Run python scripts/naive_check.py --source "$RUNNER_TEMP/candidate"
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4375189Z ^[[36;1mpython scripts/naive_check.py --source "$RUNNER_TEMP/candidate"^[[0m
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4418163Z shell: /usr/bin/bash -e {0}
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4418376Z env:
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4418599Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4418942Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4419281Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4419594Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4419884Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4420187Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.4420441Z ##[endgroup]
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.7793502Z Obtaining file:///home/runner/work/_temp/candidate
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.7804858Z   Checking if build backend supports build_editable: started
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.9711989Z   Checking if build backend supports build_editable: finished with status 'done'
+source-only	Editable install and library-only tests	2026-11-11T21:07:01.9718794Z   Preparing editable metadata (pyproject.toml): started
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.1570035Z   Preparing editable metadata (pyproject.toml): finished with status 'done'
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.1606186Z Building wheels for collected packages: soup-release-lab-amirt
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.1611599Z   Building editable for soup-release-lab-amirt (pyproject.toml): started
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.3505869Z   Building editable for soup-release-lab-amirt (pyproject.toml): finished with status 'done'
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.3510503Z   Created wheel for soup-release-lab-amirt: filename=soup_release_lab_amirt-0.9.3-0.editable-py3-none-any.whl size=4808 sha256=d54aacbc4ebcb2ac9717b1a6843bce9d60e5aef872e8b4cc633e5d3cb444fc50
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.3512291Z   Stored in directory: /tmp/pip-ephem-wheel-cache-qgwscja7/wheels/3e/ae/90/9d168f677971732c4ed49b1d806b41453f489283b6f1d387c2
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.3529314Z Successfully built soup-release-lab-amirt
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.3902861Z Installing collected packages: soup-release-lab-amirt
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.3970905Z Successfully installed soup-release-lab-amirt-0.9.3
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.8370823Z ..                                                                       [100%]
+source-only	Editable install and library-only tests	2026-11-11T21:07:02.8371473Z 2 passed in 0.01s
+source-only	Build passes too (the installed artifact is never exercised)	﻿2026-11-11T21:07:02.8659896Z ##[group]Run python scripts/build_release.py --source "$RUNNER_TEMP/candidate" --out "$RUNNER_TEMP/naive-release"
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8660530Z ^[[36;1mpython scripts/build_release.py --source "$RUNNER_TEMP/candidate" --out "$RUNNER_TEMP/naive-release"^[[0m
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8704784Z shell: /usr/bin/bash -e {0}
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8705000Z env:
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8705227Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8705565Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8705905Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8706212Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8706507Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8706805Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:02.8707057Z ##[endgroup]
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.0003118Z * Getting build dependencies for sdist...
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1390992Z running egg_info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1419933Z creating src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1421428Z writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1426101Z writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1428205Z writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1431564Z writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1432531Z writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1433691Z writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1517688Z reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1518883Z adding license file 'LICENSE'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1525436Z writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.1796658Z * Building sdist...
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3162007Z running sdist
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3163591Z running egg_info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3215963Z writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3220276Z writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3223107Z writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3226370Z writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3227357Z writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3311118Z reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3314988Z adding license file 'LICENSE'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3321487Z writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3324736Z running check
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3352863Z creating soup_release_lab_amirt-0.9.3
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3354914Z creating soup_release_lab_amirt-0.9.3/src/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3356388Z creating soup_release_lab_amirt-0.9.3/src/soup_release_lab/data
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3357503Z creating soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3358467Z creating soup_release_lab_amirt-0.9.3/tests
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3359235Z copying files to soup_release_lab_amirt-0.9.3...
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3359928Z copying LICENSE -> soup_release_lab_amirt-0.9.3
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3361448Z copying README.md -> soup_release_lab_amirt-0.9.3
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3362901Z copying pyproject.toml -> soup_release_lab_amirt-0.9.3
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3364273Z copying src/soup_release_lab/__init__.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3365352Z copying src/soup_release_lab/__main__.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3366579Z copying src/soup_release_lab/cli.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3367792Z copying src/soup_release_lab/core.py -> soup_release_lab_amirt-0.9.3/src/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3369045Z copying src/soup_release_lab/data/defaults.json -> soup_release_lab_amirt-0.9.3/src/soup_release_lab/data
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3370462Z copying src/soup_release_lab_amirt.egg-info/PKG-INFO -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3371909Z copying src/soup_release_lab_amirt.egg-info/SOURCES.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3373270Z copying src/soup_release_lab_amirt.egg-info/dependency_links.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3374514Z copying src/soup_release_lab_amirt.egg-info/entry_points.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3375640Z copying src/soup_release_lab_amirt.egg-info/requires.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3376872Z copying src/soup_release_lab_amirt.egg-info/top_level.txt -> soup_release_lab_amirt-0.9.3/src/soup_release_lab_amirt.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3377806Z copying tests/test_cli.py -> soup_release_lab_amirt-0.9.3/tests
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3378961Z copying tests/test_matrix_plan.py -> soup_release_lab_amirt-0.9.3/tests
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3380293Z copying tests/test_read_back.py -> soup_release_lab_amirt-0.9.3/tests
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3381479Z copying tests/test_release_guards.py -> soup_release_lab_amirt-0.9.3/tests
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3385723Z Writing soup_release_lab_amirt-0.9.3/setup.cfg
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3387332Z Creating tar archive
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3433215Z removing 'soup_release_lab_amirt-0.9.3' (and everything under it)
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3695751Z * Building wheel from sdist
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.3699956Z * Getting build dependencies for wheel...
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5039197Z running egg_info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5064536Z writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5069165Z writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5071625Z writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5074904Z writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5075796Z writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5155219Z reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5158674Z adding license file 'LICENSE'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5165430Z writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.5394527Z * Building wheel...
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6676160Z running bdist_wheel
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6790062Z running build
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6790358Z running build_py
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6815789Z creating build/lib/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6818037Z copying src/soup_release_lab/__main__.py -> build/lib/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6819937Z copying src/soup_release_lab/core.py -> build/lib/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6821549Z copying src/soup_release_lab/cli.py -> build/lib/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6823342Z copying src/soup_release_lab/__init__.py -> build/lib/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6828299Z creating build/lib/soup_release_lab/data
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6829391Z copying src/soup_release_lab/data/defaults.json -> build/lib/soup_release_lab/data
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6877843Z installing to build/bdist.linux-x86_64/wheel
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6878218Z running install
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6929395Z running install_lib
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6953634Z creating build/bdist.linux-x86_64/wheel
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6955649Z creating build/bdist.linux-x86_64/wheel/soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6956897Z copying build/lib/soup_release_lab/__main__.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6958650Z creating build/bdist.linux-x86_64/wheel/soup_release_lab/data
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6960025Z copying build/lib/soup_release_lab/data/defaults.json -> build/bdist.linux-x86_64/wheel/./soup_release_lab/data
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6961479Z copying build/lib/soup_release_lab/core.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6962816Z copying build/lib/soup_release_lab/cli.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6964067Z copying build/lib/soup_release_lab/__init__.py -> build/bdist.linux-x86_64/wheel/./soup_release_lab
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6965041Z running install_egg_info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.6988757Z running egg_info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7012206Z writing src/soup_release_lab_amirt.egg-info/PKG-INFO
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7018071Z writing dependency_links to src/soup_release_lab_amirt.egg-info/dependency_links.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7022081Z writing entry points to src/soup_release_lab_amirt.egg-info/entry_points.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7026364Z writing requirements to src/soup_release_lab_amirt.egg-info/requires.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7028922Z writing top-level names to src/soup_release_lab_amirt.egg-info/top_level.txt
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7060815Z reading manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7064563Z adding license file 'LICENSE'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7070649Z writing manifest file 'src/soup_release_lab_amirt.egg-info/SOURCES.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7073940Z Copying src/soup_release_lab_amirt.egg-info to build/bdist.linux-x86_64/wheel/./soup_release_lab_amirt-0.9.3-py3.12.egg-info
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7080411Z running install_scripts
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7088952Z creating build/bdist.linux-x86_64/wheel/soup_release_lab_amirt-0.9.3.dist-info/WHEEL
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7093350Z creating '/home/runner/work/_temp/naive-release/dist/.tmp-agnhn13c/soup_release_lab_amirt-0.9.3-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7096000Z adding 'soup_release_lab/__init__.py'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7097985Z adding 'soup_release_lab/__main__.py'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7099952Z adding 'soup_release_lab/cli.py'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7101463Z adding 'soup_release_lab/core.py'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7103417Z adding 'soup_release_lab/data/defaults.json'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7106187Z adding 'soup_release_lab_amirt-0.9.3.dist-info/licenses/LICENSE'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7108824Z adding 'soup_release_lab_amirt-0.9.3.dist-info/METADATA'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7109835Z adding 'soup_release_lab_amirt-0.9.3.dist-info/WHEEL'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7110944Z adding 'soup_release_lab_amirt-0.9.3.dist-info/entry_points.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7112128Z adding 'soup_release_lab_amirt-0.9.3.dist-info/top_level.txt'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7114116Z adding 'soup_release_lab_amirt-0.9.3.dist-info/RECORD'
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7114947Z removing build/bdist.linux-x86_64/wheel
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7322096Z Successfully built soup_release_lab_amirt-0.9.3.tar.gz and soup_release_lab_amirt-0.9.3-py3-none-any.whl
+source-only	Build passes too (the installed artifact is never exercised)	2026-11-11T21:07:03.7499360Z Bound 2 distributions to 55b79e0a285db3e9d5244d62b768200f8719eca2; version=0.9.3
+source-only	Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0	﻿2026-11-11T21:07:03.7690413Z Post job cleanup.
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	﻿2026-11-11T21:07:03.8781646Z Post job cleanup.
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9490672Z [command]/usr/bin/git version
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9528379Z git version 2.56.0
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9557214Z Temporarily overriding HOME='/home/runner/work/_temp/f4bca477-8454-445f-8d72-ed824450d80b' before making global git config changes
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9558284Z Adding repository directory to the temporary git global config as a safe directory
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9559506Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/soup-devops-release-lab/soup-devops-release-lab
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9589512Z Removing SSH command configuration
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9594911Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9636822Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9898719Z Removing HTTP extra header
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9904711Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:03.9944931Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:04.0204357Z Removing includeIf entries pointing to credentials config files
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:04.0210068Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+source-only	Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1	2026-11-11T21:07:04.0238202Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+source-only	Complete job	﻿2026-11-11T21:07:04.0597096Z Cleaning up orphan processes

@@ -85,9 +85,25 @@ jobs:
           BUG: ${{ inputs.bug }}
         run: python scripts/inject_bug.py --bug "$BUG" --destination "$RUNNER_TEMP/candidate"
       - name: Build once and bind identities
+        shell: bash
         env:
           RELEASE_TAG: ${{ inputs.release-tag }}
-        run: python scripts/build_release.py --source "$RUNNER_TEMP/candidate" --out "$RUNNER_TEMP/release" --tag "$RELEASE_TAG"
+        # An empty input means "not a release", never "an unnamed release": on a
+        # tag ref the tag is mandatory and must be the ref being built.
+        run: |
+          tag_args=()
+          if [ -n "$RELEASE_TAG" ]; then
+            if [ "$GITHUB_REF_TYPE" != tag ] || [ "$RELEASE_TAG" != "$GITHUB_REF_NAME" ]; then
+              echo "::error::release-tag $RELEASE_TAG is not the $GITHUB_REF_TYPE $GITHUB_REF_NAME"
+              exit 1
+            fi
+            tag_args=(--tag "$RELEASE_TAG")
+          elif [ "$GITHUB_REF_TYPE" = tag ]; then
+            echo "::error::a tag build must supply release-tag"
+            exit 1
+          fi
+          python scripts/build_release.py --source "$RUNNER_TEMP/candidate" \
+            --out "$RUNNER_TEMP/release" "${tag_args[@]}"
       - id: upload
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
@@ -122,7 +138,20 @@ jobs:
         shell: bash
         env:
           RELEASE_TAG: ${{ inputs.release-tag }}
-        run: python scripts/bundle.py "$RUNNER_TEMP/release" --source-sha "$GITHUB_SHA" --tag "$RELEASE_TAG"
+        # Same rule as the build: branch and PR legs omit --tag, tag legs cannot.
+        run: |
+          tag_args=()
+          if [ -n "$RELEASE_TAG" ]; then
+            if [ "$GITHUB_REF_TYPE" != tag ] || [ "$RELEASE_TAG" != "$GITHUB_REF_NAME" ]; then
+              echo "::error::release-tag $RELEASE_TAG is not the $GITHUB_REF_TYPE $GITHUB_REF_NAME"
+              exit 1
+            fi
+            tag_args=(--tag "$RELEASE_TAG")
+          elif [ "$GITHUB_REF_TYPE" = tag ]; then
+            echo "::error::a tag build must supply release-tag"
+            exit 1
+          fi
+          python scripts/bundle.py "$RUNNER_TEMP/release" --source-sha "$GITHUB_SHA" "${tag_args[@]}"
       - name: Install and launch wheel outside the checkout
         shell: bash
         run: python scripts/smoke_artifact.py --bundle "$RUNNER_TEMP/release" --kind wheel

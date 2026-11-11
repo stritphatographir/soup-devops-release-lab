@@ -4,7 +4,7 @@ Soup DevOps internship - Amir - 12 November 2026
 
 ## Verdict and acceptance status
 
-Automate TestPyPI after the gates pass; keep human approval for real PyPI. The implementation and local incident evidence are complete. Hosted acceptance is still pending: GitHub returned internal startup failures with zero jobs, and TestPyPI publisher registration has not been confirmed. A red startup result is not evidence that a package bug was caught. No production package or deliberately broken fixture was published.
+Automate TestPyPI after the gates pass; keep human approval for real PyPI. The recorded hosted evidence at commit 55b79e0 includes four green naive runs, four hardened failures with the intended signatures, and a fixed green run with all 19 jobs passing. TestPyPI publisher registration and OIDC publication remain unverified. Earlier GitHub startup failures had zero jobs; they are retained separately as infrastructure failures. No production package or deliberately broken fixture was published.
 
 Repository: [soup-devops-release-lab](https://github.com/stritphatographir/soup-devops-release-lab). The complete evidence and every retained remote attempt are in [the evidence ledger](https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md).
 
@@ -19,11 +19,11 @@ The CLI reads a TOML service config and bundled JSON defaults, validates it, and
 | Missing wheel data | Source has defaults.json; installed wheel does not | inspect against an installed wheel |
 | Broken entry point | Console command targets missing_main | Invoke the installed executable |
 
-Each rejection log contains the intended error signature. The fixed wheel and sdist passed six clean consumers: Linux 3.10, Linux 3.12, and Windows 3.13, two formats each. Local quality checks passed 38 tests with 96.15% combined line/branch coverage. The unprivileged Docker runtime launched with network disabled, read-only filesystem, and capabilities dropped.
+Each rejection log contains the intended error signature. The fixed wheel and sdist passed six clean consumers: Linux 3.10, Linux 3.12, and Windows 3.13, two formats each. The recorded package tests reached 96.15% combined line/branch coverage; additional release-guard tests cover artifact and identity failures. The unprivileged Docker runtime launched with network disabled, read-only filesystem, and capabilities dropped.
 
 ## What changed in the release path
 
-Actions lint/type checks and unit tests accompany one build. The fixed matrix covers Python 3.10-3.14 on Linux, Windows, and macOS; this full hosted matrix has not yet executed successfully. Consumers use fresh venvs outside the checkout, install the wheel or rebuild the sdist, verify the import location, launch both entry points, and test valid/invalid configs including a Unicode path. Both distribution identity and SHA-256 hashes are checked. A version tag must equal built metadata and installed CLI output.
+Actions lint/type checks and unit tests accompany one build. The fixed matrix covers Python 3.10-3.14 on Linux, Windows, and macOS; the recorded fixed run passed every leg, including wheel and sdist consumers. Consumers use fresh venvs outside the checkout, install the wheel or rebuild the sdist, verify the import location, launch both entry points, and test valid/invalid configs including a Unicode path. Both distribution identity and SHA-256 hashes are checked. A version tag must equal built metadata and installed CLI output.
 
 Only the publisher gets OIDC permission, after every check. It downloads the exact same-run artifact ID, verifies commit/tag/hashes, and uploads those bytes through the SHA-pinned PyPA action. It does no source checkout or build. A separate read-back downloads TestPyPI's public distributions, rejects extra files or changed bytes, and tests them again. Read-back can detect a bad publication; it cannot reverse one.
 
@@ -37,13 +37,13 @@ Hashes preserve chosen bytes, including malicious ones. Initial dependency selec
 
 ## GPU release and nightly design
 
-This CLI needs no GPU; the requested design covers a future CUDA component and has not rented hardware. Use ephemeral Runpod Secure Cloud RTX 4090 instances at the checked $0.89/hour rate. Initially budget one validated software tuple: two monthly releases at 20 test minutes plus 3 startup minutes, and 30 nightlies at 10 plus 3. Total: 436 minutes = $6.47; add 20% retry reserve and $1 small storage/log allowance: $8.76/month. Existing broker/watchdog hosting is assumed. Larger compatibility sets require rebudgeting.
+This CLI needs no GPU; the requested design covers a future CUDA component and has not rented hardware. Use ephemeral Runpod Secure Cloud RTX 4090 instances at the checked [$0.89/hour rate](https://www.runpod.io/pricing). Initially budget one validated software tuple: two monthly releases at 20 test minutes plus 3 startup minutes, and 30 nightlies at 10 plus 3. Total: 436 minutes = $6.47; add 20% retry reserve and $1 small storage/log allowance: $8.76/month. Existing broker/watchdog hosting is assumed. Larger compatibility sets require rebudgeting.
 
 Allocate only after CPU gates. An OIDC broker admits protected refs, enforces one pod and a $15 GPU allocation ceiling, and never gives provider credentials to the runner. Separate release/nightly queues protect pending releases. Use 25/15-minute TTLs, an independent minute-by-minute termination watchdog with heartbeat alerts, signed result upload URLs, and reconciliation after ambiguous API responses. Cancel superseded nightlies; retry only transient infrastructure failures once. Slow startup, provider outages and retained storage can defeat a naive cost estimate; the ledger is not a provider hard cap.
 
 ## What to fix first
 
-First obtain real hosted red/green and OIDC publication/read-back evidence. Next protect source, workflow, lock, and tag changes through independent review and account recovery. Then implement a durable release circuit breaker and broaden compatibility coverage. Today a maintainer must manually disable later releases after a publish/read-back failure. Keep the production approval gate until those controls are demonstrated.
+First obtain OIDC publication/read-back evidence for the hardened revision; its local verifier checks and hosted red/green evidence are recorded. Next protect source, workflow, lock, and tag changes through independent review and account recovery. Then implement a durable release circuit breaker and broaden compatibility coverage. Today a maintainer must manually disable later releases after a publish/read-back failure. Keep the production approval gate until those controls are demonstrated.
 
 ## Reflection and AI use
 

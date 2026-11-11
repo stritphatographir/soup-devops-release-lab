@@ -1,0 +1,11 @@
+[
+  {"bug": "fixed", "pipeline": "hardened", "run_id": 43099378682},
+  {"bug": "python310", "pipeline": "naive", "run_id": 43100255326},
+  {"bug": "python310", "pipeline": "hardened", "run_id": 43100260410},
+  {"bug": "windows", "pipeline": "naive", "run_id": 43100265599},
+  {"bug": "windows", "pipeline": "hardened", "run_id": 43100269894},
+  {"bug": "missing-data", "pipeline": "naive", "run_id": 43100274474},
+  {"bug": "missing-data", "pipeline": "hardened", "run_id": 43100278631},
+  {"bug": "entrypoint", "pipeline": "naive", "run_id": 43100283422},
+  {"bug": "entrypoint", "pipeline": "hardened", "run_id": 43100288844}
+]

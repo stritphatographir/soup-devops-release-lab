@@ -29,7 +29,9 @@ jobs:
       contents: read
       id-token: write
     steps:
-      # No checkout, dependency installation, or build in the privileged job.
+      # No checkout, dependency installation, or build in the privileged job: it
+      # runs nothing but this stdlib snippet and the publisher, and trusts no
+      # code that travelled inside the artifact.
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           artifact-ids: ${{ needs.checks.outputs.artifact-id }}
@@ -41,22 +43,94 @@ jobs:
           EXPECTED_TAG: ${{ github.ref_name }}
         run: |
           python -I - <<'PY'
-          import hashlib, json, os, pathlib, re
+          import hashlib, json, os, pathlib, re, tarfile, zipfile
+          from email.parser import BytesParser
+
+          PROJECT = 'soup-release-lab-amirt'
+          DISTRIBUTION = PROJECT.replace('-', '_')
+          REQUIRES_PYTHON = '>=3.10,<3.15'
+          REQUIRES_DIST = ('tomli==2.2.1; python_version < "3.11"',)
+
+          def fail(message):
+              raise SystemExit('release gate: ' + message)
+
+          def normalize(value):
+              return re.sub(r'\s+', ' ', value.replace("'", '"')).strip()
+
+          def specifiers(value):
+              return ','.join(sorted(p for p in (normalize(x) for x in value.split(',')) if p))
+
+          def published_names(version):
+              return {f'{DISTRIBUTION}-{version}-py3-none-any.whl',
+                      f'{DISTRIBUTION}-{version}.tar.gz'}
+
+          def declared(path):
+              if path.name.endswith('.whl'):
+                  with zipfile.ZipFile(path) as archive:
+                      found = [n for n in archive.namelist() if n.endswith('.dist-info/METADATA')]
+                      if len(found) != 1:
+                          fail(f'wheel must have one METADATA file: {path.name}')
+                      raw = archive.read(found[0])
+              else:
+                  with tarfile.open(path, 'r:gz') as archive:
+                      members = [m for m in archive.getmembers()
+                                 if m.name.count('/') == 1 and m.name.endswith('/PKG-INFO')]
+                      if len(members) != 1:
+                          fail(f'sdist must have one top-level PKG-INFO: {path.name}')
+                      stream = archive.extractfile(members[0])
+                      if stream is None:
+                          fail(f'sdist metadata is unreadable: {path.name}')
+                      raw = stream.read()
+              message = BytesParser().parsebytes(raw)
+              name = re.sub(r'[-_.]+', '-', str(message['Name'] or '')).lower()
+              version = str(message['Version'] or '')
+              python = specifiers(str(message['Requires-Python'] or ''))
+              dist = tuple(sorted(normalize(x) for x in message.get_all('Requires-Dist', [])))
+              return name, version, python, dist
+
           root = pathlib.Path('release')
-          manifest = json.loads((root / 'manifest.json').read_text())
-          assert manifest['schema'] == 1
-          assert manifest['project'] == 'soup-release-lab-amirt'
-          assert manifest['source_sha'] == os.environ['EXPECTED_SHA']
-          assert re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+', os.environ['EXPECTED_TAG'])
-          assert os.environ['EXPECTED_TAG'] == 'v' + manifest['version']
-          names = manifest['files']
-          assert set(names) == {p.name for p in (root / 'dist').iterdir()}
-          assert len(names) == 2
-          assert sum(n.endswith('.whl') for n in names) == 1
-          assert sum(n.endswith('.tar.gz') for n in names) == 1
-          for name, expected in names.items():
-              assert pathlib.Path(name).name == name
-              assert hashlib.sha256((root / 'dist' / name).read_bytes()).hexdigest() == expected
+          sha = os.environ.get('EXPECTED_SHA') or ''
+          tag = os.environ.get('EXPECTED_TAG') or ''
+          if not re.fullmatch(r'[0-9a-f]{40}', sha):
+              fail('EXPECTED_SHA is not a 40-character commit SHA')
+          if not re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+', tag):
+              fail('EXPECTED_TAG is not a vMAJOR.MINOR.PATCH release tag')
+          try:
+              manifest = json.loads((root / 'manifest.json').read_text(encoding='utf-8'))
+          except (OSError, ValueError) as error:
+              fail(f'manifest.json is unreadable: {error}')
+          if not isinstance(manifest, dict):
+              fail('manifest.json must be a JSON object')
+          if manifest.get('schema') != 1 or manifest.get('project') != PROJECT:
+              fail('unknown manifest format or project')
+          if manifest.get('source_sha') != sha:
+              fail('artifact source SHA mismatch')
+          version = manifest.get('version')
+          if not isinstance(version, str) or not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+', version):
+              fail(f'artifact version {version!r} is not MAJOR.MINOR.PATCH')
+          if tag != 'v' + version:
+              fail(f'tag {tag} does not match artifact version {version}')
+          names = manifest.get('files')
+          if not isinstance(names, dict) or set(names) != published_names(version):
+              fail('manifest must name exactly the published wheel and sdist')
+          dist = root / 'dist'
+          if not dist.is_dir():
+              fail('the artifact carries no dist directory')
+          if {p.name for p in dist.iterdir()} != set(names):
+              fail('unexpected or missing release file')
+          for name, expected in sorted(names.items()):
+              path = dist / name
+              if not path.is_file():
+                  fail(f'missing release file: {name}')
+              if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                  fail(f'artifact checksum mismatch: {name}')
+              identity = declared(path)
+              if identity[:2] != (PROJECT, version):
+                  fail(f'artifact metadata mismatch: {name}')
+              if identity[2] != specifiers(REQUIRES_PYTHON):
+                  fail(f'Requires-Python mismatch: {name}')
+              if identity[3] != tuple(sorted(normalize(x) for x in REQUIRES_DIST)):
+                  fail(f'Requires-Dist mismatch: {name}')
           print('Exact tested release bundle verified.')
           PY
       - name: Publish using GitHub OIDC and emit attestations

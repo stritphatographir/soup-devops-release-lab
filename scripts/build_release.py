@@ -14,13 +14,24 @@ except ModuleNotFoundError:
 from bundle import write_manifest
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=Path.cwd())
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--source-sha", default=os.environ.get("GITHUB_SHA", "local-uncommitted"))
-    parser.add_argument("--tag", default="")
-    args = parser.parse_args()
+    parser.add_argument("--source-sha",
+                        default=os.environ.get("GITHUB_SHA") or "local-uncommitted",
+                        help="omit for a local build, never pass it empty")
+    parser.add_argument("--tag", help="omit outside a release, never pass it empty")
+    args = parser.parse_args(argv)
+    if not args.source_sha:
+        parser.error("--source-sha needs a commit; omit it for a local build")
+    if args.tag == "":
+        parser.error("--tag needs a release tag; omit it outside a release")
+    return args
+
+
+def main() -> None:
+    args = parse_args()
     source, output = args.source.resolve(), args.out.resolve()
     if output.exists():
         raise ValueError(f"output already exists; refusing stale artifacts: {output}")

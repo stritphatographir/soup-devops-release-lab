@@ -1,0 +1,4 @@
+$ .tools/actionlint.exe -no-color
+
+
+Exit code: 0

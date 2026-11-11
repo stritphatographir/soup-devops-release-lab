@@ -4,11 +4,22 @@ Codex read the brief, designed and wrote the initial package, fixtures, scripts,
 workflows, documentation, and note, executed the recorded local checks, and
 created the repository and dispatched the recorded Actions runs. Initial remote
 runs failed inside GitHub before any jobs existed; they are not successful check
-executions. OIDC publication and the full hosted matrix remain unverified.
+executions. A later fixed run passed the full hosted matrix and Docker check;
+four naive passes and four intended hardened failures were verified against
+saved job logs. OIDC publication remains unverified.
 The applicant requested OpenCode and Antigravity review as additional tools;
 their actual outcomes are recorded in the evidence rather than assumed.
 No personal claim that the applicant manually
 performed these checks is implied.
+
+Antigravity completed its initial document review; follow-up attempts did not
+complete and a hook retry reached a provider quota error. The coordinator
+applied its GPU budget, cleanup, concurrency and verdict suggestions. OpenCode
+completed an independent pipeline review and implemented the accepted verifier
+hardening in a separate recorded task. It reported 107 passing tests and
+96.15% package coverage; the coordinator independently checked the code, passed
+those checks, and repeated the full incident reproduction successfully. The unchanged reviews retain their
+original findings and revision limits; later resolutions belong in the ledger.
 
 Accepted implementation suggestions included testing wheels outside the source
 checkout, rebuilding and installing the sdist in a second clean environment,

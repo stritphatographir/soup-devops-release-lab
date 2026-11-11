@@ -19,11 +19,15 @@ The CLI command is `soup-check inspect examples/service.toml`. Python 3.10 throu
 Four local fixtures passed the naive library tests and build, then each failed
 in a clean installed consumer for its intended reason. Fixed wheel and sdist
 consumers passed on Linux Python 3.10/3.12 and native Windows Python 3.13.
-The unit suite has 38 passing tests and 96.15% combined line/branch coverage.
+The recorded unit suite passed with 96.15% combined line/branch coverage.
 Lint, type checks, workflow lint, and the updated dependency audit passed.
 The unprivileged Docker runtime also launched successfully.
 
-**Hosted acceptance remains pending.** Initial Actions dispatches returned
+**Hosted red/green evidence is verified at commit 55b79e0.** All four naive
+experiments passed; all four hardened runs failed at the required consumer with
+the intended signature. The fixed run passed all 19 jobs, including the 15-leg
+OS/Python matrix and the Docker check of the exact same artifact.
+Initial Actions dispatches returned
 GitHub internal startup failures before creating any jobs. These are retained
 as infrastructure failures, not counted as package-bug detections. Further
 diagnostic/retry runs and actual statuses are in the [evidence ledger](evidence/README.md).
