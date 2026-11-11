@@ -36,4 +36,3 @@ jobs:
         run: python scripts/naive_check.py --source "$RUNNER_TEMP/candidate"
       - name: Build passes too (the installed artifact is never exercised)
         run: python scripts/build_release.py --source "$RUNNER_TEMP/candidate" --out "$RUNNER_TEMP/naive-release"
-

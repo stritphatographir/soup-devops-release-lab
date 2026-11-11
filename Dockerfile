@@ -29,4 +29,3 @@ RUN python -m venv /opt/venv && \
 USER 10001:10001
 WORKDIR /tmp
 ENTRYPOINT ["/opt/venv/bin/soup-check"]
-

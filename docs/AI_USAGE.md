@@ -26,4 +26,3 @@ CLI and one fixture personally, and update this disclosure with what they
 actually accepted, changed, or redid. Do not mark that review as complete until
 it has happened. The brief's live-discussion answers are intentionally not
 prewritten.
-

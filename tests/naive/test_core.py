@@ -13,4 +13,3 @@ def test_valid_library_call():
 def test_invalid_worker_count():
     with pytest.raises(ValueError, match="between"):
         validate_workers(0)
-

@@ -67,4 +67,3 @@ See `evidence/README.md` for executed checks and actual Actions URLs. A workflow
 file, a local Docker log, and an Actions run are distinct forms of evidence.
 Missing account setup remains explicitly unverified until a real OIDC publish
 and read-back run has succeeded.
-

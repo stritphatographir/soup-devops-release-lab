@@ -126,4 +126,3 @@ jobs:
         run: |
           docker build --target runtime --tag soup-release-runtime .
           docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges soup-release-runtime --version
-

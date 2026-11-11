@@ -66,4 +66,3 @@ def test_tag_mismatch_rejected(tag):
 def test_fixture_cannot_overwrite_source(tmp_path):
     with pytest.raises(ValueError, match="destination"):
         materialize(tmp_path, tmp_path, "fixed")
-

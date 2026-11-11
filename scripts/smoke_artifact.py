@@ -78,4 +78,3 @@ if __name__ == "__main__":
     parser.add_argument("--build-lock", type=Path, default=ROOT / "requirements/build.lock")
     args = parser.parse_args()
     smoke(args.bundle, args.kind, args.runtime_lock, args.build_lock)
-

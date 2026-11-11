@@ -17,4 +17,3 @@ The CLI command is `soup-check inspect examples/service.toml`. Python 3.10 throu
 Implementation, evidence, publishing setup, and limitations are documented below
 as verification is completed. No remote execution or publication is implied by
 the presence of a workflow file.
-

@@ -1,0 +1,12 @@
+name: Actions service diagnostic
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scheduler-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Test runner allocation without any external action
+        run: python --version

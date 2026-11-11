@@ -17,4 +17,3 @@ fixtures are never published.
 initial tool pins. It is independent of the four intentionally introduced bugs.
 Any infrastructure or integration failures encountered during verification will
 be retained alongside the later fixed result.
-

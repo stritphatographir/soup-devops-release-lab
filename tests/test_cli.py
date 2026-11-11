@@ -76,4 +76,3 @@ def test_missing_command():
     with pytest.raises(SystemExit) as result:
         main([])
     assert result.value.code == 2
-

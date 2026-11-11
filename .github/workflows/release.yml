@@ -8,7 +8,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: testpypi-release
+  # Serialize attempts of one version without replacing another tag's pending run.
+  group: testpypi-release-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -83,4 +84,3 @@ jobs:
           merge-multiple: true
       - name: Download the public bytes and test fresh consumers
         run: python scripts/read_back.py --bundle "$RUNNER_TEMP/release" --out "$RUNNER_TEMP/public-release"
-

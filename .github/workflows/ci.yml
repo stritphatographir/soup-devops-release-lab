@@ -25,4 +25,3 @@ jobs:
     uses: ./.github/workflows/checks.yml
     with:
       bug: ${{ inputs.bug || 'fixed' }}
-

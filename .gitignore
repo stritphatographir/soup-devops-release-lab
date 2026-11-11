@@ -14,4 +14,3 @@ htmlcov/
 .env
 .env.*
 !.env.example
-

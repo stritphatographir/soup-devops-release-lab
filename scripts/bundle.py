@@ -89,4 +89,3 @@ if __name__ == "__main__":
     parser.add_argument("--tag")
     args = parser.parse_args()
     print(json.dumps(verify_manifest(args.bundle, args.source_sha, args.tag), indent=2))
-

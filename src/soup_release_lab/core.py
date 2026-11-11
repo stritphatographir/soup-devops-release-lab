@@ -13,4 +13,3 @@ def validate_name(value: object) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValueError("service.name must be a non-empty string")
     return value.strip()
-

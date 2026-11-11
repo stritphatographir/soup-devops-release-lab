@@ -6,4 +6,3 @@ pyright==1.1.414
 # The type checker analyzes the 3.10 fallback even when CI itself runs on 3.12.
 tomli==2.2.1
 pip-audit==2.10.1
-

@@ -41,9 +41,8 @@ def materialize(source: Path, destination: Path, bug: str) -> None:
             'try:\n    import tomllib\n'
             'except ModuleNotFoundError:  # Python 3.10 is part of the supported contract.\n'
             '    import tomli as tomllib',
-            "",
+            "import tomllib",
         )
-        replace_once(cli, "import sys\n", "import sys\nimport tomllib\n")
     elif bug == "windows":
         replace_once(
             cli, "from pathlib import Path\n",
@@ -67,4 +66,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

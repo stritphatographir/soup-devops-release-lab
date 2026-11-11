@@ -11,4 +11,3 @@ valid provenance. More tests help, but independent review and protected release
 identity are still needed. This paragraph describes the recorded implementation
 observations; the applicant should revise it to reflect their own experience
 after reviewing and reproducing the work.
-

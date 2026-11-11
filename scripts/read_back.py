@@ -14,6 +14,13 @@ from bundle import verify_manifest
 from smoke_artifact import ROOT, smoke
 
 
+def public_files_ready(entries: list[dict], expected: set[str]) -> bool:
+    names = {entry["filename"] for entry in entries}
+    if len(names) != len(entries) or names - expected:
+        raise ValueError("unexpected or duplicate public distribution; refusing acceptance")
+    return names == expected
+
+
 def read_back(bundle: Path, output: Path) -> None:
     manifest = verify_manifest(bundle)
     url = f"https://test.pypi.org/pypi/{manifest['project']}/{manifest['version']}/json"
@@ -21,7 +28,7 @@ def read_back(bundle: Path, output: Path) -> None:
         try:
             with urllib.request.urlopen(url, timeout=20) as response:
                 public = json.load(response)
-            if set(manifest["files"]) <= {item["filename"] for item in public["urls"]}:
+            if public_files_ready(public["urls"], set(manifest["files"])):
                 break
         except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
             if attempt == 9:
@@ -55,4 +62,3 @@ if __name__ == "__main__":
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     read_back(args.bundle.resolve(), args.out.resolve())
-

@@ -46,4 +46,3 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     print(json.dumps(report, ensure_ascii=True, sort_keys=True))
     return 0
-

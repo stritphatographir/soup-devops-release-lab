@@ -50,4 +50,3 @@ real PyPI** until the remote evidence and repository trust controls are verified
 References: [GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use),
 [PyPI Trusted Publishing](https://docs.pypi.org/trusted-publishers/using-a-publisher/),
 [attestation scope](https://docs.pypi.org/attestations/).
-
