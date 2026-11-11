@@ -1,0 +1,28 @@
+name: Hardened release checks
+run-name: Hardened checks / ${{ inputs.bug || 'fixed' }} / ${{ github.ref_name }}
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      bug:
+        description: Fault to reject (fixed runs the full support matrix)
+        type: choice
+        default: fixed
+        options: [fixed, python310, windows, missing-data, entrypoint]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.event_name }}-${{ github.ref }}-${{ inputs.bug || 'fixed' }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+    with:
+      bug: ${{ inputs.bug || 'fixed' }}
+

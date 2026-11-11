@@ -1,0 +1,14 @@
+$ python -m uv tool run pip-audit --disable-pip --no-deps -r requirements/ci.lock
+Name       Version ID                  Fix Versions
+---------- ------- ------------------- ------------
+pytest     8.4.2   PYSEC-2026-1845     9.0.3
+pytest     8.4.2   PYSEC-2026-1845     9.0.3
+setuptools 80.9.0  PYSEC-2026-3447     83.0.0
+setuptools 80.9.0  PYSEC-2026-3447     83.0.0
+setuptools 80.9.0  GHSA-xmj3-9gf7-h52w 84.1.0
+wheel      0.45.1  CVE-2026-24049      0.46.2
+WARNING:pip_audit._cli:--no-deps is supported, but users are encouraged to fully hash their pinned dependencies
+WARNING:pip_audit._cli:Consider using a tool like `pip-compile`: https://pip-tools.readthedocs.io/en/latest/#using-hashes
+Found 6 known vulnerabilities in 3 packages
+
+Exit code: 1

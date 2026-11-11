@@ -1,0 +1,86 @@
+name: Publish verified distributions to TestPyPI
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: testpypi-release
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    uses: ./.github/workflows/checks.yml
+    with:
+      release-tag: ${{ github.ref_name }}
+
+  publish:
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/soup-release-lab-amirt
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      # No checkout, dependency installation, or build in the privileged job.
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.checks.outputs.artifact-id }}
+          path: release
+          merge-multiple: true
+      - name: Reject stale or changed bytes immediately before publishing
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          EXPECTED_TAG: ${{ github.ref_name }}
+        run: |
+          python -I - <<'PY'
+          import hashlib, json, os, pathlib, re
+          root = pathlib.Path('release')
+          manifest = json.loads((root / 'manifest.json').read_text())
+          assert manifest['schema'] == 1
+          assert manifest['project'] == 'soup-release-lab-amirt'
+          assert manifest['source_sha'] == os.environ['EXPECTED_SHA']
+          assert re.fullmatch(r'v[0-9]+\.[0-9]+\.[0-9]+', os.environ['EXPECTED_TAG'])
+          assert os.environ['EXPECTED_TAG'] == 'v' + manifest['version']
+          names = manifest['files']
+          assert set(names) == {p.name for p in (root / 'dist').iterdir()}
+          assert len(names) == 2
+          assert sum(n.endswith('.whl') for n in names) == 1
+          assert sum(n.endswith('.tar.gz') for n in names) == 1
+          for name, expected in names.items():
+              assert pathlib.Path(name).name == name
+              assert hashlib.sha256((root / 'dist' / name).read_bytes()).hexdigest() == expected
+          print('Exact tested release bundle verified.')
+          PY
+      - name: Publish using GitHub OIDC and emit attestations
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: release/dist/
+          attestations: true
+
+  read-back:
+    needs: [checks, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.10'
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.checks.outputs.artifact-id }}
+          path: ${{ runner.temp }}/release
+          merge-multiple: true
+      - name: Download the public bytes and test fresh consumers
+        run: python scripts/read_back.py --bundle "$RUNNER_TEMP/release" --out "$RUNNER_TEMP/public-release"
+

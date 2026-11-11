@@ -1,0 +1,39 @@
+name: Naive incident reconstruction
+
+on:
+  workflow_dispatch:
+    inputs:
+      bug:
+        description: Fault to introduce into an isolated 0.9.3 fixture
+        required: true
+        type: choice
+        default: fixed
+        options: [fixed, python310, windows, missing-data, entrypoint]
+
+permissions:
+  contents: read
+
+jobs:
+  source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - name: Install hash-locked CI tools
+        run: >-
+          python -m pip --isolated install --index-url https://pypi.org/simple
+          --no-cache-dir --only-binary=:all: --require-hashes -r requirements/ci.lock
+      - name: Introduce the selected fault
+        env:
+          BUG: ${{ inputs.bug }}
+        run: python scripts/inject_bug.py --bug "$BUG" --destination "$RUNNER_TEMP/candidate"
+      - name: Editable install and library-only tests
+        run: python scripts/naive_check.py --source "$RUNNER_TEMP/candidate"
+      - name: Build passes too (the installed artifact is never exercised)
+        run: python scripts/build_release.py --source "$RUNNER_TEMP/candidate" --out "$RUNNER_TEMP/naive-release"
+

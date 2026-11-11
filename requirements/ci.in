@@ -1,0 +1,9 @@
+-r build.in
+pytest==9.2.0
+pytest-cov==7.0.0
+ruff==0.17.4
+pyright==1.1.414
+# The type checker analyzes the 3.10 fallback even when CI itself runs on 3.12.
+tomli==2.2.1
+pip-audit==2.10.1
+
