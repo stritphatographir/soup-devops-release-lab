@@ -121,7 +121,8 @@ host Python, and Docker running Linux containers**. It supplies Linux Python
 Use a new evidence directory. The driver expects four naive/build passes,
 four intended consumer failures, and six fixed wheel/sdist passes. It does
 not reproduce the full hosted matrix locally. See [verification](docs/VERIFICATION.md)
-for check scope and [manual check suggestions](docs/PERSONAL_CHECKS.md).
+for check scope and [the AI disclosure](docs/AI_USAGE.md#personal-technical-verification)
+for confirmed personal review and execution.
 
 ## Limitations and verdict
 
@@ -156,7 +157,6 @@ reports and timestamps remain unchanged.
 ## Verdict and submission
 
 - [Two-page release note](output/pdf/Soup-DevOps-Release-Note.pdf) and [source](docs/NOTE.md)
-- [Reflection](docs/REFLECTION.md) and [email draft](docs/SUBMISSION_EMAIL.txt)
+- [Reflection](docs/REFLECTION.md)
 - [Manual RTX 5090 lab and screenshot](docs/GPU_LAB_RESULTS.md#supporting-screenshot)
-- [Application summary, resume bullets, and technical discussion notes](docs/application-notes.md)
 - [Evidence ledger](evidence/README.md) and [review resolutions](docs/reviews/RESOLUTIONS.md)

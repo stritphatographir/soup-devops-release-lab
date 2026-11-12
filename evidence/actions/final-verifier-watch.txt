@@ -1,5 +1,0 @@
-$ gh run watch 43103313246 --repo stritphatographir/soup-devops-release-lab --exit-status --interval 20
-
-Run Hardened release checks (43103313246) has already completed with 'success'
-
-Exit code: 0

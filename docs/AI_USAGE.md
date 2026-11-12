@@ -98,9 +98,9 @@ commands myself.
 **Not claimed:** authorship of specific components, ownership of every design
 decision, personal execution of the historical package/CI checks, debugging
 particular package failures, or independent validation of every result. A
-tool-run check remains attributed to the tool or GitHub Actions. The Windows-log
-and public-wheel-hash checks in [PERSONAL_CHECKS.md](PERSONAL_CHECKS.md) remain
-without confirmed manual results.
+tool-run check remains attributed to the tool or GitHub Actions. Personal review
+of the Windows failure log and an independent manual check of the public wheel's
+hash remain unconfirmed.
 
 The original review reports and evidence retain their historical wording and
 timestamps. Their earlier pending-review statements describe what was confirmed
