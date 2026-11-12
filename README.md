@@ -60,8 +60,9 @@ release circuit breaker remain priorities.
 - [Publishing procedure](docs/PUBLISHING.md)
 - [Reflection draft](docs/REFLECTION.md)
 
-I used Codex for implementation and automated checks, and requested OpenCode
-and Antigravity as additional reviewers. I handled account login and verification,
+The work was coordinated in Orca: Codex handled implementation and automated
+checks, and I requested OpenCode and Antigravity as additional reviewers.
+I handled account login and verification,
 requested a hook retry, and flagged the GitHub identity issue. The
 [AI-use disclosure](docs/AI_USAGE.md) separates my involvement from tool-run
 verification and links the supporting evidence.

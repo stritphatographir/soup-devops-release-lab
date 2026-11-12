@@ -29,8 +29,13 @@ executions below were carried out by the tools, rather than manually by me.
   cleanup, and release controls. Its follow-up did not complete; a hook retry
   reached a provider quota error. Codex applied the documented follow-up fixes.
 
-The [original reviews and resolution ledger](reviews/RESOLUTIONS.md) retain
-both completed work and failed attempts.
+## Multi-agent workflow in Orca
+
+The work was coordinated in Orca through separate implementation, review, and
+follow-up tasks. I requested OpenCode and Antigravity alongside Codex; Codex
+handled the task dispatches, collected findings, and checked follow-up changes
+against tests and run logs. The [review records and resolution ledger](reviews/RESOLUTIONS.md)
+document the completed reviews, follow-up fixes, and failed follow-up attempts.
 
 ## How suggestions were checked
 
