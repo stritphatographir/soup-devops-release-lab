@@ -31,11 +31,17 @@ executions below were carried out by the tools, rather than manually by me.
 
 ## Multi-agent workflow in Orca
 
-The work was coordinated in Orca through separate implementation, review, and
-follow-up tasks. I requested OpenCode and Antigravity alongside Codex; Codex
-handled the task dispatches, collected findings, and checked follow-up changes
-against tests and run logs. The [review records and resolution ledger](reviews/RESOLUTIONS.md)
-document the completed reviews, follow-up fixes, and failed follow-up attempts.
+Orca is the app I used to run several coding agents side by side. Work was
+split into separate implementation, review and follow-up tasks. I requested
+OpenCode and Antigravity alongside Codex; Codex dispatched the tasks,
+collected findings and checked follow-up changes against tests and run logs.
+So the review loop was agents checking agents, with me setting it up, not
+reading the diffs. The [review records and resolution ledger](reviews/RESOLUTIONS.md)
+document completed reviews, follow-up fixes and failed attempts.
+
+Where the tools were unreliable: Codex's first dependency pins failed the
+audit; one OpenCode concern (artifact-download permissions) did not reproduce
+in hosted runs; Antigravity's follow-up stalled and then hit a quota error.
 
 ## How suggestions were checked
 
