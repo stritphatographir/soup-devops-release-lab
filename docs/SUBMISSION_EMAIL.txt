@@ -2,31 +2,31 @@ Subject: Soup internship - DevOps take-home - Amir
 
 Hello Soup team,
 
+Thank you for the task. Here are my submission links:
+
 Repository: https://github.com/stritphatographir/soup-devops-release-lab
-Two-page note: output/pdf/Soup-DevOps-Release-Note.pdf (attached)
-Evidence and Actions links: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md
+Evidence and red/green runs: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md
+AI use and contribution breakdown: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/docs/AI_USAGE.md
+Two-page note: output/pdf/Soup-DevOps-Release-Note.pdf (attach to this reply)
 
-The repository contains four reproducible packaging faults, the naive and
-hardened pipelines, clean wheel/sdist consumers, TestPyPI OIDC publishing,
-supply-chain controls, GPU CI design and budget, and AI-use disclosure.
+The project demonstrates four bugs that pass naive CI and fail in clean
+installed consumers. The fixed pipeline covers Python 3.10-3.14 on Linux,
+Windows, and macOS, plus Docker. The TestPyPI release passed all 21 jobs,
+including OIDC publishing and public wheel/sdist read-back:
+https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803
 
-Recorded hosted evidence now includes four naive green runs, four hardened red
-runs with the intended consumer failures, and a fixed green run covering all 19
-jobs, including 15 OS/Python combinations and exact-artifact Docker checks.
-Initial GitHub startup failures are also preserved as infrastructure failures.
-The final verifier revision also passed all 19 fixed jobs and rejected all four
-faults in fresh hosted regression runs.
-The v0.9.4 release passed all 21 jobs, including OIDC publication and public
-wheel/sdist read-back: https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803
-Published package: https://test.pypi.org/project/soup-release-lab-amirt/0.9.4/
-The public files match the tested artifact hashes; a fresh Windows Simple Index
-wheel consumer also passed. Real-PyPI release remains human-gated pending the
-independent review, governance/recovery, and durable circuit-breaker controls
-described in the note.
+I used Codex for implementation and automated checks and requested additional
+OpenCode and Antigravity reviews. I handled account login and verification,
+requested a hook retry, and flagged the GitHub identity issue. The disclosure
+separates those contributions from the checks performed by agents and Actions.
+Failed runs and the limits of the evidence are retained in the repository.
 
-The reflection and AI disclosure describe the implementation observations and
-must be reviewed personally before this email is sent. This is a draft and has
-not been emailed.
+My recommendation is to automate TestPyPI while retaining human approval for
+real PyPI until the review, recovery, and release-control gaps are closed.
+The note also includes the GPU test design and cost assumptions.
 
 Best,
 Amir
+
+DRAFT - not sent. Review the reflection and contribution breakdown, record any
+personal technical checks accurately, and attach the PDF before replying.

@@ -60,9 +60,11 @@ release circuit breaker remain priorities.
 - [Publishing procedure](docs/PUBLISHING.md)
 - [Reflection draft](docs/REFLECTION.md)
 
-Codex produced the implementation and ran the recorded checks. OpenCode and
-Antigravity contributed reviews; [AI use and actual tool outcomes](docs/AI_USAGE.md)
-are documented.
+I used Codex for implementation and automated checks, and requested OpenCode
+and Antigravity as additional reviewers. I handled account login and verification,
+requested a hook retry, and flagged the GitHub identity issue. The
+[AI-use disclosure](docs/AI_USAGE.md) separates my involvement from tool-run
+verification and links the supporting evidence.
 
 The immutable TestPyPI description comes from the tagged README and predates
 the publication-status update; the current results are linked above.

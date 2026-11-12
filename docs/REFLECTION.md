@@ -1,13 +1,17 @@
-# Reflection draft to review before submission
+# Reflection draft
 
-The implementation exposed two different ways to trust a green result too much:
-library tests kept passing while an installed CLI failed, and familiar pinned
-tool versions initially passed installation but failed a current vulnerability
-audit. Testing from a fresh directory made the packaging mistakes visible;
-checking the locks against advisories exposed the unsafe pins. The remaining
-concern is that the same repository controls both the producer and its evidence:
-a compromised maintainer or runner could still produce malicious bytes with
-valid provenance. More tests help, but independent review and protected release
-identity are still needed. This paragraph describes the recorded implementation
-observations; the applicant should revise it to reflect their own experience
-after reviewing and reproducing the work.
+The result that stands out in this project is how easily source tests can give
+false confidence: all four broken fixtures passed naive CI, but failed when
+the installed CLI was exercised. The dependency audit exposed a second issue:
+familiar, pinned tool versions were still vulnerable. The useful lesson is to
+check the artifact and the evidence behind a green result. AI helped produce
+and review the implementation, but its review alone was not treated as proof;
+the submission keeps real failures, corrected runs, and public-package checks.
+The remaining concern is that one repository controls both the producer and
+its evidence. A compromised maintainer or runner could still produce harmful
+bytes with valid provenance, so independent review and protected release
+changes remain necessary before unattended real-PyPI publishing.
+
+This is a draft based on recorded project results. Personal observations and
+any hands-on checks should be added after my own review; this paragraph does
+not claim that I performed the automated checks myself.

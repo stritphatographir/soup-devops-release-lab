@@ -1,54 +1,71 @@
-# AI and tool use disclosure
+# How I used AI
 
-Codex read the brief, designed and wrote the initial package, fixtures, scripts,
-workflows, documentation, and note, executed the recorded local checks, and
-created the repository and dispatched the recorded Actions runs. Initial remote
-runs failed inside GitHub before any jobs existed; they are not successful check
-executions. A later fixed run passed the full hosted matrix and Docker check;
-four naive passes and four intended hardened failures were verified against
-saved job logs. After the applicant completed account login and verification,
-Codex registered the specified TestPyPI pending publisher and pushed the reviewed
-`v0.9.4` tag. Release run `43224278803` passed all 21 jobs, including OIDC
-publication and public wheel/sdist read-back. Codex compared downloaded public
-file hashes against the tested artifact, inspected public provenance identity
-and digest fields, and ran a fresh Windows Simple Index wheel consumer.
-No independent cryptographic signature verification is claimed.
-The applicant requested OpenCode and Antigravity review as additional tools;
-their actual outcomes are recorded in the evidence rather than assumed.
-No personal claim that the applicant manually
-performed these checks is implied.
+I used Codex for implementation and automated checks, and asked for OpenCode
+and Antigravity as additional reviewers. AI did substantial engineering work
+on this submission. This page separates that work from my own involvement and
+links the results used to assess it.
 
-The applicant confirmed `stritphatographir` as the intended repository owner
-and commit account. Repository ownership and push authentication already matched
-that account; the local commit identity was corrected for subsequent commits.
-Existing published commits and the release tag were preserved so their Actions
-and artifact evidence remain reproducible.
+## What I handled
 
-Antigravity completed its initial document review; follow-up attempts did not
-complete and a hook retry reached a provider quota error. The coordinator
-applied its GPU budget, cleanup, concurrency and verdict suggestions. OpenCode
-completed an independent pipeline review and implemented the accepted verifier
-hardening in a separate recorded task. It reported 107 passing tests and
-96.15% package coverage; the coordinator independently checked the code, passed
-those checks, and repeated the full incident reproduction successfully. The unchanged reviews retain their
-original findings and revision limits; later resolutions belong in the ledger.
+I requested the additional reviews, completed GitHub and TestPyPI account login
+and verification, and asked for another hook attempt when a review stalled.
+I also questioned the GitHub identity being used and specified
+`stritphatographir` as the intended owner and commit account. That led to a
+correction of the commit email; the next commit's author, committer, and push
+actor were checked through GitHub's API. Published history was preserved.
 
-Accepted implementation suggestions included testing wheels outside the source
-checkout, rebuilding and installing the sdist in a second clean environment,
-testing native Windows, isolating OIDC to the publisher, and publishing the same
-bytes that were tested. They were checked against executable fixture failures,
-the fixed consumers, workflow linting, and the upstream PyPI/GitHub documentation.
+These are my confirmed direct contributions. The technical implementation and
+executions below were carried out by the tools, rather than manually by me.
 
-One unreliable initial suggestion was using familiar older build/test pins.
-The first dependency audit found advisories in pytest, setuptools, and wheel.
-Those versions were replaced, locks regenerated, and the audit rerun. The failed
-audit is kept in `evidence/local/initial-dependency-audit.txt`. Early workflow
-lint also caught an invalid unquoted YAML command; it was corrected before
-remote execution. These fixes are work performed by the assistant, not evidence
-of an independent human review.
+## What each tool contributed
 
-Before submitting, the applicant should read the diff and failed logs, run the
-CLI and one fixture personally, and update this disclosure with what they
-actually accepted, changed, or redid. Do not mark that review as complete until
-it has happened. The brief's live-discussion answers are intentionally not
-prewritten.
+- **Codex:** produced the CLI, fault fixtures, workflows, test harnesses, and
+  documentation; ran local checks; dispatched Actions; configured the TestPyPI
+  publisher after my account steps; and checked the public release.
+- **OpenCode:** reviewed the pipeline and implemented verifier fixes, including
+  tag identity, dependency metadata, and explicit failure handling. Codex then
+  reran the tests and incident reproduction.
+- **Antigravity:** completed an initial review covering evidence, GPU costs,
+  cleanup, and release controls. Its follow-up did not complete; a hook retry
+  reached a provider quota error. Codex applied the documented follow-up fixes.
+
+The [original reviews and resolution ledger](reviews/RESOLUTIONS.md) retain
+both completed work and failed attempts.
+
+## How suggestions were checked
+
+The recorded local commands were run by Codex; the hosted jobs were run by
+GitHub Actions. The evidence includes:
+
+- Four naive green runs and four hardened red runs, with the intended error
+  checked inside the required failed consumer's log.
+- A fixed 15-environment matrix, Docker checks of the same built artifact,
+  and 107 passing tests with 96.15% combined package line/branch coverage.
+- [TestPyPI release 0.9.4](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803):
+  all 21 jobs passed, including OIDC publication and public wheel/sdist
+  read-back. Public hashes matched the tested artifact. A separate fresh
+  Windows Simple Index wheel consumer also passed.
+
+The accepted changes included installing outside the checkout, testing native
+Windows, rebuilding the sdist, checking dependency metadata, and isolating
+OIDC permissions to a publisher that uploads the tested bytes. Their actual
+outcomes and limits are in the [evidence ledger](../evidence/README.md).
+Public provenance identity and digest fields were inspected; independent
+cryptographic signature verification was not performed.
+
+## One suggestion that needed correction
+
+The initial familiar build/test pins installed successfully but failed the
+current dependency audit: pytest, setuptools, and wheel had reported
+advisories. Codex updated the pins, regenerated the locks, and reran the audit.
+The [original failed audit](../evidence/local/initial-dependency-audit.txt)
+was kept. Early workflow lint also caught an invalid YAML command before
+remote execution. These are documented corrections made by the tools, not
+claims that I independently found them.
+
+## Personal technical verification
+
+Independent code review, local test execution, and manual code changes by me
+have not yet been recorded. I do not count an agent-run check as a check I ran
+personally. This section should be updated with specific files, commands, and
+observations after my own review.
