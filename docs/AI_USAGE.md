@@ -1,9 +1,10 @@
 # How I used AI
 
-I used Codex for implementation and automated checks, and asked for OpenCode
-and Antigravity as additional reviewers. AI did substantial engineering work
-on this submission. This page separates that work from my own involvement and
-links the results used to assess it.
+AI agents generated the implementation. I reviewed the core parts and remained
+involved throughout development. I used Codex for implementation and automated
+checks, and requested OpenCode and Antigravity as additional reviewers. This
+page separates my confirmed review and involvement from code generation and
+recorded test execution.
 
 ## What I handled
 
@@ -14,8 +15,11 @@ I also questioned the GitHub identity being used and specified
 correction of the commit email; the next commit's author, committer, and push
 actor were checked through GitHub's API. Published history was preserved.
 
-These are my confirmed direct contributions. The technical implementation and
-executions below were carried out by the tools, rather than manually by me.
+Alongside my core review, these account and coordination steps were my direct
+involvement. The implementation and historical package/CI executions below remain attributed
+to the agents and GitHub Actions. In a subsequent, separate lab experiment, I
+personally ran the AI-generated GPU-probe commands and shared their output.
+Codex did not connect to the server over SSH.
 
 ## What each tool contributed
 
@@ -35,9 +39,10 @@ Orca is the app I used to run several coding agents side by side. Work was
 split into separate implementation, review and follow-up tasks. I requested
 OpenCode and Antigravity alongside Codex; Codex dispatched the tasks,
 collected findings and checked follow-up changes against tests and run logs.
-So the review loop was agents checking agents, with me setting it up, not
-reading the diffs. The [review records and resolution ledger](reviews/RESOLUTIONS.md)
-document completed reviews, follow-up fixes and failed attempts.
+The agents supplied additional review perspectives. The
+[review records and resolution ledger](reviews/RESOLUTIONS.md) document
+completed reviews, follow-up fixes and failed attempts. Multiple agent reviews
+do not establish independent validation of every result.
 
 Where the tools were unreliable: Codex's first dependency pins failed the
 audit; one OpenCode concern (artifact-download permissions) did not reproduce
@@ -45,8 +50,8 @@ in hosted runs; Antigravity's follow-up stalled and then hit a quota error.
 
 ## How suggestions were checked
 
-The recorded local commands were run by Codex; the hosted jobs were run by
-GitHub Actions. The evidence includes:
+The historical local package checks were run by Codex; hosted jobs were run by
+GitHub Actions. Their evidence includes:
 
 - Four naive green runs and four hardened red runs, with the intended error
   checked inside the required failed consumer's log.
@@ -67,7 +72,7 @@ cryptographic signature verification was not performed.
 ## One suggestion that needed correction
 
 The initial familiar build/test pins installed successfully but failed the
-current dependency audit: pytest, setuptools, and wheel had reported
+then-current dependency audit: pytest, setuptools, and wheel had reported
 advisories. Codex updated the pins, regenerated the locks, and reran the audit.
 The [original failed audit](../evidence/local/initial-dependency-audit.txt)
 was kept. Early workflow lint also caught an invalid YAML command before
@@ -76,7 +81,27 @@ claims that I independently found them.
 
 ## Personal technical verification
 
-Independent code review, local test execution, and manual code changes by me
-have not yet been recorded. I do not count an agent-run check as a check I ran
-personally. This section should be updated with specific files, commands, and
-observations after my own review.
+**Confirmed:** I reviewed the core parts and remained involved throughout
+development. This confirmation was supplied during the current documentation
+revision; it is not backdated into earlier review reports or execution logs.
+
+**Subsequent hands-on work:** I executed a separate AI-generated CUDA probe on
+my own RTX 5090 lab host: compiled it in a digest-pinned container, observed the
+expected no-GPU failure (exit 1), ran a kernel whose 65,536 vector-add results
+matched the CPU reference (exit 0), and ran a CPU-only timeout control (exit 124).
+The reported container listings were empty afterward, and GPU memory returned
+to the reported baseline. [The lab report](GPU_LAB_RESULTS.md) records the exact
+scope, source/image hashes, output provenance, and a separate terminal paste
+error. Codex supplied the test and checked the output I shared; I ran the SSH
+commands myself.
+
+**Not claimed:** authorship of specific components, ownership of every design
+decision, personal execution of the historical package/CI checks, debugging
+particular package failures, or independent validation of every result. A
+tool-run check remains attributed to the tool or GitHub Actions. The Windows-log
+and public-wheel-hash checks in [PERSONAL_CHECKS.md](PERSONAL_CHECKS.md) remain
+without confirmed manual results.
+
+The original review reports and evidence retain their historical wording and
+timestamps. Their earlier pending-review statements describe what was confirmed
+at that point, rather than the current review status.

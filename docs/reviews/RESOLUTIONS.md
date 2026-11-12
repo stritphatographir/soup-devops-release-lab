@@ -27,7 +27,8 @@ passed all 21 jobs at the immutable `v0.9.4` tag, including public wheel/sdist
 read-back. Public hashes match the exact tested artifact; a fresh Windows
 Simple Index wheel consumer also passed. Public provenance identity and digest
 fields were inspected, without claiming independent cryptographic verification.
-The applicant has not claimed an independent personal review or GPU execution.
+The original reviews did not establish applicant personal review or GPU
+execution. The current confirmation of core review is recorded below.
 
 The coordinator also corrected GitHub's error-annotation syntax in the tag
 guards and reran all 50 release-guard tests successfully. Native same-run
@@ -43,3 +44,24 @@ reapplying hooks through the running Orca app, retry dispatch
 worker was stopped with confirmed termination. No account upgrade, model
 switch, or further quota retry was attempted. The failure remains part of the
 tool-use record, separate from the successful initial review.
+
+## Current applicant review clarification
+
+During the current documentation revision, the applicant confirmed: "AI agents
+generated the implementation. I reviewed the core parts and remained involved
+throughout development." This supersedes the earlier pending personal-review
+status above. It does not establish personal code authorship, ownership of every
+design decision, test execution, debugging, or independent validation of every
+result. No GPU execution was recorded at that clarification point. Original
+reviewer reports and evidence timestamps remain unchanged; see
+[the current disclosure](../AI_USAGE.md).
+
+## Subsequent manual GPU lab
+
+The applicant then ran an AI-generated probe on an owned RTX 5090 host and
+shared its terminal output. [The separate lab report](../GPU_LAB_RESULTS.md)
+records a correct vector-add result, expected no-GPU failure, normal container
+cleanup, and a CPU-only timeout control. This updates the current manual-work
+record without changing earlier reviews or release evidence. It is not an
+implementation of the proposed GPU release/nightly pipeline or its cloud
+budget, provisioning, cancellation, or watchdog controls.

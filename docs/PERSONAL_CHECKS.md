@@ -1,7 +1,11 @@
 # Personal checks
 
-**Status: not completed.** These are instructions for future personal checks,
-not evidence that I have performed them.
+**Core review confirmed:** I reviewed the core parts and remained involved
+throughout development. I also executed the separate
+[RTX 5090 lab probe](GPU_LAB_RESULTS.md), with the reported outcomes recorded
+there. This does not establish completion of the Windows-log and public-wheel
+hash checks below. Their manual results remain unconfirmed; the blank fields
+are instructions, not execution evidence.
 
 ## A. Windows failure
 
@@ -27,9 +31,15 @@ Get-FileHash -Algorithm SHA256 .\dl\soup_release_lab_amirt-0.9.4-py3-none-any.wh
 - What it establishes:
 - What it does not establish:
 
-## Update after completing the checks
+## Record only checks actually completed
 
-- [README.md, "What I have not done"](../README.md#how-i-used-ai) — replace that paragraph with what you checked and observed.
-- [NOTE.md, final AI paragraph](NOTE.md#reflection-and-ai-use) — update the AI paragraph and regenerate the PDF with scripts/render_note.py. Confirm it still has two pages.
-- [SUBMISSION_EMAIL.txt, "AI use" paragraph](SUBMISSION_EMAIL.txt) — update the final sentence in the AI paragraph.
-- [AI_USAGE.md, Personal technical verification](AI_USAGE.md#personal-technical-verification) — replace the pending paragraph with the evidence you inspected, commands you ran, and observations.
+Record the command or run URL, environment, actual output, and what the result
+establishes. Keep a distinction between reading a historical log and executing
+a check yourself.
+
+- Update [AI_USAGE.md](AI_USAGE.md#personal-technical-verification) with those specifics.
+- Keep the [README](../README.md#how-i-used-ai), [note](NOTE.md#reflection-and-ai-use),
+  and [email draft](SUBMISSION_EMAIL.txt) consistent with the confirmed scope.
+- If the note changes, regenerate the PDF with `python scripts/render_note.py`
+  and verify it remains two pages.
+- Keep earlier evidence and review timestamps unchanged.

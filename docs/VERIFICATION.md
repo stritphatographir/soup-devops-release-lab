@@ -1,5 +1,52 @@
 # Verification report
 
+## Current local documentation review
+
+These checks were run by Codex against the documentation working tree based on
+`67ccff1`, before the subsequent local submission commits. The applicant's newly confirmed core review and involvement are
+recorded separately in [AI_USAGE.md](AI_USAGE.md#personal-technical-verification).
+These executions are not attributed to the applicant.
+
+| Check run now | Result | Scope |
+| --- | --- | --- |
+| Unit tests and coverage | PASS: 107 tests, 96.15% | Windows Python 3.13.14; coverage measures 44 application statements and eight branches, excluding `__main__.py`, not all release scripts/workflows |
+| Lint | PASS | Ruff over the repository |
+| Types | PASS: zero errors/warnings | Pyright over `src` with the explicit project interpreter |
+| Workflow syntax | PASS | Existing actionlint executable; shellcheck/pyflakes integrations disabled because they are unavailable locally |
+| Local distribution build | PASS | New output directory; sdist then wheel; source identity `local-uncommitted` |
+| Clean installed consumers | PASS: wheel and sdist | Fresh venvs outside the checkout on Windows Python 3.13.14; no new Linux/macOS matrix claim |
+| README CLI example | PASS | Installed local wheel in a separate fresh venv; `examples/service.toml` produced the documented JSON |
+| Documentation | PASS | Current local links/anchors and referenced evidence checked; `git diff --check`; regenerated note visually inspected at two pages |
+
+The unit/quality run started at `2026-11-12T15:07:40.073110+00:00`. Raw command output
+is retained locally under `.tools/current-docs-audit/` (ignored scratch output,
+not a replacement for the historical evidence below).
+
+Not repeated in this review: full Docker/fault reproduction, the hosted native
+matrix, advisory audits, publication or public read-back, provenance signature
+verification, or GPU execution. Their historical results and limitations remain
+separate. No code defect was established by the inspection; code, workflows,
+locks, recorded evidence, tags, and the published release were not changed.
+No commit, push, deployment, application, or email was made as part of those checks.
+
+## Subsequent applicant-run GPU lab
+
+After the local documentation review above, the applicant manually ran the
+separate [RTX 5090 lab probe](GPU_LAB_RESULTS.md) and supplied terminal output.
+Codex supplied the test and reviewed that output without SSH access. Reported
+results were: no-GPU control exit 1; 65,536 vector-add results matching a CPU
+reference with exit 0; no remaining positive-test container and a return to
+2 MiB used/32,110 MiB free; CPU-only timeout control exit 124 with no remaining
+container. The source/image/binary hashes and the trailing unmatched-parenthesis
+paste error are recorded in the report.
+
+This is user-reported manual execution, not a new Actions run or an independently
+retrieved host log. It does not establish application GPU coverage, framework or
+model correctness, benchmark speed, peak memory, provider billing, SIGKILL-path
+or hung-driver recovery, or the proposed GPU CI broker/watchdog controls.
+
+## Historical implementation and release evidence
+
 Local checks: **PASS**. Hosted red/green evidence: **VERIFIED**.
 Final verifier revision `feb2268`: **VERIFIED**, all 19 fixed jobs passed and
 all four fresh fault runs failed in the required consumer with the intended
