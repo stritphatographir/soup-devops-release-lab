@@ -64,7 +64,10 @@ Still outside coverage: malicious initial pins, unknown vulnerabilities, a
 compromised build runner or maintainer, system-library/architecture differences,
 optional extras, proxies and offline installs, old pip, locale and permissions
 combinations, user-specific configs, behavioral regressions beyond the fixtures,
-and GPU execution. A universal wheel is not an exhaustive compatibility proof.
+and GPU application behavior or automated GPU CI. The separate
+[manual RTX 5090 probe](GPU_LAB_RESULTS.md) checks basic CUDA execution and
+ordinary container cleanup; it does not close those application/automation
+gaps. A universal wheel is not an exhaustive compatibility proof.
 The Node runtime used by pyright also comes from the hosted runner image; the
 Python lock does not pin that executable.
 

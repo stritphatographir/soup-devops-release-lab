@@ -1,8 +1,12 @@
 # GPU release and nightly test design
 
 This CLI is CPU-only. Renting a GPU would add no application coverage today.
-The requested GPU design below is for a future CUDA-backed component; it is a
-design, not an implemented rental integration or a claim that GPU tests ran.
+The release/nightly design below is for a future CUDA-backed component and
+is not an implemented rental or GPU CI integration. A separate
+[applicant-run RTX 5090 lab](GPU_LAB_RESULTS.md) records basic CUDA correctness,
+a no-GPU failure control, normal cleanup, and a CPU-only timeout control.
+That experiment used an owned lab machine; it does not validate the proposed
+RTX 4090 rental cost, framework/model behavior, or cloud watchdog design.
 
 ## Placement and test scope
 

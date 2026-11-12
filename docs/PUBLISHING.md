@@ -100,3 +100,5 @@ See `evidence/README.md` for executed checks and actual Actions URLs. A workflow
 file, a local Docker log, and an Actions run are distinct forms of evidence.
 OIDC publication and public read-back are now verified by the completed release,
 not inferred from configuration. There is no real-PyPI publisher or GPU rental.
+The subsequent [owned-lab GPU probe](GPU_LAB_RESULTS.md) is separate from this
+release and does not change or retrospectively GPU-validate published 0.9.4.
