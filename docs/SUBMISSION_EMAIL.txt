@@ -1,25 +1,36 @@
-Subject: Soup DevOps internship take-home
-
-TestPyPI can be automated after the release checks pass.
-Real PyPI keeps human approval for now.
+Subject: Soup DevOps internship take-home - Amir
 
 Hello Soup team,
 
-The two-page release note is attached.
+Thank you for the task. My repository and two-page release note are ready for
+review; the PDF is attached to this reply.
 
 Repository: https://github.com/stritphatographir/soup-devops-release-lab
-Evidence ledger: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md
-Naive and hardened runs: https://github.com/stritphatographir/soup-devops-release-lab#four-bugs-that-naive-ci-misses
-Green CI (19/19): https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43226717548
-Release (21/21): https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803
-TestPyPI 0.9.4: https://test.pypi.org/project/soup-release-lab-amirt/0.9.4/
-AI disclosure: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/docs/AI_USAGE.md
-Reflection: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/docs/REFLECTION.md
+Evidence and red/green runs: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md
+TestPyPI release (21/21 jobs): https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803
+AI use and my role: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/docs/AI_USAGE.md
+Manual GPU lab and screenshot: https://github.com/stritphatographir/soup-devops-release-lab/blob/main/docs/GPU_LAB_RESULTS.md
 
-AI use: I ran Codex (builder), OpenCode and Antigravity (reviewers) in Orca. Nearly all code was tool-written. I handled the account logins and verification; Codex configured the TestPyPI publisher. I requested the reviews, and caught a wrong GitHub commit identity. Checks were run by the tools and GitHub Actions, not by me by hand. Where the tools were wrong (failed audit on first pins, a review concern that did not reproduce, a stalled reviewer) is in the README and AI_USAGE.
+The project reproduces four packaging and compatibility faults that pass naive
+CI, then rejects them in clean installed consumers. The fixed pipeline checks
+wheel and sdist consumers across Python 3.10-3.14 on Linux, Windows, and macOS,
+publishes the tested artifact to TestPyPI through OIDC, and verifies the public
+bytes. Earlier failed attempts are retained.
 
-Earlier infrastructure failures are retained in the evidence ledger.
-No GPU was rented. The GPU section is design only.
+AI agents generated the implementation. I reviewed the core parts and remained
+involved throughout development. Agents and GitHub Actions ran the historical
+package checks. I also personally executed an AI-generated CUDA probe on my
+owned RTX 5090 lab machine: 65,536 results matched a CPU reference, the no-GPU
+control failed as expected, and a CPU-only timeout/cleanup control passed.
+The disclosure separates these contributions and records tool corrections.
+
+My verdict is to automate TestPyPI while retaining human approval before real
+PyPI. The GPU release/nightly pipeline and cloud budget remain design work;
+the manual lab is a separate environment/correctness experiment.
 
 Best,
 Amir
+
+---
+DRAFT - not sent. Publish the reviewed documentation before using the links
+above, and attach output/pdf/Soup-DevOps-Release-Note.pdf before replying.
