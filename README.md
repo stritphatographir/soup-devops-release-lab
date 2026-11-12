@@ -83,6 +83,20 @@ fail in the intended consumer with source-quality checks green.
 match each failure to its intended consumer and error. Broken fixtures are
 version 0.9.3 and are never published.
 
+## Local GPU check
+
+I personally ran an AI-generated CUDA vector-add probe in a digest-pinned
+container on my own RTX 5090 lab host. This was a manual local check, not
+automated GPU CI.
+
+![Terminal showing idle RTX 5090 status, saved CUDA probe output, and source/binary SHA-256 hashes](docs/assets/gpu-lab.png)
+
+*The saved probe output reports that all 65,536 GPU results matched the CPU
+reference. The later `nvidia-smi` view shows an idle GPU; the screenshot does
+not show the negative or timeout controls or their exit codes. See the
+[detailed results](docs/GPU_LAB_RESULTS.md) for commands, controls, hashes, and
+limitations.*
+
 ## Build and try the CLI
 
 Use Python 3.10-3.14 from the repository root. PowerShell example:
