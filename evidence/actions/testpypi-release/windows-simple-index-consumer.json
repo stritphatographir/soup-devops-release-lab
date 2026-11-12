@@ -1,0 +1,21 @@
+{
+  "observed_at_utc": "2026-11-12T13:14:55.733201+00:00",
+  "platform": "win32",
+  "python_version": "3.13.14",
+  "project": "soup-release-lab-amirt",
+  "version": "0.9.4",
+  "package_index": "https://test.pypi.org/simple/",
+  "runtime_dependency_index": "https://pypi.org/simple/",
+  "wheel": "soup_release_lab_amirt-0.9.4-py3-none-any.whl",
+  "sha256": "f3f8abb3a8d90fecbab596ddccd01ffc27c1eccf890e34a5044d6d3de1f08c4e",
+  "pip_check": "passed",
+  "import_inside_fresh_venv": true,
+  "cli_version": "soup-check 0.9.4",
+  "cli_report": {
+    "name": "public test",
+    "profile": "safe",
+    "schema": 1,
+    "workers": 3
+  },
+  "result": "PASS"
+}

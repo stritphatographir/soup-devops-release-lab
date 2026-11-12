@@ -1,0 +1,20 @@
+{
+  "project": "soup-release-lab-amirt",
+  "version": "0.9.4",
+  "files": [
+    {
+      "filename": "soup_release_lab_amirt-0.9.4-py3-none-any.whl",
+      "url": "https://test-files.pythonhosted.org/packages/7c/0a/e32f0434369148d5ae6d74709443b360aedd6bd0fc30102f7693186496fa/soup_release_lab_amirt-0.9.4-py3-none-any.whl",
+      "sha256": "f3f8abb3a8d90fecbab596ddccd01ffc27c1eccf890e34a5044d6d3de1f08c4e",
+      "index_sha256": "f3f8abb3a8d90fecbab596ddccd01ffc27c1eccf890e34a5044d6d3de1f08c4e",
+      "upload_time_utc": "2026-11-12T13:09:40.443052Z"
+    },
+    {
+      "filename": "soup_release_lab_amirt-0.9.4.tar.gz",
+      "url": "https://test-files.pythonhosted.org/packages/6e/02/4084c7495bb8a834c9483fce7015b879d698aedef9098622a51f742e7a58/soup_release_lab_amirt-0.9.4.tar.gz",
+      "sha256": "a3c1cde15383913bf0327a0de42481b2be99d041a3158e95aed088651ea60ff5",
+      "index_sha256": "a3c1cde15383913bf0327a0de42481b2be99d041a3158e95aed088651ea60ff5",
+      "upload_time_utc": "2026-11-12T13:09:41.584072Z"
+    }
+  ]
+}

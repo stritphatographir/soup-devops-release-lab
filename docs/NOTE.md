@@ -4,7 +4,7 @@ Soup DevOps internship - Amir - 12 November 2026
 
 ## Verdict and acceptance status
 
-Automate TestPyPI after the gates pass; keep human approval for real PyPI. Hosted evidence includes four green naive runs at 55b79e0. The final verifier at feb2268 passed all 19 fixed jobs and rejected every fault in fresh runs, with each error verified inside the required failed consumer and all source-quality checks green. TestPyPI publisher registration and OIDC publication remain unverified. Earlier GitHub startup failures had zero jobs; they are retained separately as infrastructure failures. No production package or deliberately broken fixture was published.
+Automate TestPyPI after the gates pass; keep human approval for real PyPI. Four naive runs passed; the final verifier rejected every fault with the expected failed-consumer error and green source checks. The [v0.9.4 release](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803) passed all 21 jobs, including OIDC publication and public wheel/sdist read-back. The [package is on TestPyPI](https://test.pypi.org/project/soup-release-lab-amirt/0.9.4/). Earlier startup failures are retained as infrastructure failures. No production package or broken fixture was published.
 
 Repository: [soup-devops-release-lab](https://github.com/stritphatographir/soup-devops-release-lab). The complete evidence and every retained remote attempt are in [the evidence ledger](https://github.com/stritphatographir/soup-devops-release-lab/blob/main/evidence/README.md).
 
@@ -25,7 +25,7 @@ Each rejection log contains the intended error signature. The fixed wheel and sd
 
 Actions lint/type checks and unit tests accompany one build. The fixed matrix covers Python 3.10-3.14 on Linux, Windows, and macOS; the recorded fixed run passed every leg, including wheel and sdist consumers. Consumers use fresh venvs outside the checkout, install the wheel or rebuild the sdist, verify the import location, launch both entry points, and test valid/invalid configs including a Unicode path. Both distribution identity and SHA-256 hashes are checked. A version tag must equal built metadata and installed CLI output.
 
-Only the publisher gets OIDC permission, after every check. It downloads the exact same-run artifact ID, verifies commit/tag/hashes, and uploads those bytes through the SHA-pinned PyPA action. It does no source checkout or build. A separate read-back downloads TestPyPI's public distributions, rejects extra files or changed bytes, and tests them again. Read-back can detect a bad publication; it cannot reverse one.
+Only the publisher gets OIDC permission, after every check. It downloads the exact same-run artifact ID, verifies commit/tag/hashes, and uploads those bytes through the SHA-pinned PyPA action, without checkout or build. Public wheel/sdist hashes matched that artifact and both passed Linux 3.10 read-back. A fresh Windows consumer also downloaded the wheel from TestPyPI's Simple Index and passed. Provenance identity/digest fields were inspected; signatures were not independently verified. Read-back detects a bad publication; it cannot reverse one.
 
 <!-- pagebreak -->
 
@@ -43,7 +43,7 @@ Allocate only after CPU gates. An OIDC broker admits protected refs, enforces on
 
 ## What to fix first
 
-First obtain successful OIDC publication/read-back evidence; the hardened revision has passed local and hosted verification. Next protect source, workflow, lock, and tag changes through independent review and account recovery. Then implement a durable release circuit breaker and broaden compatibility coverage. Today a maintainer must manually disable later releases after a publish/read-back failure. Keep the production approval gate until those controls are demonstrated.
+With OIDC publication and read-back verified, first protect source, workflow, lock, and tag changes through independent review and account recovery. Then implement a durable release circuit breaker and broaden compatibility coverage. Today a maintainer must manually disable later releases after a publish/read-back failure. Keep the production approval gate until those controls are demonstrated.
 
 ## Reflection and AI use
 

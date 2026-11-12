@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "core-metadata": {
+        "sha256": "761594055bcd95cfddcc48a1ef9bb4ebf757cad50be1480a3730a8da6dba210c"
+      },
+      "data-dist-info-metadata": {
+        "sha256": "761594055bcd95cfddcc48a1ef9bb4ebf757cad50be1480a3730a8da6dba210c"
+      },
+      "filename": "soup_release_lab_amirt-0.9.4-py3-none-any.whl",
+      "hashes": {
+        "sha256": "f3f8abb3a8d90fecbab596ddccd01ffc27c1eccf890e34a5044d6d3de1f08c4e"
+      },
+      "provenance": "https://test.pypi.org/integrity/soup-release-lab-amirt/0.9.4/soup_release_lab_amirt-0.9.4-py3-none-any.whl/provenance",
+      "requires-python": "<3.15,>=3.10",
+      "size": 6837,
+      "upload-time": "2026-11-12T13:09:40.443052Z",
+      "url": "https://test-files.pythonhosted.org/packages/7c/0a/e32f0434369148d5ae6d74709443b360aedd6bd0fc30102f7693186496fa/soup_release_lab_amirt-0.9.4-py3-none-any.whl",
+      "yanked": false
+    },
+    {
+      "core-metadata": false,
+      "data-dist-info-metadata": false,
+      "filename": "soup_release_lab_amirt-0.9.4.tar.gz",
+      "hashes": {
+        "sha256": "a3c1cde15383913bf0327a0de42481b2be99d041a3158e95aed088651ea60ff5"
+      },
+      "provenance": "https://test.pypi.org/integrity/soup-release-lab-amirt/0.9.4/soup_release_lab_amirt-0.9.4.tar.gz/provenance",
+      "requires-python": "<3.15,>=3.10",
+      "size": 13056,
+      "upload-time": "2026-11-12T13:09:41.584072Z",
+      "url": "https://test-files.pythonhosted.org/packages/6e/02/4084c7495bb8a834c9483fce7015b879d698aedef9098622a51f742e7a58/soup_release_lab_amirt-0.9.4.tar.gz",
+      "yanked": false
+    }
+  ],
+  "meta": {
+    "_last-serial": 8650286,
+    "api-version": "1.4"
+  },
+  "name": "soup-release-lab-amirt",
+  "project-status": {
+    "status": "active"
+  },
+  "versions": [
+    "0.9.4"
+  ]
+}

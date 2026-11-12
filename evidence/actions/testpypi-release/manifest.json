@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "project": "soup-release-lab-amirt",
+  "version": "0.9.4",
+  "source_sha": "9ab7279d35904d85d3b835b4bf95884dd473d4f3",
+  "files": {
+    "soup_release_lab_amirt-0.9.4-py3-none-any.whl": "f3f8abb3a8d90fecbab596ddccd01ffc27c1eccf890e34a5044d6d3de1f08c4e",
+    "soup_release_lab_amirt-0.9.4.tar.gz": "a3c1cde15383913bf0327a0de42481b2be99d041a3158e95aed088651ea60ff5"
+  }
+}

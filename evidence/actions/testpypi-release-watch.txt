@@ -1,0 +1,5 @@
+$ gh run watch 43224278803 --repo stritphatographir/soup-devops-release-lab --exit-status --interval 20
+
+Run Publish verified distributions to TestPyPI (43224278803) has already completed with 'success'
+
+Exit code: 0

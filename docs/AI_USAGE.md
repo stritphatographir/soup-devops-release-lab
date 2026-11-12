@@ -6,11 +6,23 @@ created the repository and dispatched the recorded Actions runs. Initial remote
 runs failed inside GitHub before any jobs existed; they are not successful check
 executions. A later fixed run passed the full hosted matrix and Docker check;
 four naive passes and four intended hardened failures were verified against
-saved job logs. OIDC publication remains unverified.
+saved job logs. After the applicant completed account login and verification,
+Codex registered the specified TestPyPI pending publisher and pushed the reviewed
+`v0.9.4` tag. Release run `43224278803` passed all 21 jobs, including OIDC
+publication and public wheel/sdist read-back. Codex compared downloaded public
+file hashes against the tested artifact, inspected public provenance identity
+and digest fields, and ran a fresh Windows Simple Index wheel consumer.
+No independent cryptographic signature verification is claimed.
 The applicant requested OpenCode and Antigravity review as additional tools;
 their actual outcomes are recorded in the evidence rather than assumed.
 No personal claim that the applicant manually
 performed these checks is implied.
+
+The applicant confirmed `stritphatographir` as the intended repository owner
+and commit account. Repository ownership and push authentication already matched
+that account; the local commit identity was corrected for subsequent commits.
+Existing published commits and the release tag were preserved so their Actions
+and artifact evidence remain reproducible.
 
 Antigravity completed its initial document review; follow-up attempts did not
 complete and a hook retry reached a provider quota error. The coordinator

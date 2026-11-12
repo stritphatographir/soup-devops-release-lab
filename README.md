@@ -33,7 +33,14 @@ Initial Actions dispatches returned
 GitHub internal startup failures before creating any jobs. These are retained
 as infrastructure failures, not counted as package-bug detections. Further
 diagnostic/retry runs and actual statuses are in the [evidence ledger](evidence/README.md).
-TestPyPI OIDC registration and publication have not yet been confirmed.
+**TestPyPI publication and public read-back passed.** The
+[v0.9.4 release run](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803)
+passed all 21 jobs: the 19 checks, OIDC publication, and public wheel/sdist
+read-back on Python 3.10. The [published package](https://test.pypi.org/project/soup-release-lab-amirt/0.9.4/)
+has exactly the tested file hashes. A fresh Windows Python 3.13 consumer also
+downloaded the wheel from the public Simple Index, checked its hash, and passed.
+Public provenance identity and digest fields were inspected; independent
+cryptographic signature verification was not performed.
 
 ## Read the submission
 
@@ -80,9 +87,13 @@ The last command deliberately fails. Other choices are `python310`, `windows`,
 `naive.yml` demonstrates source-only checks. `ci.yml` calls `checks.yml` for
 quality, one sdist-to-wheel build, a clean consumer matrix, and Docker. Fixed
 runs use 15 OS/Python combinations; fault experiments use three representative
-ones. Tagging `v0.9.4` invokes the same checks in `release.yml`; only after all
+ones. The existing `v0.9.4` tag invoked the same checks in `release.yml`; only after all
 pass can the OIDC job upload the exact tested artifact to TestPyPI. Its public
 bytes are downloaded and exercised again. There is no real-PyPI publisher.
+
+The immutable TestPyPI 0.9.4 description is the README from the tagged commit,
+so it predates this publication-status update. The current evidence is linked
+above and retained in the repository.
 
 Runtime and build dependencies are hash-locked, the normal consumer path uses no
 editable install or source import path, and neither a restored venv nor pip

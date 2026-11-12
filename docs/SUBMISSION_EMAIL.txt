@@ -16,8 +16,13 @@ jobs, including 15 OS/Python combinations and exact-artifact Docker checks.
 Initial GitHub startup failures are also preserved as infrastructure failures.
 The final verifier revision also passed all 19 fixed jobs and rejected all four
 faults in fresh hosted regression runs.
-TestPyPI registration and a successful OIDC publish/read-back still need
-completion. The note states these limits.
+The v0.9.4 release passed all 21 jobs, including OIDC publication and public
+wheel/sdist read-back: https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803
+Published package: https://test.pypi.org/project/soup-release-lab-amirt/0.9.4/
+The public files match the tested artifact hashes; a fresh Windows Simple Index
+wheel consumer also passed. Real-PyPI release remains human-gated pending the
+independent review, governance/recovery, and durable circuit-breaker controls
+described in the note.
 
 The reflection and AI disclosure describe the implementation observations and
 must be reviewed personally before this email is sent. This is a draft and has

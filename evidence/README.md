@@ -3,9 +3,45 @@
 Repository: https://github.com/stritphatographir/soup-devops-release-lab
 
 The local logs contain actual exit codes. Deliberately broken fixtures are
-never published. **Required hosted red/green evidence is verified at 55b79e0;
-TestPyPI publication remains unverified.** A startup failure is an infrastructure
+never published. **Required hosted red/green evidence and TestPyPI 0.9.4
+publication/read-back are verified.** A startup failure is an infrastructure
 failure, not proof of package-bug detection.
+
+## Published release and public consumers
+
+The [v0.9.4 release run](https://github.com/stritphatographir/soup-devops-release-lab/actions/runs/43224278803)
+passed all **21 jobs** at source `9ab7279d35904d85d3b835b4bf95884dd473d4f3`:
+the 19 hardened checks, OIDC publication, and public read-back. The
+[run snapshot](actions/testpypi-release/run.json) and
+[complete log](actions/testpypi-release/run-log.txt) preserve the actual outcomes.
+The [TestPyPI project](https://test.pypi.org/project/soup-release-lab-amirt/0.9.4/)
+contains exactly the wheel and sdist from tested Actions artifact `13948045249`.
+
+| Distribution | SHA-256 |
+| --- | --- |
+| `soup_release_lab_amirt-0.9.4-py3-none-any.whl` | `f3f8abb3a8d90fecbab596ddccd01ffc27c1eccf890e34a5044d6d3de1f08c4e` |
+| `soup_release_lab_amirt-0.9.4.tar.gz` | `a3c1cde15383913bf0327a0de42481b2be99d041a3158e95aed088651ea60ff5` |
+
+[The tested manifest](actions/testpypi-release/manifest.json),
+[public file records](actions/testpypi-release/public-files.json), and
+[Simple Index response](actions/testpypi-release/simple-index.json) agree on
+these hashes. The hosted Python 3.10 consumer downloaded both public files,
+rejected unexpected files or changed bytes, and clean-installed each format.
+An additional [native Windows Python 3.13.14 consumer](actions/testpypi-release/windows-simple-index-consumer.json)
+downloaded the public wheel through the Simple Index, matched the tested hash
+before installation, and passed pip check, import-location and CLI checks.
+Runtime dependencies were bootstrapped from the canonical PyPI index using the
+hash lock; the candidate used TestPyPI alone without dependencies or an extra index.
+
+Both public files have TestPyPI provenance naming repository
+`stritphatographir/soup-devops-release-lab`, workflow `release.yml`, and environment
+`testpypi`. [The provenance summary](actions/testpypi-release/provenance-summary.json)
+records matching statement subjects and digests. These API fields were inspected;
+independent cryptographic signature verification was not performed. Raw provenance
+responses are retained beside the summary. No long-lived TestPyPI API token was created.
+
+The immutable 0.9.4 package README predates this publication and retains its
+then-current pending status. This ledger records the later successful result.
 
 ## Final verifier regression at feb2268
 
@@ -52,8 +88,8 @@ The [full snapshot](actions/acceptance-55b79e0/runs.json) records
 collection with `python scripts/collect_actions.py --plan
 evidence/actions/acceptance-plan.json --out evidence/actions/a-new-directory`.
 These baseline results precede the final verifier-hardening follow-up. Its
-additional local and hosted acceptance is recorded above. TestPyPI publication
-and read-back are the remaining target checks.
+additional local and hosted acceptance is recorded above; the release section
+also records the subsequent successful TestPyPI publication and read-back.
 
 | Fault | Why naive checks pass | Required hardened failure |
 | --- | --- | --- |
@@ -122,10 +158,17 @@ have complete job logs and independently verified outcomes.
 ## Account configuration and reviewers
 
 The GitHub `testpypi` environment was created and its deployment policy was
-verified through the API: custom tag rule `v*`, no branch rule. No TestPyPI
-publisher registration, OIDC upload, or public read-back has been confirmed;
-the account owner must finish the pending-publisher setup in
-[PUBLISHING.md](../docs/PUBLISHING.md) before the first release tag.
+verified through the API: custom tag rule `v*`, no branch rule. The
+[pending publisher registration](actions/testpypi-publisher-registration.json)
+was observed in the authenticated browser, followed by successful OIDC upload
+and public read-back as recorded above. [PUBLISHING.md](../docs/PUBLISHING.md)
+documents the mapping and release procedure.
+
+The repository owner and release actor are `stritphatographir`. Earlier commit
+emails were attributed by GitHub to the separate `stritphatographer` account.
+After the owner's clarification, repository-local author and committer settings
+were changed to `stritphatographir` and its GitHub noreply email for subsequent
+commits. Published commit/tag history and its evidence were preserved.
 
 [Antigravity's review](../docs/reviews/ANTIGRAVITY.md) completed. Its follow-up
 edit task twice ended without a completion report; that exact owned worker was

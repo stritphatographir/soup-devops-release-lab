@@ -1,0 +1,43 @@
+$ "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Scripts\python.exe" -I -m pip --isolated --disable-pip-version-check install --no-cache-dir --only-binary=:all: --require-hashes --index-url https://pypi.org/simple -r C:\Users\amirt\orca\workspaces\soup-devops\hearturchin\requirements\runtime.lock
+Ignoring tomli: markers 'python_full_version < "3.11"' don't match your environment
+
+Exit code: 0
+
+$ "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Scripts\python.exe" -I -m pip --isolated --disable-pip-version-check download --no-cache-dir --no-deps --only-binary=:all: --index-url https://test.pypi.org/simple/ --dest "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\download" soup-release-lab-amirt==0.9.4
+Looking in indexes: https://test.pypi.org/simple/
+Collecting soup-release-lab-amirt==0.9.4
+  Downloading soup_release_lab_amirt-0.9.4-py3-none-any.whl.metadata (5.5 kB)
+Downloading soup_release_lab_amirt-0.9.4-py3-none-any.whl (6.8 kB)
+Saved .\download\soup_release_lab_amirt-0.9.4-py3-none-any.whl
+Successfully downloaded soup-release-lab-amirt
+
+Exit code: 0
+
+$ "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Scripts\python.exe" -I -m pip --isolated --disable-pip-version-check install --no-index --no-deps "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\download\soup_release_lab_amirt-0.9.4-py3-none-any.whl"
+Processing .\download\soup_release_lab_amirt-0.9.4-py3-none-any.whl
+Installing collected packages: soup-release-lab-amirt
+Successfully installed soup-release-lab-amirt-0.9.4
+
+Exit code: 0
+
+$ "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Scripts\python.exe" -I -m pip --isolated --disable-pip-version-check check
+No broken requirements found.
+
+Exit code: 0
+
+$ "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Scripts\soup-check.exe" --version
+soup-check 0.9.4
+
+Exit code: 0
+
+$ "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Scripts\python.exe" -I -c "import soup_release_lab; print(soup_release_lab.__file__)"
+C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Lib\site-packages\soup_release_lab\__init__.py
+
+Exit code: 0
+
+$ "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\venv\Scripts\soup-check.exe" inspect "C:\Users\amirt\AppData\Local\Temp\soup public index consumer vtqh3f9f\service with spaces.toml"
+{"name": "public test", "profile": "safe", "schema": 1, "workers": 3}
+
+Exit code: 0
+
+PASS: public Simple Index wheel selected, hash verified, and CLI exercised.

@@ -36,6 +36,13 @@ Publisher and requests publish attestations. Read-back verifies the downloaded
 wheel and sdist hashes and runs both consumers again. A read-back failure is a
 failed release run, even though publication has already happened.
 
+The actual `v0.9.4` release passed all 21 jobs, including OIDC publication and
+public wheel/sdist read-back. Downloaded public bytes matched the tested
+artifact hashes; a fresh Windows Simple Index wheel consumer also passed.
+TestPyPI's public provenance identity and digest fields matched the expected
+repository/workflow/environment and files. Independent cryptographic signature
+verification was not performed.
+
 The publish job's inline verifier reads wheel/sdist metadata using only the
 standard library and rejects wrong identity, dependency policy, hashes, or file
 sets with explicit errors. It uses no assertions as security controls. Tests
@@ -66,12 +73,14 @@ failed publication or read-back and preserve evidence. This circuit breaker is
 a manual control; the current workflow does not latch later releases off.
 This lab intentionally has no real-PyPI
 publisher. The current verdict is **automate TestPyPI; retain a human gate for
-real PyPI** until the remote evidence and repository trust controls are verified.
+real PyPI** until independent review, repository trust and recovery controls,
+and a durable release circuit breaker are in place.
 
-Fix first: (1) obtain successful hosted execution and actual OIDC publish/read-back
-evidence; (2) protect source, locks, workflows, and version tags with independent
-review and account recovery; (3) implement and test a durable release circuit
-breaker, then broaden compatibility/behavioral coverage. Until then, TestPyPI
+Fix first: (1) protect source, locks, workflows, and version tags with independent
+review and test account recovery; (2) implement and test a durable release circuit
+breaker; (3) broaden compatibility/behavioral coverage and rehearse failure
+recovery. Successful hosted checks and actual OIDC publish/read-back evidence
+are now recorded. Until the remaining controls are verified, TestPyPI
 automation is a demonstration, not approval for unattended real-PyPI release.
 
 References: [GitHub secure use](https://docs.github.com/en/actions/reference/security/secure-use),

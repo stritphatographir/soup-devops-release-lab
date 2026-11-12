@@ -1,0 +1,13 @@
+{
+  "observed_at_utc": "2026-11-12T13:07:23.105489+00:00",
+  "service": "TestPyPI",
+  "provider": "GitHub Actions",
+  "project": "soup-release-lab-amirt",
+  "owner": "stritphatographir",
+  "repository": "soup-devops-release-lab",
+  "workflow": "release.yml",
+  "environment": "testpypi",
+  "observed_result": "Registered a new pending publisher to create the project soup-release-lab-amirt",
+  "method": "Observed success message and matching pending-publisher table in the authenticated TestPyPI browser",
+  "long_lived_pypi_token_created": false
+}

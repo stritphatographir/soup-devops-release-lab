@@ -11,7 +11,7 @@ to earlier revisions; this ledger records later work and actual acceptance.
 
 | Finding | Resolution and evidence |
 | --- | --- |
-| Antigravity F1: missing evidence/note, overbroad AI claims | Actual red/green links and raw logs are in evidence/README.md. The rendered note is exactly two pages. AI_USAGE distinguishes local execution, real hosted results, and pending OIDC publication. |
+| Antigravity F1: missing evidence/note, overbroad AI claims | Actual red/green links and raw logs are in evidence/README.md. The rendered note is exactly two pages. AI_USAGE distinguishes assistant execution, applicant account steps, real hosted results, and successful OIDC publication/read-back. |
 | Antigravity F2: GPU compatibility-set cost | The estimate explicitly assumes one supported software tuple; expanding N changes the release-minute formula. Host drivers are recorded rather than assumed replaceable. |
 | Antigravity F3: concurrency | GPU release/nightly groups are separate in the design, and the broker enforces one live pod. Actual CPU/TestPyPI release attempts use a per-tag group. New GitHub docs support queue:max, but the installed actionlint does not yet accept it; the implemented workflow uses per-tag serialization. |
 | Antigravity F4/F5: cleanup and budget | The design specifies termination, minute-by-minute reconciliation, heartbeat alerts, signed result URLs, ambiguous-create reconciliation, cold-start sensitivity, hosting assumptions, and a failure circuit breaker. It does not promise a provider-enforced hard spending cap. |
@@ -22,9 +22,12 @@ to earlier revisions; this ledger records later work and actual acceptance.
 | OpenCode F10: public release could contain an extra wheel | public_files_ready rejects extra or duplicate filenames; adversarial tests cover an untested platform wheel and partial index visibility. |
 | OpenCode F2/F3/F4/F9: verifier and dependency metadata | Implemented by OpenCode: explicit empty-identity rejection, mandatory tag/ref matching on tag-triggered checks, metadata-aware publish verification with no assertions, and exact dependency/Python-range policy. The actual workflow verifier is exercised against adversarial bundles and under optimized Python. The coordinator independently confirmed 107 passing tests, clean quality/audit checks, and a fresh full reproduction. The feb2268 fixed run then passed all 19 hosted jobs, and all four fresh fault runs failed in the required consumer with source-quality green. |
 
-Known limits remain visible in SECURITY.md. A successful release workflow on
-TestPyPI has not yet been observed. The applicant has not claimed an independent
-personal review or GPU execution.
+Known limits remain visible in SECURITY.md. TestPyPI release run `43224278803`
+passed all 21 jobs at the immutable `v0.9.4` tag, including public wheel/sdist
+read-back. Public hashes match the exact tested artifact; a fresh Windows
+Simple Index wheel consumer also passed. Public provenance identity and digest
+fields were inspected, without claiming independent cryptographic verification.
+The applicant has not claimed an independent personal review or GPU execution.
 
 The coordinator also corrected GitHub's error-annotation syntax in the tag
 guards and reran all 50 release-guard tests successfully. Native same-run
